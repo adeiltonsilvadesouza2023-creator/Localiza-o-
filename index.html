@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chamar Mototáxi</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding: 20px;
+            background-color: #f4f4f9;
+            color: #333;
+        }
+        .container {
+            max-width: 400px;
+            margin: 0 auto;
+            background: #fff;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+        h2 {
+            color: #075e54;
+        }
+        button {
+            background-color: #25d366;
+            color: white;
+            border: none;
+            padding: 15px 25px;
+            font-size: 18px;
+            font-weight: bold;
+            border-radius: 8px;
+            cursor: pointer;
+            width: 100%;
+            margin-top: 20px;
+        }
+        button:active {
+            background-color: #128c7e;
+        }
+        #status {
+            margin-top: 15px;
+            font-size: 14px;
+            color: #666;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h2>🏍️ Agilizar Corrida</h2>
+        <p>Toque no botão abaixo para permitir o acesso ao GPS e enviar sua localização direto para o nosso WhatsApp.</p>
+        
+        <button onclick="pegarLocalizacao()">Pedir com Minha Localização</button>
+        
+        <p id="status"></p>
+    </div>
+
+    <script>
+        function pegarLocalizacao() {
+            const statusDiv = document.getElementById("status");
+
+            if (!navigator.geolocation) {
+                statusDiv.innerHTML = "Seu navegador não suporta geolocalização.";
+                return;
+            }
+
+            statusDiv.innerHTML = "Obtendo sua localização, aguarde...";
+
+            navigator.geolocation.getCurrentPosition(
+                (position) => {
+                    const lat = position.coords.latitude;
+                    const lon = position.coords.longitude;
+                    
+                    // Link do Google Maps com a localização exata do cliente
+                    const linkMaps = `https://maps.google.com/?q=${lat},${lon}`;
+                    
+                    // Seu número de WhatsApp (coloque o seu com DDI e DDD, ex: 5581999999999)
+                    const seuNumeroWhatsApp = "5581985269588"; 
+                    
+                    const mensagem = encodeURIComponent(`Olá! Quero pedir uma corrida. Estou nesta localização: ${linkMaps}`);
+                    
+                    statusDiv.innerHTML = "Localização obtida! Redirecionando para o WhatsApp...";
+                    
+                    // Redireciona o cliente automaticamente para o WhatsApp com a mensagem pronta
+                    window.location.href = `https://wa.me/${seuNumeroWhatsApp}?text=${mensagem}`;
+                },
+                (error) => {
+                    if (error.code === error.PERMISSION_DENIED) {
+                        statusDiv.innerHTML = "Você negou a permissão de localização. Por favor, permita no navegador para continuar.";
+                    } else {
+                        statusDiv.innerHTML = "Não foi possível obter sua localização.";
+                    }
+                },
+                {
+                    enableHighAccuracy: true, // Pede a maior precisão possível do GPS
+                    timeout: 10000,
+                    maximumAge: 0
+                }
+            );
+        }
+    </script>
+
+</body>
+</html>
