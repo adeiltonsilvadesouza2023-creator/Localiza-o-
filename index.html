@@ -110,20 +110,21 @@
     </div>
 
     <script>
-        // 1. Cole aqui as chaves do seu Supabase (A tabela continua a mesma)
+        // 1. Cole aqui as chaves do seu Supabase
         const SUPABASE_URL = 'SUA_URL_DO_SUPABASE';
         const SUPABASE_KEY = 'SUA_CHAVE_PUBLICA_ANON';
         const supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
 
-        async function verificarBeneficios(identificador) {
-            if (!identificador) return { desconto: 0, mensagem: "" };
+        async function verificarBeneficios(nome, rua) {
+            if (!nome || !rua) return { desconto: 0, mensagem: "" };
 
-            // Buscando pelo nome (que agora usa a coluna 'telefone' da tabela sem precisar mudar nada)
+            // Busca buscando separadamente por nome e rua nas colunas novas
             let { data: cliente, error } = await supabaseClient
                 .from('clientes')
                 .select('*')
-                .eq('telefone', identificador)
-                .single();
+                .eq('nome', nome)
+                .eq('rua', rua)
+                .maybeSingle();
 
             let viagensFeitas = 0;
             let temDescontoIndicação = false;
@@ -133,7 +134,7 @@
                 temDescontoIndicação = cliente.tem_desconto_indicacao || false;
             }
 
-            // Regra da 3ª viagem (agora 40% de desconto) ou indicação (20% de desconto)
+            // Regra da 3ª viagem (40% de desconto) ou indicação (20% de desconto)
             let proximaViagem = viagensFeitas + 1;
             if (proximaViagem % 3 === 0) {
                 return { desconto: 40, mensagem: "Parabéns! Na sua 3ª viagem você ganhou 40% de desconto!", viagens: viagensFeitas };
@@ -144,33 +145,35 @@
             return { desconto: 0, mensagem: "Cliente cadastrado!", viagens: viagensFeitas };
         }
 
-        async function registrarViagemNoSupabase(identificador, quemIndicou) {
-            if (!identificador) return;
+        async function registrarViagemNoSupabase(nome, rua, quemIndicou) {
+            if (!nome || !rua) return;
 
             let { data: cliente } = await supabaseClient
                 .from('clientes')
                 .select('*')
-                .eq('telefone', identificador)
-                .single();
+                .eq('nome', nome)
+                .eq('rua', rua)
+                .maybeSingle();
 
             if (!cliente) {
                 if (quemIndicou) {
+                    // Tenta achar quem indicou (buscando por nome)
                     let { data: padrinho } = await supabaseClient
                         .from('clientes')
                         .select('*')
-                        .eq('telefone', quemIndicou)
-                        .single();
+                        .eq('nome', quemIndicou)
+                        .maybeSingle();
 
                     if (padrinho) {
                         await supabaseClient
                             .from('clientes')
                             .update({ tem_desconto_indicacao: true })
-                            .eq('telefone', quemIndicou);
+                            .eq('id', padrinho.id);
                     }
                 }
 
                 await supabaseClient.from('clientes').insert([
-                    { telefone: identificador, viagens_feitas: 1, tem_desconto_indicacao: false }
+                    { nome: nome, rua: rua, viagens_feitas: 1, tem_desconto_indicacao: false }
                 ]);
             } else {
                 let novasViagens = (cliente.viagens_feitas || 0) + 1;
@@ -179,7 +182,7 @@
                 await supabaseClient
                     .from('clientes')
                     .update({ viagens_feitas: novasViagens, tem_desconto_indicacao: zeraIndicacao })
-                    .eq('telefone', identificador);
+                    .eq('id', cliente.id);
             }
         }
 
@@ -194,9 +197,6 @@
                 return;
             }
 
-            // Usamos o nome combinado com a rua como identificador único no banco para continuar funcionando sem alterar a tabela
-            const identificadorUnico = `${nome} - ${rua}`;
-
             if (!navigator.geolocation) {
                 statusDiv.innerHTML = "Seu navegador não suporta geolocalização.";
                 return;
@@ -204,7 +204,7 @@
 
             statusDiv.innerHTML = "Verificando descontos e obtendo sua localização...";
 
-            let beneficio = await verificarBeneficios(identificadorUnico);
+            let beneficio = await verificarBeneficios(nome, rua);
 
             navigator.geolocation.getCurrentPosition(
                 async (position) => {
@@ -213,7 +213,7 @@
                     const linkMaps = `https://maps.google.com/?q=${lat},${lon}`;
                     const seuNumeroWhatsApp = "5581985269588"; 
 
-                    await registrarViagemNoSupabase(identificadorUnico, quemIndicou);
+                    await registrarViagemNoSupabase(nome, rua, quemIndicou);
 
                     let textoMensagem = `Olá! Meu nome é ${nome}, estou na rua ${rua}. Quero pedir uma corrida. Estou nesta localização: ${linkMaps}`;
                     if (beneficio.desconto > 0) {
