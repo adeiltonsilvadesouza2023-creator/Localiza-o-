@@ -1,8 +1,6 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-
-
     <!-- METATAGS DO OPEN GRAPH PARA O WHATSAPP -->
     <meta property="og:title" content="🛵 Chamar Mototáxi Agora">
     <meta property="og:description" content="Toque aqui para permitir sua localização e agilizar a corrida direto no WhatsApp!">
@@ -10,13 +8,13 @@
     <meta property="og:url" content="https://adeiltonsilvadesouza2023-creator.github.io/Localiza-o-/">
     <meta property="og:type" content="website">
 
-
-
-
-    
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Chamar Mototáxi</title>
+    
+    <!-- Biblioteca do Supabase para conversar com a nuvem -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -36,6 +34,14 @@
         h2 {
             color: #075e54;
         }
+        input {
+            width: 90%;
+            padding: 12px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            font-size: 16px;
+        }
         button {
             background-color: #25d366;
             color: white;
@@ -46,7 +52,7 @@
             border-radius: 8px;
             cursor: pointer;
             width: 100%;
-            margin-top: 20px;
+            margin-top: 10px;
         }
         button:active {
             background-color: #128c7e;
@@ -56,13 +62,30 @@
             font-size: 14px;
             color: #666;
         }
+        .desconto-box {
+            background: #e1f5fe;
+            padding: 10px;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            font-weight: bold;
+            color: #0277bd;
+        }
     </style>
 </head>
 <body>
 
     <div class="container">
         <h2>🏍️ Agilizar Corrida</h2>
-        <p>Toque no botão abaixo para permitir o acesso ao GPS e enviar sua localização direto para o nosso WhatsApp.</p>
+        
+        <div id="painelDesconto" class="desconto-box" style="display:none;">
+            🎉 <span id="textoDesconto"></span>
+        </div>
+
+        <p>Digite seu WhatsApp para participar do clube de descontos:</p>
+        <input type="text" id="telefoneCliente" placeholder="Seu WhatsApp (ex: 81999999999)">
+        <input type="text" id="telefoneAmigo" placeholder="Quem te indicou? (Opcional)">
+
+        <p style="font-size: 14px; margin-top: 15px;">Toque no botão abaixo para permitir o acesso ao GPS e enviar sua localização direto para o nosso WhatsApp.</p>
         
         <button onclick="pegarLocalizacao()">Pedir com Minha Localização</button>
         
@@ -70,49 +93,128 @@
     </div>
 
     <script>
-        function pegarLocalizacao() {
+        // 1. Cole aqui as chaves do seu Supabase (Crie uma tabela chamada 'clientes')
+        const SUPABASE_URL = 'SUA_URL_DO_SUPABASE';
+        const SUPABASE_KEY = 'SUA_CHAVE_PUBLICA_ANON';
+        const supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+
+        async function verificarBeneficios(telefone) {
+            if (!telefone) return { desconto: 0, mensagem: "" };
+
+            // Pergunta ao Supabase se esse cliente já existe
+            let { data: cliente, error } = await supabaseClient
+                .from('clientes')
+                .select('*')
+                .eq('telefone', telefone)
+                .single();
+
+            let viagensFeitas = 0;
+            let temDescontoIndicação = false;
+
+            if (cliente) {
+                viagensFeitas = cliente.viagens_feitas || 0;
+                temDescontoIndicação = cliente.tem_desconto_indicacao || false;
+            }
+
+            // Regra da 3ª viagem (50% de desconto) ou indicação (20% de desconto)
+            let proximaViagem = viagensFeitas + 1;
+            if (proximaViagem % 3 === 0) {
+                return { desconto: 50, mensagem: "Parabéns! Na sua 3ª viagem você ganhou 50% de desconto!", viagens: viagensFeitas };
+            } else if (temDescontoIndicação) {
+                return { desconto: 20, mensagem: "Você ganhou 20% de desconto pela indicação!", viagens: viagensFeitas, usarIndicacao: true };
+            }
+
+            return { desconto: 0, mensagem: "Cliente cadastrado!", viagens: viagensFeitas };
+        }
+
+        async function registrarViagemNoSupabase(telefone, quemIndicou) {
+            if (!telefone) return;
+
+            let { data: cliente } = await supabaseClient
+                .from('clientes')
+                .select('*')
+                .eq('telefone', telefone)
+                .single();
+
+            if (!cliente) {
+                // Se é cliente novo e colocou quem indicou, dá o bônus de 20% para quem indicou
+                if (quemIndicou) {
+                    let { data: padrinho } = await supabaseClient
+                        .from('clientes')
+                        .select('*')
+                        .eq('telefone', quemIndicou)
+                        .single();
+
+                    if (padrinho) {
+                        await supabaseClient
+                            .from('clientes')
+                            .update({ tem_desconto_indicacao: true })
+                            .eq('telefone', quemIndicou);
+                    }
+                }
+
+                // Cria o novo cliente
+                await supabaseClient.from('clientes').insert([
+                    { telefone: telefone, viagens_feitas: 1, tem_desconto_indicacao: false }
+                ]);
+            } else {
+                // Atualiza as viagens do cliente existente
+                let novasViagens = (cliente.viagens_feitas || 0) + 1;
+                let zeraIndicacao = cliente.tem_desconto_indicacao ? false : cliente.tem_desconto_indicacao;
+
+                await supabaseClient
+                    .from('clientes')
+                    .update({ viagens_feitas: novasViagens, tem_desconto_indicacao: zeraIndicacao })
+                    .eq('telefone', telefone);
+            }
+        }
+
+        async function pegarLocalizacao() {
             const statusDiv = document.getElementById("status");
+            const telefone = document.getElementById("telefoneCliente").value.trim();
+            const quemIndicou = document.getElementById("telefoneAmigo").value.trim();
+
+            if (!telefone) {
+                alert("Por favor, digite seu WhatsApp para continuar!");
+                return;
+            }
 
             if (!navigator.geolocation) {
                 statusDiv.innerHTML = "Seu navegador não suporta geolocalização.";
                 return;
             }
 
-            statusDiv.innerHTML = "Obtendo sua localização, aguarde...";
+            statusDiv.innerHTML = "Verificando descontos e obtendo sua localização...";
+
+            // Verifica se tem desconto antes de mandar para o zap
+            let beneficio = await verificarBeneficios(telefone);
 
             navigator.geolocation.getCurrentPosition(
-                (position) => {
+                async (position) => {
                     const lat = position.coords.latitude;
                     const lon = position.coords.longitude;
-                    
-                    // Link do Google Maps com a localização exata do cliente
                     const linkMaps = `https://maps.google.com/?q=${lat},${lon}`;
-                    
-                    // Seu número de WhatsApp (coloque o seu com DDI e DDD, ex: 5581999999999)
                     const seuNumeroWhatsApp = "5581985269588"; 
+
+                    // Salva a viagem no Supabase
+                    await registrarViagemNoSupabase(telefone, quemIndicou);
+
+                    let textoMensagem = `Olá! Quero pedir uma corrida. Estou nesta localização: ${linkMaps}`;
+                    if (beneficio.desconto > 0) {
+                        textoMensagem = `Olá! Tenho direito a ${beneficio.desconto}% de desconto (${beneficio.mensagem}). Quero pedir uma corrida. Localização: ${linkMaps}`;
+                    }
+
+                    const mensagem = encodeURIComponent(textoMensagem);
+                    statusDiv.innerHTML = "Tudo pronto! Redirecionando para o WhatsApp...";
                     
-                    const mensagem = encodeURIComponent(`Olá! Quero pedir uma corrida. Estou nesta localização: ${linkMaps}`);
-                    
-                    statusDiv.innerHTML = "Localização obtida! Redirecionando para o WhatsApp...";
-                    
-                    // Redireciona o cliente automaticamente para o WhatsApp com a mensagem pronta
                     window.location.href = `https://wa.me/${seuNumeroWhatsApp}?text=${mensagem}`;
                 },
                 (error) => {
-                    if (error.code === error.PERMISSION_DENIED) {
-                        statusDiv.innerHTML = "Você negou a permissão de localização. Por favor, permita no navegador para continuar.";
-                    } else {
-                        statusDiv.innerHTML = "Não foi possível obter sua localização.";
-                    }
+                    statusDiv.innerHTML = "Não foi possível obter sua localização. Permita o GPS no navegador.";
                 },
-                {
-                    enableHighAccuracy: true, // Pede a maior precisão possível do GPS
-                    timeout: 10000,
-                    maximumAge: 0
-                }
+                { enableHighAccuracy: true, timeout: 10000, maximumAge: 0 }
             );
         }
     </script>
-
 </body>
 </html>
