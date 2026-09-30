@@ -1,158 +1,1122 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
 
-    <meta property="og:title" content="🛵 Chamar Mototáxi Agora">
-    <meta property="og:description" content="Toque aqui para permitir sua localização e agilizar a corrida direto no WhatsApp!">
-    <meta property="og:image" content="https://adeiltonsilvadesouza2023-creator.github.io/Localiza-o-/banner.png">
-    <meta property="og:url" content="https://adeiltonsilvadesouza2023-creator.github.io/Localiza-o-/">
-    <meta property="og:type" content="website">
+<meta property="og:title" content="🛵 Chamar Mototáxi Agora">
+<meta property="og:description" content="Toque aqui para permitir sua localização e agilizar a corrida direto no WhatsApp!">
+<meta property="og:image" content="https://adeiltonsilvadesouza2023-creator.github.io/Localiza-o-/banner.png">
+<meta property="og:url" content="https://adeiltonsilvadesouza2023-creator.github.io/Localiza-o-/">
+<meta property="og:type" content="website">
 
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Chamar Mototáxi</title>
+<title>🛵 Chamar Mototáxi</title>
 
-    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
-    <style>
+<style>
 
-        body {
-            font-family: Arial, sans-serif;
-            text-align: center;
-            padding: 20px;
-            background-color: #f4f4f9;
-            color: #333;
-        }
+/* =====================================================
+   RESET
+===================================================== */
 
-        .container {
-            max-width: 400px;
-            margin: 0 auto;
-            background: #fff;
-            padding: 30px;
-            border-radius: 12px;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-        }
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
 
-        h2 {
-            color: #075e54;
-        }
 
-        input {
-            width: 90%;
-            padding: 12px;
-            margin: 10px 0;
-            border: 1px solid #ccc;
-            border-radius: 8px;
-            font-size: 16px;
-        }
+/* =====================================================
+   BODY
+===================================================== */
 
-        button {
-            background-color: #25d366;
-            color: white;
-            border: none;
-            padding: 15px 25px;
-            font-size: 18px;
-            font-weight: bold;
-            border-radius: 8px;
-            cursor: pointer;
-            width: 100%;
-            margin-top: 10px;
-        }
+body {
 
-        button:active {
-            background-color: #128c7e;
-        }
+    font-family:
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        Arial,
+        sans-serif;
 
-        #status {
-            margin-top: 15px;
-            font-size: 14px;
-            color: #666;
-        }
+    min-height: 100vh;
 
-        .aviso-desconto-grande {
-            background: #fff3cd;
-            border: 2px dashed #ffecb5;
-            padding: 12px;
-            border-radius: 8px;
-            margin-bottom: 20px;
-            color: #856404;
-            font-size: 16px;
-            font-weight: bold;
-            line-height: 1.4;
-        }
+    color: #ffffff;
 
-        .desconto-box {
-            background: #e1f5fe;
-            padding: 10px;
-            border-radius: 8px;
-            margin-bottom: 15px;
-            font-weight: bold;
-            color: #0277bd;
-        }
+    background:
+        radial-gradient(
+            circle at 20% 20%,
+            rgba(37,211,102,0.20),
+            transparent 30%
+        ),
+        radial-gradient(
+            circle at 80% 80%,
+            rgba(0,180,255,0.18),
+            transparent 30%
+        ),
+        linear-gradient(
+            135deg,
+            #061b17,
+            #071f2a,
+            #03110e
+        );
 
-    </style>
+    overflow-x: hidden;
+
+    padding:
+        25px
+        15px;
+
+}
+
+
+/* =====================================================
+   FUNDO ANIMADO
+===================================================== */
+
+body::before {
+
+    content: "";
+
+    position: fixed;
+
+    width: 350px;
+    height: 350px;
+
+    border-radius: 50%;
+
+    background:
+        rgba(37,211,102,0.10);
+
+    filter: blur(60px);
+
+    top: -100px;
+    left: -100px;
+
+    animation:
+        flutuar 8s ease-in-out infinite;
+
+    pointer-events: none;
+
+}
+
+
+body::after {
+
+    content: "";
+
+    position: fixed;
+
+    width: 300px;
+    height: 300px;
+
+    border-radius: 50%;
+
+    background:
+        rgba(0,200,255,0.10);
+
+    filter: blur(70px);
+
+    right: -100px;
+    bottom: -100px;
+
+    animation:
+        flutuar2 10s ease-in-out infinite;
+
+    pointer-events: none;
+
+}
+
+
+@keyframes flutuar {
+
+    0%,100% {
+        transform: translate(0,0);
+    }
+
+    50% {
+        transform: translate(80px,50px);
+    }
+
+}
+
+
+@keyframes flutuar2 {
+
+    0%,100% {
+        transform: translate(0,0);
+    }
+
+    50% {
+        transform: translate(-60px,-50px);
+    }
+
+}
+
+
+/* =====================================================
+   CONTAINER
+===================================================== */
+
+.container {
+
+    position: relative;
+
+    z-index: 2;
+
+    max-width: 430px;
+
+    margin: auto;
+
+    padding: 28px 22px 25px;
+
+    border-radius: 28px;
+
+    background:
+        rgba(255,255,255,0.075);
+
+    border:
+        1px solid rgba(255,255,255,0.15);
+
+    backdrop-filter:
+        blur(20px);
+
+    -webkit-backdrop-filter:
+        blur(20px);
+
+    box-shadow:
+        0 25px 70px rgba(0,0,0,0.45);
+
+    animation:
+        entrada 0.8s ease;
+
+}
+
+
+@keyframes entrada {
+
+    from {
+
+        opacity: 0;
+
+        transform:
+            translateY(30px)
+            scale(0.96);
+
+    }
+
+    to {
+
+        opacity: 1;
+
+        transform:
+            translateY(0)
+            scale(1);
+
+    }
+
+}
+
+
+/* =====================================================
+   CABEÇALHO
+===================================================== */
+
+.logo {
+
+    font-size: 54px;
+
+    display: inline-block;
+
+    animation:
+        motoPulse 2.5s ease-in-out infinite;
+
+}
+
+
+@keyframes motoPulse {
+
+    0%,100% {
+        transform: scale(1) rotate(0deg);
+    }
+
+    50% {
+        transform: scale(1.08) rotate(-3deg);
+    }
+
+}
+
+
+h2 {
+
+    margin-top: 8px;
+
+    font-size: 28px;
+
+    font-weight: 800;
+
+    background:
+        linear-gradient(
+            90deg,
+            #ffffff,
+            #25d366,
+            #ffffff
+        );
+
+    background-size: 200% auto;
+
+    -webkit-background-clip: text;
+
+    -webkit-text-fill-color:
+        transparent;
+
+    animation:
+        brilhoTexto 3s linear infinite;
+
+}
+
+
+@keyframes brilhoTexto {
+
+    to {
+        background-position:
+            200% center;
+    }
+
+}
+
+
+.subtitulo {
+
+    margin-top: 8px;
+
+    color:
+        rgba(255,255,255,0.70);
+
+    font-size: 14px;
+
+}
+
+
+/* =====================================================
+   CARTÃO DO DESCONTO
+===================================================== */
+
+.aviso-desconto-grande {
+
+    position: relative;
+
+    overflow: hidden;
+
+    margin:
+        25px 0 18px;
+
+    padding: 20px 15px;
+
+    border-radius: 20px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #fff4b0,
+            #ffd84d,
+            #fff0a0
+        );
+
+    color: #493800;
+
+    box-shadow:
+        0 10px 30px
+        rgba(255,210,40,0.22);
+
+    animation:
+        descontoPulse 2.5s ease-in-out infinite;
+
+}
+
+
+@keyframes descontoPulse {
+
+    0%,100% {
+
+        transform:
+            scale(1);
+
+        box-shadow:
+            0 10px 30px
+            rgba(255,210,40,0.20);
+
+    }
+
+    50% {
+
+        transform:
+            scale(1.015);
+
+        box-shadow:
+            0 15px 40px
+            rgba(255,210,40,0.38);
+
+    }
+
+}
+
+
+/* brilho passando */
+
+.aviso-desconto-grande::after {
+
+    content: "";
+
+    position: absolute;
+
+    top: -50%;
+
+    left: -100%;
+
+    width: 60px;
+
+    height: 200%;
+
+    background:
+        rgba(255,255,255,0.55);
+
+    transform:
+        rotate(20deg);
+
+    animation:
+        shine 3.5s infinite;
+
+}
+
+
+@keyframes shine {
+
+    0% {
+        left: -100%;
+    }
+
+    55%,100% {
+        left: 150%;
+    }
+
+}
+
+
+.desconto-titulo {
+
+    font-size: 15px;
+
+    font-weight: 800;
+
+}
+
+
+.desconto-40 {
+
+    display: block;
+
+    margin-top: 4px;
+
+    font-size: 27px;
+
+    font-weight: 1000;
+
+    color: #d62828;
+
+    animation:
+        descontoTexto 1.5s ease-in-out infinite;
+
+}
+
+
+@keyframes descontoTexto {
+
+    0%,100% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.06);
+    }
+
+}
+
+
+/* =====================================================
+   PAINEL DO CLIENTE
+===================================================== */
+
+.desconto-box {
+
+    display: none;
+
+    margin:
+        15px 0;
+
+    padding: 17px;
+
+    border-radius: 18px;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(0,180,255,0.18),
+            rgba(37,211,102,0.12)
+        );
+
+    border:
+        1px solid
+        rgba(255,255,255,0.15);
+
+    color: #ffffff;
+
+    font-weight: 700;
+
+    animation:
+        aparecer 0.5s ease;
+
+}
+
+
+@keyframes aparecer {
+
+    from {
+
+        opacity: 0;
+
+        transform:
+            translateY(15px)
+            scale(0.95);
+
+    }
+
+    to {
+
+        opacity: 1;
+
+        transform:
+            translateY(0)
+            scale(1);
+
+    }
+
+}
+
+
+/* =====================================================
+   BARRA DE PROGRESSO
+===================================================== */
+
+.progresso-container {
+
+    margin-top: 12px;
+
+}
+
+
+.progresso-texto {
+
+    display: flex;
+
+    justify-content:
+        space-between;
+
+    font-size: 12px;
+
+    color:
+        rgba(255,255,255,0.75);
+
+    margin-bottom: 7px;
+
+}
+
+
+.progresso {
+
+    height: 9px;
+
+    width: 100%;
+
+    background:
+        rgba(255,255,255,0.12);
+
+    border-radius: 20px;
+
+    overflow: hidden;
+
+}
+
+
+.progresso-barra {
+
+    height: 100%;
+
+    width: 0%;
+
+    border-radius: 20px;
+
+    background:
+        linear-gradient(
+            90deg,
+            #25d366,
+            #b6ff00
+        );
+
+    box-shadow:
+        0 0 15px
+        rgba(37,211,102,0.8);
+
+    transition:
+        width 1s ease;
+
+}
+
+
+/* =====================================================
+   TEXTO
+===================================================== */
+
+.descricao {
+
+    margin:
+        18px 0;
+
+    line-height: 1.55;
+
+    font-size: 15px;
+
+    color:
+        rgba(255,255,255,0.82);
+
+}
+
+
+/* =====================================================
+   INPUTS
+===================================================== */
+
+.input-wrapper {
+
+    position: relative;
+
+    margin:
+        12px 0;
+
+}
+
+
+input {
+
+    width: 100%;
+
+    padding:
+        16px 17px;
+
+    border-radius: 15px;
+
+    border:
+        1px solid
+        rgba(255,255,255,0.18);
+
+    outline: none;
+
+    font-size: 16px;
+
+    color: #ffffff;
+
+    background:
+        rgba(255,255,255,0.08);
+
+    transition:
+        0.25s;
+
+}
+
+
+input::placeholder {
+
+    color:
+        rgba(255,255,255,0.55);
+
+}
+
+
+input:focus {
+
+    border-color:
+        #25d366;
+
+    background:
+        rgba(37,211,102,0.08);
+
+    box-shadow:
+        0 0 0 4px
+        rgba(37,211,102,0.10),
+        0 0 25px
+        rgba(37,211,102,0.15);
+
+    transform:
+        translateY(-2px);
+
+}
+
+
+/* =====================================================
+   BOTÃO PRINCIPAL
+===================================================== */
+
+button {
+
+    position: relative;
+
+    overflow: hidden;
+
+    width: 100%;
+
+    margin-top: 15px;
+
+    padding: 18px 15px;
+
+    border: none;
+
+    border-radius: 18px;
+
+    cursor: pointer;
+
+    color: #ffffff;
+
+    font-size: 18px;
+
+    font-weight: 900;
+
+    background:
+        linear-gradient(
+            135deg,
+            #25d366,
+            #128c7e
+        );
+
+    box-shadow:
+        0 10px 30px
+        rgba(37,211,102,0.35);
+
+    animation:
+        botaoPulse 2s ease-in-out infinite;
+
+    transition:
+        transform 0.15s,
+        box-shadow 0.15s;
+
+}
+
+
+@keyframes botaoPulse {
+
+    0%,100% {
+
+        transform:
+            scale(1);
+
+    }
+
+    50% {
+
+        transform:
+            scale(1.025);
+
+    }
+
+}
+
+
+button:hover {
+
+    box-shadow:
+        0 15px 40px
+        rgba(37,211,102,0.55);
+
+}
+
+
+button:active {
+
+    transform:
+        scale(0.96);
+
+}
+
+
+/* brilho do botão */
+
+button::after {
+
+    content: "";
+
+    position: absolute;
+
+    top: 0;
+
+    left: -120%;
+
+    width: 70px;
+
+    height: 100%;
+
+    background:
+        rgba(255,255,255,0.35);
+
+    transform:
+        skewX(-20deg);
+
+    animation:
+        botaoBrilho 3s infinite;
+
+}
+
+
+@keyframes botaoBrilho {
+
+    0% {
+        left: -120%;
+    }
+
+    45%,100% {
+        left: 140%;
+    }
+
+}
+
+
+/* =====================================================
+   STATUS
+===================================================== */
+
+#status {
+
+    min-height: 25px;
+
+    margin-top: 18px;
+
+    font-size: 14px;
+
+    line-height: 1.5;
+
+    color:
+        rgba(255,255,255,0.75);
+
+}
+
+
+/* =====================================================
+   GPS CARREGANDO
+===================================================== */
+
+.gps-loading {
+
+    display: inline-block;
+
+    animation:
+        gpsPulse 1s infinite;
+
+}
+
+
+@keyframes gpsPulse {
+
+    0%,100% {
+        transform:
+            scale(1);
+    }
+
+    50% {
+        transform:
+            scale(1.3);
+    }
+
+}
+
+
+/* =====================================================
+   RODAPÉ
+===================================================== */
+
+.rodape {
+
+    margin-top: 20px;
+
+    font-size: 11px;
+
+    color:
+        rgba(255,255,255,0.38);
+
+}
+
+
+/* =====================================================
+   CONFETES
+===================================================== */
+
+.confete {
+
+    position: fixed;
+
+    top: -20px;
+
+    width: 9px;
+    height: 14px;
+
+    z-index: 9999;
+
+    pointer-events: none;
+
+    animation:
+        cair 2.5s linear forwards;
+
+}
+
+
+@keyframes cair {
+
+    0% {
+
+        transform:
+            translateY(0)
+            rotate(0deg);
+
+        opacity: 1;
+
+    }
+
+    100% {
+
+        transform:
+            translateY(110vh)
+            rotate(720deg);
+
+        opacity: 0;
+
+    }
+
+}
+
+
+/* =====================================================
+   SUCESSO
+===================================================== */
+
+.sucesso {
+
+    animation:
+        sucesso 0.7s ease;
+
+}
+
+
+@keyframes sucesso {
+
+    0% {
+        transform:
+            scale(1);
+    }
+
+    40% {
+        transform:
+            scale(1.08);
+    }
+
+    70% {
+        transform:
+            scale(0.98);
+    }
+
+    100% {
+        transform:
+            scale(1);
+    }
+
+}
+
+</style>
+
 </head>
+
 
 <body>
 
-<div class="container">
 
-    <h2>🏍️ Agilizar Corrida</h2>
+<div class="container" id="container">
+
+
+    <div class="logo">
+        🏍️
+    </div>
+
+
+    <h2>
+        Agilizar Corrida
+    </h2>
+
+
+    <div class="subtitulo">
+        Sua corrida começa em poucos segundos ⚡
+    </div>
+
+
+    <!-- =================================================
+         DESCONTO
+    ================================================== -->
 
     <div class="aviso-desconto-grande">
-        🎁 ATENÇÃO!<br>
-        Na sua 3ª viagem você ganha
-        <span style="color: #d9534f; font-size: 20px;">
-            40% DE DESCONTO!
+
+        <div class="desconto-titulo">
+            🎁 PROGRAMA DE FIDELIDADE
+        </div>
+
+        <span class="desconto-40">
+            40% DE DESCONTO
         </span>
+
+        <div>
+            na sua 3ª viagem!
+        </div>
+
     </div>
 
-    <div id="painelDesconto" class="desconto-box" style="display:none;">
-        🎉 <span id="textoDesconto"></span>
+
+    <!-- =================================================
+         PAINEL DESCONTO
+    ================================================== -->
+
+    <div
+        id="painelDesconto"
+        class="desconto-box"
+    >
+
+        <div id="textoDesconto"></div>
+
+        <div
+            id="progressoContainer"
+            class="progresso-container"
+            style="display:none;"
+        >
+
+            <div class="progresso-texto">
+
+                <span>
+                    Próxima recompensa
+                </span>
+
+                <span id="progressoNumero">
+                    0/3
+                </span>
+
+            </div>
+
+
+            <div class="progresso">
+
+                <div
+                    id="progressoBarra"
+                    class="progresso-barra"
+                ></div>
+
+            </div>
+
+        </div>
+
     </div>
 
-    <p>Preencha seus dados para chamar o mototáxi:</p>
 
-    <input
-        type="text"
-        id="nomeCliente"
-        placeholder="Seu Nome"
-    >
+    <p class="descricao">
 
-    <input
-        type="text"
-        id="ruaCliente"
-        placeholder="Sua Rua / Local de Partida"
-    >
+        👋 Digite seu nome se quiser acompanhar
+        suas viagens e participar do programa
+        de desconto.
 
-    <input
-        type="text"
-        id="telefoneAmigo"
-        placeholder="Quem te indicou? (Opcional - Nome ou WhatsApp)"
-    >
+        <br><br>
 
-    <p style="font-size:14px; margin-top:15px;">
-        Toque no botão abaixo para permitir o acesso ao GPS
-        e enviar sua localização diretamente para o WhatsApp.
+        📍 Depois, toque no botão e enviaremos
+        sua localização automaticamente pelo GPS.
+
     </p>
 
-    <button onclick="pegarLocalizacao()">
-        📍 Pedir com Minha Localização
+
+    <!-- =================================================
+         NOME
+    ================================================== -->
+
+    <div class="input-wrapper">
+
+        <input
+            type="text"
+            id="nomeCliente"
+            placeholder="👤 Seu nome (opcional)"
+            autocomplete="name"
+        >
+
+    </div>
+
+
+    <!-- =================================================
+         INDICAÇÃO
+    ================================================== -->
+
+    <div class="input-wrapper">
+
+        <input
+            type="text"
+            id="telefoneAmigo"
+            placeholder="👥 Quem te indicou? (opcional)"
+        >
+
+    </div>
+
+
+    <!-- =================================================
+         BOTÃO
+    ================================================== -->
+
+    <button
+        id="botaoCorrida"
+        onclick="pegarLocalizacao()"
+    >
+
+        📍 PEDIR MOTOTÁXI AGORA
+
     </button>
 
+
     <p id="status"></p>
+
+
+    <div class="rodape">
+
+        🔒 Sua localização é usada somente
+        para agilizar sua corrida.
+
+    </div>
+
 
 </div>
 
 
 <script>
 
+
+/* =====================================================
+   SUPABASE
+===================================================== */
+
 const SUPABASE_URL =
     'https://etaiheynljzhzvpaqusm.supabase.co';
 
 const SUPABASE_KEY =
     'sb_publishable_DkBXJjtKJCBqjy2aNF8kFg_yKMK0hwg';
+
 
 const supabaseClient =
     supabase.createClient(
@@ -161,33 +1125,44 @@ const supabaseClient =
     );
 
 
-/*
-====================================================
-VERIFICAR DESCONTO DO CLIENTE
-====================================================
-*/
+/* =====================================================
+   VERIFICAR BENEFÍCIOS
+===================================================== */
 
-async function verificarBeneficios(nome, rua) {
+async function verificarBeneficios(nome) {
 
-    if (!nome || !rua) {
+    if (!nome) {
 
         return {
+
             desconto: 0,
-            mensagem: "",
+
+            mensagem:
+                "👋 Cliente não identificado. Informe seu nome para acompanhar suas viagens.",
+
             viagens: 0,
-            faltam: 3
+
+            faltam: null,
+
+            clienteIdentificado: false
+
         };
 
     }
 
 
-    const { data: cliente, error } =
-        await supabaseClient
-            .from('clientes')
-            .select('*')
-            .eq('nome', nome)
-            .eq('rua', rua)
-            .maybeSingle();
+    const {
+        data: cliente,
+        error
+    } = await supabaseClient
+
+        .from('clientes')
+
+        .select('*')
+
+        .eq('nome', nome)
+
+        .maybeSingle();
 
 
     if (error) {
@@ -198,19 +1173,19 @@ async function verificarBeneficios(nome, rua) {
         );
 
         return {
+
             desconto: 0,
+
             mensagem: "",
-            erro: error.message
+
+            erro: error.message,
+
+            clienteIdentificado: false
+
         };
 
     }
 
-
-    /*
-    ================================================
-    CLIENTE NOVO
-    ================================================
-    */
 
     if (!cliente) {
 
@@ -219,11 +1194,13 @@ async function verificarBeneficios(nome, rua) {
             desconto: 0,
 
             mensagem:
-                "Você ainda não tem 40% de desconto. Faltam 3 viagens para chegar à 3ª viagem e ganhar 40%.",
+                "🎉 Primeira viagem! Faltam 2 viagens depois desta para chegar aos 40% de desconto.",
 
             viagens: 0,
 
-            faltam: 3
+            faltam: 2,
+
+            clienteIdentificado: true
 
         };
 
@@ -231,25 +1208,14 @@ async function verificarBeneficios(nome, rua) {
 
 
     const viagensFeitas =
-        Number(cliente.viagens_feitas || 0);
+        Number(
+            cliente.viagens_feitas || 0
+        );
 
-
-    /*
-    ================================================
-    CALCULAR A PRÓXIMA VIAGEM
-    ================================================
-    */
 
     const proximaViagem =
         viagensFeitas + 1;
 
-
-    /*
-    ================================================
-    A CADA 3 VIAGENS:
-    3ª, 6ª, 9ª, 12ª...
-    ================================================
-    */
 
     if (proximaViagem % 3 === 0) {
 
@@ -258,22 +1224,18 @@ async function verificarBeneficios(nome, rua) {
             desconto: 40,
 
             mensagem:
-                `🎉 ESTA É SUA ${proximaViagem}ª VIAGEM! Você tem direito a 40% de desconto nesta corrida!`,
+                `🎉 PARABÉNS! Esta é sua ${proximaViagem}ª viagem! Você ganhou 40% de desconto nesta corrida!`,
 
             viagens: viagensFeitas,
 
-            faltam: 0
+            faltam: 0,
+
+            clienteIdentificado: true
 
         };
 
     }
 
-
-    /*
-    ================================================
-    CALCULAR QUANTAS VIAGENS FALTAM
-    ================================================
-    */
 
     const faltam =
         3 - (proximaViagem % 3);
@@ -284,229 +1246,166 @@ async function verificarBeneficios(nome, rua) {
         desconto: 0,
 
         mensagem:
-            `Você ainda não tem 40% de desconto. Faltam ${faltam} viagem${faltam === 1 ? '' : 'ens'} para ganhar 40% de desconto.`,
+            `🔥 Você está avançando! Faltam ${faltam} viagem${faltam === 1 ? '' : 'ens'} para ganhar 40% de desconto.`,
 
         viagens: viagensFeitas,
 
-        faltam: faltam
+        faltam: faltam,
+
+        clienteIdentificado: true
 
     };
 
 }
 
 
-/*
-====================================================
-REGISTRAR VIAGEM
-====================================================
-*/
+/* =====================================================
+   ATUALIZAR PROGRESSO VISUAL
+===================================================== */
 
-async function registrarViagemNoSupabase(
-    nome,
-    rua,
-    quemIndicou
-) {
+function atualizarProgresso(beneficio) {
 
-    if (!nome || !rua) {
+    const container =
+        document.getElementById(
+            "progressoContainer"
+        );
 
-        return {
-            ok: false,
-            erro: "Nome ou rua vazios"
-        };
+    const barra =
+        document.getElementById(
+            "progressoBarra"
+        );
 
-    }
-
-
-    const {
-        data: cliente,
-        error: erroBusca
-    } = await supabaseClient
-        .from('clientes')
-        .select('*')
-        .eq('nome', nome)
-        .eq('rua', rua)
-        .maybeSingle();
+    const numero =
+        document.getElementById(
+            "progressoNumero"
+        );
 
 
-    if (erroBusca) {
+    if (
+        !beneficio.clienteIdentificado ||
+        beneficio.desconto === 40
+    ) {
 
-        console.error(erroBusca);
+        container.style.display =
+            "none";
 
-        return {
-            ok: false,
-            erro: erroBusca.message
-        };
+        return;
 
     }
 
 
-    /*
-    ================================================
-    CLIENTE NOVO
-    ================================================
-    */
-
-    if (!cliente) {
-
-        /*
-        Se foi indicado por alguém,
-        procurar o padrinho.
-        */
-
-        if (quemIndicou) {
-
-            const {
-                data: padrinho
-            } = await supabaseClient
-                .from('clientes')
-                .select('*')
-                .eq('nome', quemIndicou)
-                .maybeSingle();
+    container.style.display =
+        "block";
 
 
-            if (padrinho) {
-
-                await supabaseClient
-                    .from('clientes')
-                    .update({
-                        tem_desconto_indicacao: true
-                    })
-                    .eq('id', padrinho.id);
-
-            }
-
-        }
+    const viagens =
+        Number(
+            beneficio.viagens || 0
+        );
 
 
-        /*
-        Criar cliente com 1 viagem
-        */
-
-        const { error } =
-            await supabaseClient
-                .from('clientes')
-                .insert([{
-
-                    nome: nome,
-
-                    rua: rua,
-
-                    viagens_feitas: 1,
-
-                    tem_desconto_indicacao: false
-
-                }]);
+    const progresso =
+        viagens % 3;
 
 
-        if (error) {
-
-            return {
-                ok: false,
-                erro: error.message
-            };
-
-        }
-
-    }
+    const porcentagem =
+        (progresso / 3) * 100;
 
 
-    /*
-    ================================================
-    CLIENTE EXISTENTE
-    ================================================
-    */
-
-    else {
-
-        const novasViagens =
-            Number(cliente.viagens_feitas || 0) + 1;
+    numero.innerText =
+        `${progresso}/3`;
 
 
-        /*
-        Se tinha desconto de indicação,
-        ele é usado nesta viagem.
-        */
+    setTimeout(() => {
 
-        let descontoIndicacao =
-            cliente.tem_desconto_indicacao
-                ? false
-                : false;
+        barra.style.width =
+            `${porcentagem}%`;
 
-
-        const { error } =
-            await supabaseClient
-                .from('clientes')
-                .update({
-
-                    viagens_feitas: novasViagens,
-
-                    tem_desconto_indicacao:
-                        descontoIndicacao
-
-                })
-                .eq('id', cliente.id);
-
-
-        if (error) {
-
-            return {
-                ok: false,
-                erro: error.message
-            };
-
-        }
-
-    }
-
-
-    return {
-        ok: true
-    };
+    }, 100);
 
 }
 
 
-/*
-====================================================
-PEGAR LOCALIZAÇÃO
-====================================================
-*/
+/* =====================================================
+   CONFETES
+===================================================== */
 
-async function pegarLocalizacao() {
+function soltarConfetes() {
 
-    const statusDiv =
-        document.getElementById("status");
+    const quantidade = 80;
 
-    const painelDesconto =
-        document.getElementById("painelDesconto");
+    for (
+        let i = 0;
+        i < quantidade;
+        i++
+    ) {
 
-    const textoDesconto =
-        document.getElementById("textoDesconto");
-
-
-    const nome =
-        document
-            .getElementById("nomeCliente")
-            .value
-            .trim();
+        const confete =
+            document.createElement(
+                "div"
+            );
 
 
-    const rua =
-        document
-            .getElementById("ruaCliente")
-            .value
-            .trim();
+        confete.className =
+            "confete";
 
 
-    const quemIndicou =
-        document
-            .getElementById("telefoneAmigo")
-            .value
-            .trim();
+        confete.style.left =
+            Math.random() * 100 + "vw";
 
 
-    /*
-    ================================================
+        confete.style.background =
+            [
+                "#25d366",
+                "#ffd700",
+                "#00d9ff",
+                "#ff4d6d",
+                "#ffffff"
+            ][
+                Math.floor(
+                    Math.random() * 5
+                )
+            ];
+
+
+        confete.style.animationDelay =
+            Math.random() * 0.8 + "s";
+
+
+        confete.style.transform =
+            `rotate(${Math.random() * 360}deg)`;
+
+
+        document.body.appendChild(
+            confete
+        );
+
+
+        setTimeout(() => {
+
+            confete.remove();
+
+        }, 3500);
+
+    }
+
+}
+
+
+/* =====================================================
+   EFEITO DE SUCESSO
+===================================================== */
+
+function efeitoSucesso() {
+
+    const container =
+        document.getElementById(
+            "container"
+        );
+
+
+    container.classList.add(
+        "su====================================
     VALIDAR DADOS
     ================================================
     */
