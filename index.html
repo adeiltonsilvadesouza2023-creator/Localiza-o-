@@ -3,35 +3,65 @@
 
 <head>
 
-<meta property="og:title" content="🛵 Chamar Mototáxi Agora">
-<meta property="og:description" content="Toque aqui para permitir sua localização e agilizar a corrida direto no WhatsApp!">
-<meta property="og:image" content="https://adeiltonsilvadesouza2023-creator.github.io/Localiza-o-/banner.png">
-<meta property="og:url" content="https://adeiltonsilvadesouza2023-creator.github.io/Localiza-o-/">
-<meta property="og:type" content="website">
-
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0">
+
+<meta name="theme-color"
+      content="#061b17">
+
+<meta
+    property="og:title"
+    content="🛵 Chamar Mototáxi Agora">
+
+<meta
+    property="og:description"
+    content="Toque aqui para permitir sua localização e agilizar sua corrida direto no WhatsApp!">
+
+<meta
+    property="og:image"
+    content="https://adeiltonsilvadesouza2023-creator.github.io/Localiza-o-/banner.png">
+
+<meta
+    property="og:url"
+    content="https://adeiltonsilvadesouza2023-creator.github.io/Localiza-o-/">
+
+<meta
+    property="og:type"
+    content="website">
+
 
 <title>🛵 Chamar Mototáxi</title>
 
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+<!-- SUPABASE -->
+
+<script
+    src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2">
+</script>
+
 
 <style>
 
-/* =====================================================
+/* =========================================================
    RESET
-===================================================== */
+========================================================= */
 
 * {
+
     box-sizing: border-box;
+
     margin: 0;
+
     padding: 0;
+
 }
 
 
-/* =====================================================
+/* =========================================================
    BODY
-===================================================== */
+========================================================= */
 
 body {
 
@@ -47,16 +77,19 @@ body {
     color: #ffffff;
 
     background:
+
         radial-gradient(
             circle at 20% 20%,
             rgba(37,211,102,0.20),
             transparent 30%
         ),
+
         radial-gradient(
             circle at 80% 80%,
             rgba(0,180,255,0.18),
             transparent 30%
         ),
+
         linear-gradient(
             135deg,
             #061b17,
@@ -66,16 +99,14 @@ body {
 
     overflow-x: hidden;
 
-    padding:
-        25px
-        15px;
+    padding: 25px 15px;
 
 }
 
 
-/* =====================================================
+/* =========================================================
    FUNDO ANIMADO
-===================================================== */
+========================================================= */
 
 body::before {
 
@@ -94,6 +125,7 @@ body::before {
     filter: blur(60px);
 
     top: -100px;
+
     left: -100px;
 
     animation:
@@ -121,6 +153,7 @@ body::after {
     filter: blur(70px);
 
     right: -100px;
+
     bottom: -100px;
 
     animation:
@@ -134,11 +167,17 @@ body::after {
 @keyframes flutuar {
 
     0%,100% {
-        transform: translate(0,0);
+
+        transform:
+            translate(0,0);
+
     }
 
     50% {
-        transform: translate(80px,50px);
+
+        transform:
+            translate(80px,50px);
+
     }
 
 }
@@ -147,19 +186,25 @@ body::after {
 @keyframes flutuar2 {
 
     0%,100% {
-        transform: translate(0,0);
+
+        transform:
+            translate(0,0);
+
     }
 
     50% {
-        transform: translate(-60px,-50px);
+
+        transform:
+            translate(-60px,-50px);
+
     }
 
 }
 
 
-/* =====================================================
+/* =========================================================
    CONTAINER
-===================================================== */
+========================================================= */
 
 .container {
 
@@ -179,7 +224,8 @@ body::after {
         rgba(255,255,255,0.075);
 
     border:
-        1px solid rgba(255,255,255,0.15);
+        1px solid
+        rgba(255,255,255,0.15);
 
     backdrop-filter:
         blur(20px);
@@ -188,7 +234,8 @@ body::after {
         blur(20px);
 
     box-shadow:
-        0 25px 70px rgba(0,0,0,0.45);
+        0 25px 70px
+        rgba(0,0,0,0.45);
 
     animation:
         entrada 0.8s ease;
@@ -221,9 +268,9 @@ body::after {
 }
 
 
-/* =====================================================
+/* =========================================================
    CABEÇALHO
-===================================================== */
+========================================================= */
 
 .logo {
 
@@ -240,11 +287,19 @@ body::after {
 @keyframes motoPulse {
 
     0%,100% {
-        transform: scale(1) rotate(0deg);
+
+        transform:
+            scale(1)
+            rotate(0deg);
+
     }
 
     50% {
-        transform: scale(1.08) rotate(-3deg);
+
+        transform:
+            scale(1.08)
+            rotate(-3deg);
+
     }
 
 }
@@ -259,6 +314,7 @@ h2 {
     font-weight: 800;
 
     background:
+
         linear-gradient(
             90deg,
             #ffffff,
@@ -266,9 +322,11 @@ h2 {
             #ffffff
         );
 
-    background-size: 200% auto;
+    background-size:
+        200% auto;
 
-    -webkit-background-clip: text;
+    -webkit-background-clip:
+        text;
 
     -webkit-text-fill-color:
         transparent;
@@ -282,8 +340,10 @@ h2 {
 @keyframes brilhoTexto {
 
     to {
+
         background-position:
             200% center;
+
     }
 
 }
@@ -301,9 +361,9 @@ h2 {
 }
 
 
-/* =====================================================
-   CARTÃO DO DESCONTO
-===================================================== */
+/* =========================================================
+   CARTÃO DESCONTO
+========================================================= */
 
 .aviso-desconto-grande {
 
@@ -314,11 +374,14 @@ h2 {
     margin:
         25px 0 18px;
 
-    padding: 20px 15px;
+    padding:
+        20px 15px;
 
-    border-radius: 20px;
+    border-radius:
+        20px;
 
     background:
+
         linear-gradient(
             135deg,
             #fff4b0,
@@ -326,9 +389,11 @@ h2 {
             #fff0a0
         );
 
-    color: #493800;
+    color:
+        #493800;
 
     box-shadow:
+
         0 10px 30px
         rgba(255,210,40,0.22);
 
@@ -365,8 +430,6 @@ h2 {
 }
 
 
-/* brilho passando */
-
 .aviso-desconto-grande::after {
 
     content: "";
@@ -396,11 +459,15 @@ h2 {
 @keyframes shine {
 
     0% {
+
         left: -100%;
+
     }
 
     55%,100% {
+
         left: 150%;
+
     }
 
 }
@@ -425,7 +492,8 @@ h2 {
 
     font-weight: 1000;
 
-    color: #d62828;
+    color:
+        #d62828;
 
     animation:
         descontoTexto 1.5s ease-in-out infinite;
@@ -436,19 +504,25 @@ h2 {
 @keyframes descontoTexto {
 
     0%,100% {
-        transform: scale(1);
+
+        transform:
+            scale(1);
+
     }
 
     50% {
-        transform: scale(1.06);
+
+        transform:
+            scale(1.06);
+
     }
 
 }
 
 
-/* =====================================================
-   PAINEL DO CLIENTE
-===================================================== */
+/* =========================================================
+   PAINEL CLIENTE
+========================================================= */
 
 .desconto-box {
 
@@ -457,11 +531,14 @@ h2 {
     margin:
         15px 0;
 
-    padding: 17px;
+    padding:
+        17px;
 
-    border-radius: 18px;
+    border-radius:
+        18px;
 
     background:
+
         linear-gradient(
             135deg,
             rgba(0,180,255,0.18),
@@ -472,9 +549,11 @@ h2 {
         1px solid
         rgba(255,255,255,0.15);
 
-    color: #ffffff;
+    color:
+        #ffffff;
 
-    font-weight: 700;
+    font-weight:
+        700;
 
     animation:
         aparecer 0.5s ease;
@@ -507,59 +586,71 @@ h2 {
 }
 
 
-/* =====================================================
-   BARRA DE PROGRESSO
-===================================================== */
+/* =========================================================
+   PROGRESSO
+========================================================= */
 
 .progresso-container {
 
-    margin-top: 12px;
+    margin-top:
+        12px;
 
 }
 
 
 .progresso-texto {
 
-    display: flex;
+    display:
+        flex;
 
     justify-content:
         space-between;
 
-    font-size: 12px;
+    font-size:
+        12px;
 
     color:
         rgba(255,255,255,0.75);
 
-    margin-bottom: 7px;
+    margin-bottom:
+        7px;
 
 }
 
 
 .progresso {
 
-    height: 9px;
+    height:
+        9px;
 
-    width: 100%;
+    width:
+        100%;
 
     background:
         rgba(255,255,255,0.12);
 
-    border-radius: 20px;
+    border-radius:
+        20px;
 
-    overflow: hidden;
+    overflow:
+        hidden;
 
 }
 
 
 .progresso-barra {
 
-    height: 100%;
+    height:
+        100%;
 
-    width: 0%;
+    width:
+        0%;
 
-    border-radius: 20px;
+    border-radius:
+        20px;
 
     background:
+
         linear-gradient(
             90deg,
             #25d366,
@@ -567,6 +658,7 @@ h2 {
         );
 
     box-shadow:
+
         0 0 15px
         rgba(37,211,102,0.8);
 
@@ -576,18 +668,20 @@ h2 {
 }
 
 
-/* =====================================================
-   TEXTO
-===================================================== */
+/* =========================================================
+   DESCRIÇÃO
+========================================================= */
 
 .descricao {
 
     margin:
         18px 0;
 
-    line-height: 1.55;
+    line-height:
+        1.55;
 
-    font-size: 15px;
+    font-size:
+        15px;
 
     color:
         rgba(255,255,255,0.82);
@@ -595,13 +689,14 @@ h2 {
 }
 
 
-/* =====================================================
+/* =========================================================
    INPUTS
-===================================================== */
+========================================================= */
 
 .input-wrapper {
 
-    position: relative;
+    position:
+        relative;
 
     margin:
         12px 0;
@@ -611,22 +706,27 @@ h2 {
 
 input {
 
-    width: 100%;
+    width:
+        100%;
 
     padding:
         16px 17px;
 
-    border-radius: 15px;
+    border-radius:
+        15px;
 
     border:
         1px solid
         rgba(255,255,255,0.18);
 
-    outline: none;
+    outline:
+        none;
 
-    font-size: 16px;
+    font-size:
+        16px;
 
-    color: #ffffff;
+    color:
+        #ffffff;
 
     background:
         rgba(255,255,255,0.08);
@@ -654,8 +754,10 @@ input:focus {
         rgba(37,211,102,0.08);
 
     box-shadow:
+
         0 0 0 4px
         rgba(37,211,102,0.10),
+
         0 0 25px
         rgba(37,211,102,0.15);
 
@@ -665,35 +767,47 @@ input:focus {
 }
 
 
-/* =====================================================
-   BOTÃO PRINCIPAL
-===================================================== */
+/* =========================================================
+   BOTÃO
+========================================================= */
 
 button {
 
-    position: relative;
+    position:
+        relative;
 
-    overflow: hidden;
+    overflow:
+        hidden;
 
-    width: 100%;
+    width:
+        100%;
 
-    margin-top: 15px;
+    margin-top:
+        15px;
 
-    padding: 18px 15px;
+    padding:
+        18px 15px;
 
-    border: none;
+    border:
+        none;
 
-    border-radius: 18px;
+    border-radius:
+        18px;
 
-    cursor: pointer;
+    cursor:
+        pointer;
 
-    color: #ffffff;
+    color:
+        #ffffff;
 
-    font-size: 18px;
+    font-size:
+        18px;
 
-    font-weight: 900;
+    font-weight:
+        900;
 
     background:
+
         linear-gradient(
             135deg,
             #25d366,
@@ -701,6 +815,7 @@ button {
         );
 
     box-shadow:
+
         0 10px 30px
         rgba(37,211,102,0.35);
 
@@ -736,6 +851,7 @@ button {
 button:hover {
 
     box-shadow:
+
         0 15px 40px
         rgba(37,211,102,0.55);
 
@@ -750,21 +866,38 @@ button:active {
 }
 
 
-/* brilho do botão */
+button:disabled {
+
+    opacity:
+        0.75;
+
+    cursor:
+        wait;
+
+    animation:
+        none;
+
+}
+
 
 button::after {
 
     content: "";
 
-    position: absolute;
+    position:
+        absolute;
 
-    top: 0;
+    top:
+        0;
 
-    left: -120%;
+    left:
+        -120%;
 
-    width: 70px;
+    width:
+        70px;
 
-    height: 100%;
+    height:
+        100%;
 
     background:
         rgba(255,255,255,0.35);
@@ -781,29 +914,39 @@ button::after {
 @keyframes botaoBrilho {
 
     0% {
-        left: -120%;
+
+        left:
+            -120%;
+
     }
 
     45%,100% {
-        left: 140%;
+
+        left:
+            140%;
+
     }
 
 }
 
 
-/* =====================================================
+/* =========================================================
    STATUS
-===================================================== */
+========================================================= */
 
 #status {
 
-    min-height: 25px;
+    min-height:
+        25px;
 
-    margin-top: 18px;
+    margin-top:
+        18px;
 
-    font-size: 14px;
+    font-size:
+        14px;
 
-    line-height: 1.5;
+    line-height:
+        1.5;
 
     color:
         rgba(255,255,255,0.75);
@@ -811,13 +954,14 @@ button::after {
 }
 
 
-/* =====================================================
-   GPS CARREGANDO
-===================================================== */
+/* =========================================================
+   GPS
+========================================================= */
 
 .gps-loading {
 
-    display: inline-block;
+    display:
+        inline-block;
 
     animation:
         gpsPulse 1s infinite;
@@ -828,27 +972,33 @@ button::after {
 @keyframes gpsPulse {
 
     0%,100% {
+
         transform:
             scale(1);
+
     }
 
     50% {
+
         transform:
             scale(1.3);
+
     }
 
 }
 
 
-/* =====================================================
+/* =========================================================
    RODAPÉ
-===================================================== */
+========================================================= */
 
 .rodape {
 
-    margin-top: 20px;
+    margin-top:
+        20px;
 
-    font-size: 11px;
+    font-size:
+        11px;
 
     color:
         rgba(255,255,255,0.38);
@@ -856,22 +1006,29 @@ button::after {
 }
 
 
-/* =====================================================
+/* =========================================================
    CONFETES
-===================================================== */
+========================================================= */
 
 .confete {
 
-    position: fixed;
+    position:
+        fixed;
 
-    top: -20px;
+    top:
+        -20px;
 
-    width: 9px;
-    height: 14px;
+    width:
+        9px;
 
-    z-index: 9999;
+    height:
+        14px;
 
-    pointer-events: none;
+    z-index:
+        9999;
+
+    pointer-events:
+        none;
 
     animation:
         cair 2.5s linear forwards;
@@ -887,7 +1044,8 @@ button::after {
             translateY(0)
             rotate(0deg);
 
-        opacity: 1;
+        opacity:
+            1;
 
     }
 
@@ -897,16 +1055,17 @@ button::after {
             translateY(110vh)
             rotate(720deg);
 
-        opacity: 0;
+        opacity:
+            0;
 
     }
 
 }
 
 
-/* =====================================================
+/* =========================================================
    SUCESSO
-===================================================== */
+========================================================= */
 
 .sucesso {
 
@@ -919,24 +1078,66 @@ button::after {
 @keyframes sucesso {
 
     0% {
+
         transform:
             scale(1);
+
     }
 
     40% {
+
         transform:
             scale(1.08);
+
     }
 
     70% {
+
         transform:
             scale(0.98);
+
     }
 
     100% {
+
         transform:
             scale(1);
+
     }
+
+}
+
+
+/* =========================================================
+   PEQUENO INDICADOR DE CLIENTE
+========================================================= */
+
+.cliente-identificado {
+
+    display:
+        none;
+
+    margin-top:
+        10px;
+
+    padding:
+        9px 12px;
+
+    border-radius:
+        12px;
+
+    background:
+        rgba(37,211,102,0.10);
+
+    border:
+        1px solid
+        rgba(37,211,102,0.18);
+
+    font-size:
+        12px;
+
+    color:
+        rgba(255,255,255,0.75);
 
 }
 
@@ -948,8 +1149,15 @@ button::after {
 <body>
 
 
-<div class="container" id="container">
+<div
+    class="container"
+    id="container"
+>
 
+
+    <!-- =====================================================
+         CABEÇALHO
+    ====================================================== -->
 
     <div class="logo">
         🏍️
@@ -966,9 +1174,9 @@ button::after {
     </div>
 
 
-    <!-- =================================================
+    <!-- =====================================================
          DESCONTO
-    ================================================== -->
+    ====================================================== -->
 
     <div class="aviso-desconto-grande">
 
@@ -987,9 +1195,9 @@ button::after {
     </div>
 
 
-    <!-- =================================================
-         PAINEL DESCONTO
-    ================================================== -->
+    <!-- =====================================================
+         PAINEL DO CLIENTE
+    ====================================================== -->
 
     <div
         id="painelDesconto"
@@ -997,6 +1205,7 @@ button::after {
     >
 
         <div id="textoDesconto"></div>
+
 
         <div
             id="progressoContainer"
@@ -1031,23 +1240,42 @@ button::after {
     </div>
 
 
+    <!-- =====================================================
+         IDENTIFICAÇÃO
+    ====================================================== -->
+
+    <div
+        id="clienteIdentificado"
+        class="cliente-identificado"
+    ></div>
+
+
+    <!-- =====================================================
+         DESCRIÇÃO
+    ====================================================== -->
+
     <p class="descricao">
 
-        👋 Digite seu nome se quiser acompanhar
-        suas viagens e participar do programa
-        de desconto.
+        👋 Se esta é sua primeira vez,
+        informe seu nome abaixo.
 
         <br><br>
 
-        📍 Depois, toque no botão e enviaremos
-        sua localização automaticamente pelo GPS.
+        🔐 Depois que seu cliente for criado,
+        seu celular poderá guardar sua identificação
+        automaticamente.
+
+        <br><br>
+
+        📍 Toque no botão e enviaremos
+        sua localização pelo GPS.
 
     </p>
 
 
-    <!-- =================================================
+    <!-- =====================================================
          NOME
-    ================================================== -->
+    ====================================================== -->
 
     <div class="input-wrapper">
 
@@ -1056,29 +1284,31 @@ button::after {
             id="nomeCliente"
             placeholder="👤 Seu nome (opcional)"
             autocomplete="name"
+            maxlength="100"
         >
 
     </div>
 
 
-    <!-- =================================================
-         INDICAÇÃO
-    ================================================== -->
+    <!-- =====================================================
+         INDICADOR
+    ====================================================== -->
 
     <div class="input-wrapper">
 
         <input
             type="text"
-            id="telefoneAmigo"
-            placeholder="👥 Quem te indicou? (opcional)"
+            id="codigoIndicador"
+            placeholder="👥 Código de indicação (opcional)"
+            maxlength="100"
         >
 
     </div>
 
 
-    <!-- =================================================
+    <!-- =====================================================
          BOTÃO
-    ================================================== -->
+    ====================================================== -->
 
     <button
         id="botaoCorrida"
@@ -1090,40 +1320,49 @@ button::after {
     </button>
 
 
+    <!-- =====================================================
+         STATUS
+    ====================================================== -->
+
     <p id="status"></p>
 
 
     <div class="rodape">
 
-        🔒 Sua localização é usada somente
-        para agilizar sua corrida.
+        🔒 Sua localização é utilizada
+        somente para agilizar sua corrida.
 
     </div>
 
 
 </div>
 
-   <script>
 
-/* =====================================================
+
+<script>
+
+/* =========================================================
    CONFIGURAÇÃO
-===================================================== */
+========================================================= */
 
 const SUPABASE_URL =
-    'https://etaiheynljzhzvpaqusm.supabase.co';
+    "https://etaiheynljzhzvpaqusm.supabase.co";
+
 
 const SUPABASE_KEY =
-    'sb_publishable_DkBXJjtKJCBqjy2aNF8kFg_yKMK0hwg';
+    "sb_publishable_DkBXJjtKJCBqjy2aNF8kFg_yKMK0hwg";
+
 
 const SEU_WHATSAPP =
-    '5581985269588';
+    "5581985269588";
 
 
-/* =====================================================
+/* =========================================================
    SUPABASE
-===================================================== */
+========================================================= */
 
 let supabaseClient = null;
+
 
 try {
 
@@ -1150,28 +1389,47 @@ try {
 }
 
 
-/* =====================================================
+/* =========================================================
+   VARIÁVEIS
+========================================================= */
+
+let codigoCliente = null;
+
+let dadosCliente = null;
+
+
+/* =========================================================
    ELEMENTOS
-===================================================== */
+========================================================= */
 
 function elementos() {
 
     return {
 
         status:
-            document.getElementById("status"),
+            document.getElementById(
+                "status"
+            ),
 
         painel:
-            document.getElementById("painelDesconto"),
+            document.getElementById(
+                "painelDesconto"
+            ),
 
         texto:
-            document.getElementById("textoDesconto"),
+            document.getElementById(
+                "textoDesconto"
+            ),
 
         botao:
-            document.getElementById("botaoCorrida"),
+            document.getElementById(
+                "botaoCorrida"
+            ),
 
         container:
-            document.getElementById("container"),
+            document.getElementById(
+                "container"
+            ),
 
         progressoContainer:
             document.getElementById(
@@ -1186,6 +1444,21 @@ function elementos() {
         progressoNumero:
             document.getElementById(
                 "progressoNumero"
+            ),
+
+        nome:
+            document.getElementById(
+                "nomeCliente"
+            ),
+
+        indicador:
+            document.getElementById(
+                "codigoIndicador"
+            ),
+
+        clienteIdentificado:
+            document.getElementById(
+                "clienteIdentificado"
             )
 
     };
@@ -1193,13 +1466,35 @@ function elementos() {
 }
 
 
-/* =====================================================
+/* =========================================================
+   STATUS
+========================================================= */
+
+function mostrarStatus(
+    mensagem
+) {
+
+    const el =
+        elementos();
+
+    if (el.status) {
+
+        el.status.innerHTML =
+            mensagem;
+
+    }
+
+}
+
+
+/* =========================================================
    CONFETES
-===================================================== */
+========================================================= */
 
 function soltarConfetes() {
 
     const quantidade = 80;
+
 
     for (
         let i = 0;
@@ -1208,7 +1503,9 @@ function soltarConfetes() {
     ) {
 
         const confete =
-            document.createElement("div");
+            document.createElement(
+                "div"
+            );
 
 
         confete.className =
@@ -1216,7 +1513,8 @@ function soltarConfetes() {
 
 
         confete.style.left =
-            Math.random() * 100 + "vw";
+            Math.random() * 100 +
+            "vw";
 
 
         const cores = [
@@ -1240,7 +1538,8 @@ function soltarConfetes() {
 
 
         confete.style.animationDelay =
-            Math.random() * 0.8 + "s";
+            Math.random() * 0.8 +
+            "s";
 
 
         document.body.appendChild(
@@ -1248,20 +1547,19 @@ function soltarConfetes() {
         );
 
 
-        setTimeout(() => {
-
-            confete.remove();
-
-        }, 3500);
+        setTimeout(
+            () => confete.remove(),
+            3500
+        );
 
     }
 
 }
 
 
-/* =====================================================
+/* =========================================================
    EFEITO DE SUCESSO
-===================================================== */
+========================================================= */
 
 function efeitoSucesso() {
 
@@ -1291,233 +1589,208 @@ function efeitoSucesso() {
 }
 
 
-/* =====================================================
-   VERIFICAR BENEFÍCIOS
-===================================================== */
+/* =========================================================
+   VALIDAR UUID
+========================================================= */
 
-async function verificarBeneficios(nome) {
+function uuidValido(
+    valor
+) {
 
-    /*
-       SEM NOME
-    */
+    if (!valor) {
 
-    if (!nome) {
-
-        return {
-
-            desconto: 0,
-
-            mensagem:
-                "👋 Você pode informar seu nome para acompanhar suas viagens e participar do programa de desconto.",
-
-            viagens: 0,
-
-            faltam: null,
-
-            clienteIdentificado: false
-
-        };
+        return false;
 
     }
 
 
-    /*
-       SE SUPABASE NÃO CARREGOU,
-       NÃO BLOQUEIA A CORRIDA.
-    */
+    const regex =
+        /^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i;
 
-    if (!supabaseClient) {
 
-        console.warn(
-            "Supabase indisponível."
+    return regex.test(
+        valor
+    );
+
+}
+
+
+/* =========================================================
+   PEGAR CÓDIGO DA URL
+========================================================= */
+
+function pegarCodigoDaURL() {
+
+    const parametros =
+        new URLSearchParams(
+            window.location.search
         );
 
-        return {
 
-            desconto: 0,
+    const codigo =
+        parametros.get(
+            "cliente"
+        );
 
-            mensagem:
-                "📍 Sua localização será enviada normalmente. O histórico de desconto não pôde ser consultado agora.",
 
-            viagens: 0,
+    if (
+        codigo &&
+        uuidValido(codigo)
+    ) {
 
-            faltam: null,
+        return codigo;
 
-            clienteIdentificado: false
+    }
 
-        };
+
+    return null;
+
+}
+
+
+/* =========================================================
+   CARREGAR CÓDIGO SALVO
+========================================================= */
+
+function carregarCodigoSalvo() {
+
+    try {
+
+        const salvo =
+            localStorage.getItem(
+                "mototaxi_codigo_cliente"
+            );
+
+
+        if (
+            salvo &&
+            uuidValido(salvo)
+        ) {
+
+            return salvo;
+
+        }
+
+    } catch (erro) {
+
+        console.warn(
+            "LocalStorage indisponível:",
+            erro
+        );
+
+    }
+
+
+    return null;
+
+}
+
+
+/* =========================================================
+   SALVAR CÓDIGO
+========================================================= */
+
+function salvarCodigoCliente(
+    codigo
+) {
+
+    try {
+
+        localStorage.setItem(
+            "mototaxi_codigo_cliente",
+            codigo
+        );
+
+    } catch (erro) {
+
+        console.warn(
+            "Não foi possível salvar cliente:",
+            erro
+        );
+
+    }
+
+}
+
+
+/* =========================================================
+   BUSCAR CLIENTE
+========================================================= */
+
+async function buscarCliente(
+    codigo
+) {
+
+    if (
+        !supabaseClient ||
+        !uuidValido(codigo)
+    ) {
+
+        return null;
 
     }
 
 
     try {
 
-        const resultado =
-            await supabaseClient
+        const {
+            data,
+            error
+        } = await supabaseClient.rpc(
 
-                .from("clientes")
+            "buscar_cliente",
 
-                .select("*")
+            {
+                p_codigo: codigo
+            }
 
-                .eq("nome", nome)
-
-                .maybeSingle();
-
-
-        const cliente =
-            resultado.data;
-
-        const error =
-            resultado.error;
+        );
 
 
         if (error) {
 
             console.error(
-                "Erro ao consultar cliente:",
+                "Erro RPC buscar_cliente:",
                 error
             );
 
-
-            return {
-
-                desconto: 0,
-
-                mensagem:
-                    "📍 Sua corrida continuará normalmente. Não foi possível consultar o desconto agora.",
-
-                viagens: 0,
-
-                faltam: null,
-
-                clienteIdentificado: false
-
-            };
+            return null;
 
         }
 
-
-        /*
-           CLIENTE NOVO
-        */
-
-        if (!cliente) {
-
-            return {
-
-                desconto: 0,
-
-                mensagem:
-                    "🎉 Primeira viagem! Depois desta, faltam 2 viagens para chegar aos 40% de desconto.",
-
-                viagens: 0,
-
-                faltam: 2,
-
-                clienteIdentificado: true
-
-            };
-
-        }
-
-
-        const viagens =
-            Number(
-                cliente.viagens_feitas || 0
-            );
-
-
-        const proxima =
-            viagens + 1;
-
-
-        /*
-           3ª, 6ª, 9ª...
-        */
 
         if (
-            proxima % 3 === 0
+            !data ||
+            data.sucesso !== true
         ) {
 
-            return {
-
-                desconto: 40,
-
-                mensagem:
-                    `🎉 PARABÉNS! Esta é sua ${proxima}ª viagem! Você tem direito a 40% de desconto nesta corrida!`,
-
-                viagens: viagens,
-
-                faltam: 0,
-
-                clienteIdentificado: true
-
-            };
+            return null;
 
         }
 
 
-        const faltam =
-            3 - (proxima % 3);
+        return data.cliente || null;
 
-
-        return {
-
-            desconto: 0,
-
-            mensagem:
-                `🔥 Você está avançando! Faltam ${faltam} viagem${faltam === 1 ? "" : "ens"} para ganhar 40% de desconto.`,
-
-            viagens: viagens,
-
-            faltam: faltam,
-
-            clienteIdentificado: true
-
-        };
-
-    }
-
-    catch (erro) {
+    } catch (erro) {
 
         console.error(
-            "Erro inesperado no Supabase:",
+            "Erro ao buscar cliente:",
             erro
         );
 
-
-        /*
-           IMPORTANTE:
-           MESMO COM ERRO,
-           NÃO BLOQUEIA A CORRIDA.
-        */
-
-        return {
-
-            desconto: 0,
-
-            mensagem:
-                "📍 Corrida liberada. O histórico de desconto será consultado posteriormente.",
-
-            viagens: 0,
-
-            faltam: null,
-
-            clienteIdentificado: false
-
-        };
+        return null;
 
     }
 
 }
 
 
-/* =====================================================
-   PROGRESSO
-===================================================== */
+/* =========================================================
+   MOSTRAR BENEFÍCIOS
+========================================================= */
 
-function atualizarProgresso(
-    beneficio
+function mostrarBeneficios(
+    cliente
 ) {
 
     const el =
@@ -1525,9 +1798,8 @@ function atualizarProgresso(
 
 
     if (
-        !el.progressoContainer ||
-        !el.progressoBarra ||
-        !el.progressoNumero
+        !cliente ||
+        !el.painel
     ) {
 
         return;
@@ -1535,783 +1807,696 @@ function atualizarProgresso(
     }
 
 
-    if (
-        !beneficio.clienteIdentificado ||
-        beneficio.desconto === 40
-    ) {
-
-        el.progressoContainer.style.display =
-            "none";
-
-        return;
-
-    }
-
-
-    el.progressoContainer.style.display =
+    el.painel.style.display =
         "block";
 
 
     const viagens =
         Number(
-            beneficio.viagens || 0
+            cliente.viagens_feitas || 0
         );
 
 
-    const progresso =
-        viagens % 3;
+    const proxima =
+        viagens + 1;
 
 
-    const porcentagem =
-        (progresso / 3) * 100;
+    const teraDesconto =
+        proxima % 3 === 0;
 
 
-    el.progressoNumero.innerText =
-        `${progresso}/3`;
+    let mensagem = "";
 
 
-    setTimeout(() => {
+    if (teraDesconto) {
 
-        el.progressoBarra.style.width =
-            `${porcentagem}%`;
+        mensagem =
 
-    }, 100);
+            "🎉 <strong>PARABÉNS!</strong><br>" +
 
-}
+            "Sua próxima viagem é a " +
+            proxima +
+            "ª viagem e terá " +
+            "<strong>40% DE DESCONTO!</strong>";
 
+        if (el.progressoContainer) {
 
-/* =====================================================
-   REGISTRAR VIAGEM
-===================================================== */
-
-async function registrarViagemNoSupabase(
-    nome,
-    quemIndicou
-) {
-
-    /*
-       SEM NOME:
-       não registra.
-    */
-
-    if (!nome) {
-
-        return {
-
-            ok: true,
-
-            registrado: false
-
-        };
-
-    }
-
-
-    /*
-       SUPABASE INDISPONÍVEL:
-       não bloqueia WhatsApp.
-    */
-
-    if (!supabaseClient) {
-
-        return {
-
-            ok: true,
-
-            registrado: false
-
-        };
-
-    }
-
-
-    try {
-
-        const resultado =
-            await supabaseClient
-
-                .from("clientes")
-
-                .select("*")
-
-                .eq("nome", nome)
-
-                .maybeSingle();
-
-
-        const cliente =
-            resultado.data;
-
-        const erroBusca =
-            resultado.error;
-
-
-        if (erroBusca) {
-
-            console.error(
-                erroBusca
-            );
-
-            return {
-
-                ok: true,
-
-                registrado: false
-
-            };
+            el.progressoContainer.style.display =
+                "none";
 
         }
 
+    } else {
 
-        /*
-           CLIENTE NOVO
-        */
-
-        if (!cliente) {
-
-            /*
-               INDICAÇÃO
-            */
-
-            if (quemIndicou) {
-
-                try {
-
-                    const resultadoPadrinho =
-                        await supabaseClient
-
-                            .from("clientes")
-
-                            .select("*")
-
-                            .eq(
-                                "nome",
-                                quemIndicou
-                            )
-
-                            .maybeSingle();
+        const faltam =
+            3 -
+            (proxima % 3);
 
 
-                    const padrinho =
-                        resultadoPadrinho.data;
+        mensagem =
 
+            "🛵 Você já realizou " +
+            viagens +
+            " viagem" +
+            (
+                viagens === 1
+                    ? ""
+                    : "s"
+            ) +
+            ".<br><br>" +
 
-                    if (padrinho) {
+            "🎁 Faltam " +
+            "<strong>" +
+            faltam +
+            "</strong>" +
 
-                        await supabaseClient
+            " viagem" +
+            (
+                faltam === 1
+                    ? ""
+                    : "s"
+            ) +
 
-                            .from("clientes")
-
-                            .update({
-
-                                tem_desconto_indicacao:
-                                    true
-
-                            })
-
-                            .eq(
-                                "id",
-                                padrinho.id
-                            );
-
-                    }
-
-                }
-
-                catch (erro) {
-
-                    console.error(
-                        "Erro na indicação:",
-                        erro
-                    );
-
-                }
-
-            }
-
-
-            /*
-               CRIAR CLIENTE
-            */
-
-            const resultadoInsert =
-                await supabaseClient
-
-                    .from("clientes")
-
-                    .insert([{
-
-                        nome: nome,
-
-                        viagens_feitas: 1,
-
-                        tem_desconto_indicacao:
-                            false
-
-                    }]);
-
-
-            if (
-                resultadoInsert.error
-            ) {
-
-                console.error(
-                    resultadoInsert.error
-                );
-
-            }
-
-
-            return {
-
-                ok: true,
-
-                registrado: true
-
-            };
-
-        }
-
-
-        /*
-           CLIENTE EXISTENTE
-        */
-
-        const novasViagens =
-            Number(
-                cliente.viagens_feitas || 0
-            ) + 1;
-
-
-        const resultadoUpdate =
-            await supabaseClient
-
-                .from("clientes")
-
-                .update({
-
-                    viagens_feitas:
-                        novasViagens,
-
-                    tem_desconto_indicacao:
-                        false
-
-                })
-
-                .eq(
-                    "id",
-                    cliente.id
-                );
+            " para ganhar " +
+            "<strong>40% DE DESCONTO.</strong>";
 
 
         if (
-            resultadoUpdate.error
+            el.progressoContainer &&
+            el.progressoBarra &&
+            el.progressoNumero
         ) {
 
-            console.error(
-                resultadoUpdate.error
-            );
+            el.progressoContainer.style.display =
+                "block";
+
+
+            const progresso =
+                viagens % 3;
+
+
+            const porcentagem =
+                (
+                    progresso /
+                    3
+                ) * 100;
+
+
+            el.progressoBarra.style.width =
+                porcentagem + "%";
+
+
+            el.progressoNumero.textContent =
+                progresso +
+                "/3";
 
         }
 
-
-        return {
-
-            ok: true,
-
-            registrado: true
-
-        };
-
     }
 
-    catch (erro) {
 
-        console.error(
-            "Erro registrando viagem:",
-            erro
-        );
-
-
-        /*
-           NUNCA BLOQUEAR A CORRIDA
-           POR CAUSA DO BANCO.
-        */
-
-        return {
-
-            ok: true,
-
-            registrado: false
-
-        };
-
-    }
+    el.texto.innerHTML =
+        mensagem;
 
 }
 
 
-/* =====================================================
-   PEGAR LOCALIZAÇÃO
-===================================================== */
+/* =========================================================
+   MOSTRAR CLIENTE IDENTIFICADO
+========================================================= */
 
-async function pegarLocalizacao() {
+function mostrarClienteIdentificado(
+    cliente
+) {
 
     const el =
         elementos();
 
 
-    /*
-       PEGAR CAMPOS
-    */
-
-    const nome =
-        document
-            .getElementById(
-                "nomeCliente"
-            )
-            .value
-            .trim();
-
-
-    const quemIndicou =
-        document
-            .getElementById(
-                "telefoneAmigo"
-            )
-            .value
-            .trim();
-
-
-    /*
-       VERIFICAR GPS
-    */
-
     if (
-        !navigator.geolocation
+        !cliente ||
+        !el.clienteIdentificado
     ) {
-
-        el.status.innerHTML =
-            "❌ Seu celular não suporta localização GPS.";
 
         return;
 
     }
 
 
+    const nome =
+        cliente.nome ||
+        "Cliente";
+
+
+    el.clienteIdentificado.style.display =
+        "block";
+
+
+    el.clienteIdentificado.innerHTML =
+
+        "🔐 Cliente identificado: <strong>" +
+        escaparHTML(nome) +
+        "</strong>";
+
+}
+
+
+/* =========================================================
+   ESCAPAR HTML
+========================================================= */
+
+function escaparHTML(
+    texto
+) {
+
+    const div =
+        document.createElement(
+            "div"
+        );
+
+
+    div.textContent =
+        texto || "";
+
+
+    return div.innerHTML;
+
+}
+
+
+/* =========================================================
+   CRIAR CLIENTE
+========================================================= */
+
+async function criarCliente() {
+
+    if (!supabaseClient) {
+
+        throw new Error(
+            "Supabase não está disponível."
+        );
+
+    }
+
+
+    const el =
+        elementos();
+
+
+    const nome =
+        el.nome.value.trim();
+
+
     /*
-       DESATIVAR BOTÃO
+       Código de indicação.
+
+       Pode ser informado como UUID
+       ou como parte de um link:
+       ?cliente=UUID
     */
+
+    let codigoIndicador =
+        el.indicador.value.trim();
+
+
+    if (
+        codigoIndicador.includes(
+            "cliente="
+        )
+    ) {
+
+        try {
+
+            const url =
+                new URL(
+                    codigoIndicador
+                );
+
+
+            codigoIndicador =
+                url.searchParams.get(
+                    "cliente"
+                ) || "";
+
+        } catch (erro) {
+
+            console.warn(
+                "Código de indicação não é uma URL válida."
+            );
+
+        }
+
+    }
+
+
+    if (
+        codigoIndicador &&
+        !uuidValido(codigoIndicador)
+    ) {
+
+        throw new Error(
+            "O código de indicação informado não é válido."
+        );
+
+    }
+
+
+    const {
+        data,
+        error
+    } = await supabaseClient.rpc(
+
+        "criar_cliente",
+
+        {
+
+            p_nome:
+                nome || null,
+
+            p_telefone:
+                null,
+
+            p_codigo_indicador:
+                codigoIndicador || null
+
+        }
+
+    );
+
+
+    if (error) {
+
+        console.error(
+            "Erro RPC criar_cliente:",
+            error
+        );
+
+        throw new Error(
+            error.message ||
+            "Não foi possível criar o cliente."
+        );
+
+    }
+
+
+    if (
+        !data ||
+        data.sucesso !== true ||
+        !data.cliente
+    ) {
+
+        throw new Error(
+            data?.mensagem ||
+            "Não foi possível criar o cliente."
+        );
+
+    }
+
+
+    codigoCliente =
+        data.cliente.codigo_cliente;
+
+
+    dadosCliente =
+        data.cliente;
+
+
+    salvarCodigoCliente(
+        codigoCliente
+    );
+
+
+    return dadosCliente;
+
+}
+
+
+/* =========================================================
+   GARANTIR CLIENTE
+========================================================= */
+
+async function garantirCliente() {
+
+    /*
+       1. Código vindo da URL
+    */
+
+    const codigoURL =
+        pegarCodigoDaURL();
+
+
+    if (codigoURL) {
+
+        const cliente =
+            await buscarCliente(
+                codigoURL
+            );
+
+
+        if (cliente) {
+
+            codigoCliente =
+                codigoURL;
+
+            dadosCliente =
+                cliente;
+
+
+            salvarCodigoCliente(
+                codigoURL
+            );
+
+
+            return cliente;
+
+        }
+
+    }
+
+
+    /*
+       2. Código salvo no aparelho
+    */
+
+    const codigoSalvo =
+        carregarCodigoSalvo();
+
+
+    if (codigoSalvo) {
+
+        const cliente =
+            await buscarCliente(
+                codigoSalvo
+            );
+
+
+        if (cliente) {
+
+            codigoCliente =
+                codigoSalvo;
+
+            dadosCliente =
+                cliente;
+
+
+            return cliente;
+
+        }
+
+    }
+
+
+    /*
+       3. Criar novo cliente
+    */
+
+    return await criarCliente();
+
+}
+
+
+/* =========================================================
+   SOLICITAR CORRIDA
+========================================================= */
+
+async function solicitarCorrida(
+    latitude,
+    longitude,
+    precisao,
+    mapaURL
+) {
+
+    if (
+        !codigoCliente ||
+        !uuidValido(codigoCliente)
+    ) {
+
+        throw new Error(
+            "Cliente não identificado."
+        );
+
+    }
+
+
+    if (!supabaseClient) {
+
+        throw new Error(
+            "Supabase não está disponível."
+        );
+
+    }
+
+
+    const {
+        data,
+        error
+    } = await supabaseClient.rpc(
+
+        "solicitar_corrida",
+
+        {
+
+            p_codigo_cliente:
+                codigoCliente,
+
+            p_latitude:
+                latitude,
+
+            p_longitude:
+                longitude,
+
+            p_precisao:
+                precisao || null,
+
+            p_mapa_url:
+                mapaURL,
+
+            p_observacao:
+                null
+
+        }
+
+    );
+
+
+    if (error) {
+
+        console.error(
+            "Erro RPC solicitar_corrida:",
+            error
+        );
+
+        throw new Error(
+            error.message ||
+            "Não foi possível registrar a corrida."
+        );
+
+    }
+
+
+    if (
+        !data ||
+        data.sucesso !== true
+    ) {
+
+        throw new Error(
+
+            data?.mensagem ||
+
+            "Não foi possível registrar a corrida."
+
+        );
+
+    }
+
+
+    return data;
+
+}
+
+
+/* =========================================================
+   MENSAGEM WHATSAPP
+========================================================= */
+
+function criarMensagemWhatsApp(
+    dadosCorrida,
+    latitude,
+    longitude,
+    precisao,
+    mapaURL
+) {
+
+    const nome =
+        dadosCliente?.nome ||
+        "Cliente";
+
+
+    const desconto =
+        Number(
+            dadosCorrida
+                ?.desconto_percentual ||
+            0
+        );
+
+
+    let mensagem =
+
+        "🛵 *NOVO PEDIDO DE MOTOTÁXI*%0A" +
+        "%0A" +
+
+        "👤 *Cliente:* " +
+        encodeURIComponent(
+            nome
+        ) +
+
+        "%0A%0A" +
+
+        "📍 *LOCALIZAÇÃO:*%0A" +
+
+        encodeURIComponent(
+            mapaURL
+        ) +
+
+        "%0A%0A" +
+
+        "🌎 *Latitude:* " +
+        encodeURIComponent(
+            latitude
+        ) +
+
+        "%0A" +
+
+        "🌎 *Longitude:* " +
+        encodeURIComponent(
+            longitude
+        ) +
+
+        "%0A";
+
+
+    if (precisao) {
+
+        mensagem +=
+
+            "%0A📡 *Precisão aproximada:* " +
+
+            encodeURIComponent(
+                Math.round(
+                    precisao
+                ) + " metros"
+            );
+
+    }
+
+
+    if (
+        desconto === 40
+    ) {
+
+        mensagem +=
+
+            "%0A%0A🎁 *ATENÇÃO:* " +
+
+            "CLIENTE ELEGÍVEL PARA " +
+
+            "*40% DE DESCONTO* " +
+
+            "NESTA VIAGEM.";
+
+    }
+
+
+    mensagem +=
+
+        "%0A%0A" +
+
+        "🆔 *Corrida:* " +
+
+        encodeURIComponent(
+            dadosCorrida.corrida_id
+        );
+
+
+    return mensagem;
+
+}
+
+
+/* =========================================================
+   GEOLOCALIZAÇÃO
+========================================================= */
+
+function pegarLocalizacao() {
+
+    const el =
+        elementos();
+
+
+    if (!navigator.geolocation) {
+
+        mostrarStatus(
+
+            "❌ Seu navegador não oferece suporte à localização."
+
+        );
+
+        return;
+
+    }
+
+
+    if (!window.isSecureContext) {
+
+        mostrarStatus(
+
+            "🔒 A localização precisa ser acessada por HTTPS. " +
+            "Abra o endereço do seu site pelo GitHub Pages."
+
+        );
+
+        return;
+
+    }
+
 
     el.botao.disabled =
         true;
 
 
     el.botao.innerHTML =
-        `<span class="gps-loading">📡</span> LOCALIZANDO VOCÊ...`;
+
+        '<span class="gps-loading">📡</span> ' +
+
+        "LOCALIZANDO VOCÊ...";
 
 
-    el.status.innerHTML =
-        `<span class="gps-loading">📍</span> Obtendo sua localização...`;
+    mostrarStatus(
 
+        "📡 Obtendo sua localização pelo GPS..."
 
-    /*
-       ESCONDER PAINEL
-    */
+    );
 
-    el.painel.style.display =
-        "none";
-
-
-    /*
-       =================================================
-       PRIMEIRO GPS
-       =================================================
-       
-       O GPS acontece ANTES do Supabase.
-       
-       Isso é importante.
-    */
 
     navigator.geolocation.getCurrentPosition(
 
-        async function(position) {
+        async function(posicao) {
 
-            try {
-
-                /*
-                   COORDENADAS
-                */
-
-                const lat =
-                    position.coords.latitude;
-
-
-                const lon =
-                    position.coords.longitude;
-
-
-                const precisao =
-                    position.coords.accuracy;
-
-
-                /*
-                   GOOGLE MAPS
-                */
-
-                const linkMaps =
-                    `https://www.google.com/maps?q=${lat},${lon}`;
-
-
-                /*
-                   GPS ENCONTRADO
-                */
-
-                el.botao.innerHTML =
-                    "✅ LOCALIZAÇÃO ENCONTRADA!";
-
-
-                el.status.innerHTML =
-                    "⚡ Localização encontrada! Preparando sua corrida...";
-
-
-                /*
-                   =================================================
-                   AGORA CONSULTA O BENEFÍCIO
-                   =================================================
-                */
-
-                let beneficio;
-
-
-                try {
-
-                    beneficio =
-                        await verificarBeneficios(
-                            nome
-                        );
-
-                }
-
-                catch (erro) {
-
-                    console.error(
-                        erro
-                    );
-
-
-                    beneficio = {
-
-                        desconto: 0,
-
-                        mensagem:
-                            "Não foi possível consultar o histórico.",
-
-                        viagens: 0,
-
-                        faltam: null,
-
-                        clienteIdentificado: false
-
-                    };
-
-                }
-
-
-                /*
-                   MOSTRAR BENEFÍCIO
-                */
-
-                el.texto.innerText =
-                    beneficio.mensagem;
-
-
-                el.painel.style.display =
-                    "block";
-
-
-                atualizarProgresso(
-                    beneficio
-                );
-
-
-                /*
-                   SE GANHOU DESCONTO
-                */
-
-                if (
-                    beneficio.desconto === 40
-                ) {
-
-                    efeitoSucesso();
-
-
-                    el.texto.innerText =
-                        "🎉🎉🎉 VOCÊ GANHOU 40% DE DESCONTO NESTA CORRIDA!";
-
-                }
-
-
-                /*
-                   =================================================
-                   REGISTRAR
-                   =================================================
-                */
-
-                el.status.innerHTML =
-                    "📋 Preparando mensagem para o mototaxista...";
-
-
-                await registrarViagemNoSupabase(
-
-                    nome,
-
-                    quemIndicou
-
-                );
-
-
-                /*
-                   =================================================
-                   MONTAR WHATSAPP
-                   =================================================
-                */
-
-                let textoMensagem =
-                    `🏍️ NOVA CORRIDA\n\n`;
-
-
-                /*
-                   NOME
-                */
-
-                if (nome) {
-
-                    textoMensagem +=
-                        `👤 Nome: ${nome}\n\n`;
-
-                }
-
-                else {
-
-                    textoMensagem +=
-                        `👤 Nome: Não informado\n\n`;
-
-                }
-
-
-                /*
-                   LOCALIZAÇÃO
-                */
-
-                textoMensagem +=
-
-                    `📍 LOCALIZAÇÃO DO CLIENTE:\n\n` +
-
-                    `${linkMaps}\n\n` +
-
-                    `Latitude:\n${lat}\n\n` +
-
-                    `Longitude:\n${lon}\n\n` +
-
-                    `Precisão aproximada:\n${Math.round(precisao)} metros`;
-
-
-                /*
-                   DESCONTO
-                */
-
-                if (
-                    beneficio.desconto === 40
-                ) {
-
-                    textoMensagem +=
-
-                        `\n\n🎉 DESCONTO DE 40%!\n\n` +
-
-                        `O cliente tem direito a 40% de desconto nesta viagem.\n\n` +
-
-                        beneficio.mensagem;
-
-                }
-
-                else if (
-                    beneficio.clienteIdentificado
-                ) {
-
-                    textoMensagem +=
-
-                        `\n\n🎁 PROGRAMA DE DESCONTO:\n\n` +
-
-                        beneficio.mensagem;
-
-                }
-
-                else {
-
-                    textoMensagem +=
-
-                        `\n\nℹ️ DESCONTO:\n\n` +
-
-                        `Histórico não identificado.`;
-
-                }
-
-
-                /*
-                   INDICAÇÃO
-                */
-
-                if (quemIndicou) {
-
-                    textoMensagem +=
-
-                        `\n\n👥 Quem indicou:\n` +
-
-                        quemIndicou;
-
-                }
-
-
-                /*
-                   CODIFICAR
-                */
-
-                const mensagem =
-                    encodeURIComponent(
-                        textoMensagem
-                    );
-
-
-                /*
-                   =================================================
-                   SUCESSO
-                   =================================================
-                */
-
-                el.botao.innerHTML =
-                    "🚀 ABRINDO WHATSAPP...";
-
-
-                el.status.innerHTML =
-                    "🎉 Tudo pronto! Abrindo o WhatsApp...";
-
-
-                efeitoSucesso();
-
-
-                /*
-                   PEQUENO TEMPO PARA O CLIENTE
-                   VER O FEEDBACK
-                */
-
-                setTimeout(() => {
-
-                    window.location.href =
-                        `https://wa.me/${SEU_WHATSAPP}?text=${mensagem}`;
-
-                }, 500);
-
-            }
-
-            catch (erro) {
-
-                console.error(
-                    "Erro durante a solicitação:",
-                    erro
-                );
-
-
-                el.status.innerHTML =
-                    "❌ Ocorreu um erro. Tente novamente.";
-
-                el.botao.disabled =
-                    false;
-
-                el.botao.innerHTML =
-                    "📍 PEDIR MOTOTÁXI AGORA";
-
-            }
-
-        },
-
-
-        /*
-           =================================================
-           ERRO GPS
-           =================================================
-        */
-
-        function(error) {
-
-            console.error(
-                "Erro GPS:",
-                error
+            await processarLocalizacao(
+                posicao
             );
 
-
-            let mensagem =
-                "";
-
-
-            if (
-                error.code === 1
-            ) {
-
-                mensagem =
-                    "📍 Você bloqueou a localização. Permita o acesso ao GPS e toque novamente no botão.";
-
-            }
-
-            else if (
-                error.code === 2
-            ) {
-
-                mensagem =
-                    "📡 Não conseguimos encontrar sua localização. Ative o GPS do celular e tente novamente.";
-
-            }
-
-            else if (
-                error.code === 3
-            ) {
-
-                mensagem =
-                    "⏱️ O GPS demorou muito para responder. Tente novamente em um local aberto.";
-
-            }
-
-            else {
-
-                mensagem =
-                    "❌ Não foi possível obter sua localização. Tente novamente.";
-
-            }
-
-
-            el.status.innerHTML =
-                mensagem;
-
-
-            /*
-               REATIVAR BOTÃO
-            */
-
-            el.botao.disabled =
-                false;
-
-
-            el.botao.innerHTML =
-                "📍 TENTAR NOVAMENTE";
-
         },
 
 
-        /*
-           =================================================
-           CONFIGURAÇÃO GPS
-           =================================================
-        */
+        function(erro) {
+
+            tratarErroGPS(
+                erro
+            );
+
+        },
+
 
         {
 
@@ -2330,16 +2515,466 @@ async function pegarLocalizacao() {
 
 }
 
+
+/* =========================================================
+   PROCESSAR LOCALIZAÇÃO
+========================================================= */
+
+async function processarLocalizacao(
+    posicao
+) {
+
+    const el =
+        elementos();
+
+
+    try {
+
+        const latitude =
+            posicao.coords.latitude;
+
+
+        const longitude =
+            posicao.coords.longitude;
+
+
+        const precisao =
+            posicao.coords.accuracy;
+
+
+        const mapaURL =
+
+            "https://www.google.com/maps?q=" +
+
+            latitude +
+            "," +
+            longitude;
+
+
+        mostrarStatus(
+
+            "📍 Localização encontrada!<br>" +
+            "⏳ Preparando sua corrida..."
+
+        );
+
+
+        /*
+           Identifica ou cria o cliente
+        */
+
+        if (!dadosCliente) {
+
+            mostrarStatus(
+
+                "👤 Identificando seu cadastro..."
+
+            );
+
+
+            await garantirCliente();
+
+        }
+
+
+        /*
+           Mostra benefícios
+        */
+
+        if (dadosCliente) {
+
+            mostrarBeneficios(
+                dadosCliente
+            );
+
+
+            mostrarClienteIdentificado(
+                dadosCliente
+            );
+
+        }
+
+
+        /*
+           Cria solicitação
+        */
+
+        mostrarStatus(
+
+            "🛵 Registrando sua solicitação..."
+
+        );
+
+
+        const dadosCorrida =
+            await solicitarCorrida(
+
+                latitude,
+
+                longitude,
+
+                precisao,
+
+                mapaURL
+
+            );
+
+
+        /*
+           Atualiza visual
+        */
+
+        if (
+            dadosCorrida
+                .desconto_percentual === 40
+        ) {
+
+            efeitoSucesso();
+
+        }
+
+
+        /*
+           Cria mensagem
+        */
+
+        const mensagem =
+            criarMensagemWhatsApp(
+
+                dadosCorrida,
+
+                latitude,
+
+                longitude,
+
+                precisao,
+
+                mapaURL
+
+            );
+
+
+        mostrarStatus(
+
+            "✅ Pedido registrado!<br>" +
+            "📲 Abrindo WhatsApp..."
+
+        );
+
+
+        /*
+           WhatsApp
+        */
+
+        const whatsappURL =
+
+            "https://wa.me/" +
+
+            SEU_WHATSAPP +
+
+            "?text=" +
+
+            mensagem;
+
+
+        setTimeout(
+
+            function() {
+
+                window.location.href =
+                    whatsappURL;
+
+            },
+
+            700
+
+        );
+
+
+    } catch (erro) {
+
+        console.error(
+            "Erro ao processar corrida:",
+            erro
+        );
+
+
+        mostrarStatus(
+
+            "❌ " +
+
+            escaparHTML(
+                erro.message ||
+                "Não foi possível registrar sua corrida."
+            ) +
+
+            "<br><br>" +
+
+            "Tente novamente."
+
+        );
+
+
+        el.botao.disabled =
+            false;
+
+
+        el.botao.innerHTML =
+            "📍 PEDIR MOTOTÁXI AGORA";
+
+    }
+
+}
+
+
+/* =========================================================
+   ERRO GPS
+========================================================= */
+
+function tratarErroGPS(
+    erro
+) {
+
+    const el =
+        elementos();
+
+
+    let mensagem = "";
+
+
+    switch (
+        erro.code
+    ) {
+
+        case 1:
+
+            mensagem =
+
+                "📍 Permissão de localização negada.<br><br>" +
+
+                "Permita que o navegador acesse sua localização " +
+
+                "e tente novamente.";
+
+            break;
+
+
+        case 2:
+
+            mensagem =
+
+                "📡 Não foi possível encontrar sua localização.<br><br>" +
+
+                "Verifique se o GPS/localização do celular está ligado.";
+
+            break;
+
+
+        case 3:
+
+            mensagem =
+
+                "⏱️ O GPS demorou muito para responder.<br><br>" +
+
+                "Tente novamente em um local com melhor sinal.";
+
+            break;
+
+
+        default:
+
+            mensagem =
+
+                "❌ Não foi possível obter sua localização.";
+
+    }
+
+
+    mostrarStatus(
+        mensagem
+    );
+
+
+    el.botao.disabled =
+        false;
+
+
+    el.botao.innerHTML =
+        "📍 PEDIR MOTOTÁXI AGORA";
+
+}
+
+
+/* =========================================================
+   CARREGAR CLIENTE AO ABRIR A PÁGINA
+========================================================= */
+
+async function inicializar() {
+
+    /*
+       Primeiro tenta identificar automaticamente
+       pelo código da URL ou pelo aparelho.
+    */
+
+    try {
+
+        const codigoURL =
+            pegarCodigoDaURL();
+
+
+        const codigoSalvo =
+            carregarCodigoSalvo();
+
+
+        const codigo =
+            codigoURL ||
+            codigoSalvo;
+
+
+        if (!codigo) {
+
+            mostrarStatus(
+
+                "👋 Informe seu nome se quiser criar " +
+                "seu cadastro de fidelidade."
+
+            );
+
+            return;
+
+        }
+
+
+        mostrarStatus(
+            "🔐 Identificando cliente..."
+        );
+
+
+        const cliente =
+            await buscarCliente(
+                codigo
+            );
+
+
+        if (cliente) {
+
+            codigoCliente =
+                codigo;
+
+            dadosCliente =
+                cliente;
+
+
+            salvarCodigoCliente(
+                codigo
+            );
+
+
+            mostrarBeneficios(
+                cliente
+            );
+
+
+            mostrarClienteIdentificado(
+                cliente
+            );
+
+
+            /*
+               Preenche o nome automaticamente.
+            */
+
+            const el =
+                elementos();
+
+
+            if (
+                el.nome &&
+                cliente.nome
+            ) {
+
+                el.nome.value =
+                    cliente.nome;
+
+            }
+
+
+            mostrarStatus(
+                "✅ Cliente identificado. Você já pode pedir sua corrida."
+            );
+
+        } else {
+
+            mostrarStatus(
+
+                "👋 Não encontramos seu cadastro. " +
+                "Ele será criado quando você pedir a corrida."
+
+            );
+
+        }
+
+
+    } catch (erro) {
+
+        console.error(
+            "Erro na inicialização:",
+            erro
+        );
+
+
+        mostrarStatus(
+
+            "👋 Pronto para solicitar sua corrida."
+
+        );
+
+    }
+
+}
+
+
+/* =========================================================
+   TRATAMENTO GLOBAL DE ERROS
+========================================================= */
+
+window.addEventListener(
+    "error",
+    function(evento) {
+
+        console.error(
+            "Erro JavaScript:",
+            evento.error
+        );
+
+    }
+);
+
+
+window.addEventListener(
+    "unhandledrejection",
+    function(evento) {
+
+        console.error(
+            "Promise rejeitada:",
+            evento.reason
+        );
+
+    }
+);
+
+
+/* =========================================================
+   INICIAR
+========================================================= */
+
+document.addEventListener(
+    "DOMContentLoaded",
+    inicializar
+);
+
 </script>
 
-
-
-            
-                    
-    
-
-    
-            
-
 </body>
+
 </html>
