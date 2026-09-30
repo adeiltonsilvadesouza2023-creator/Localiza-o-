@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-    <!-- METATAGS DO OPEN GRAPH PARA O WHATSAPP -->
+
     <meta property="og:title" content="🛵 Chamar Mototáxi Agora">
     <meta property="og:description" content="Toque aqui para permitir sua localização e agilizar a corrida direto no WhatsApp!">
     <meta property="og:image" content="https://adeiltonsilvadesouza2023-creator.github.io/Localiza-o-/banner.png">
@@ -10,12 +10,13 @@
 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>Chamar Mototáxi</title>
-    
-    <!-- Biblioteca do Supabase para conversar com a nuvem -->
+
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
     <style>
+
         body {
             font-family: Arial, sans-serif;
             text-align: center;
@@ -23,6 +24,7 @@
             background-color: #f4f4f9;
             color: #333;
         }
+
         .container {
             max-width: 400px;
             margin: 0 auto;
@@ -31,9 +33,11 @@
             border-radius: 12px;
             box-shadow: 0 4px 10px rgba(0,0,0,0.1);
         }
+
         h2 {
             color: #075e54;
         }
+
         input {
             width: 90%;
             padding: 12px;
@@ -42,6 +46,7 @@
             border-radius: 8px;
             font-size: 16px;
         }
+
         button {
             background-color: #25d366;
             color: white;
@@ -54,14 +59,17 @@
             width: 100%;
             margin-top: 10px;
         }
+
         button:active {
             background-color: #128c7e;
         }
+
         #status {
             margin-top: 15px;
             font-size: 14px;
             color: #666;
         }
+
         .aviso-desconto-grande {
             background: #fff3cd;
             border: 2px dashed #ffecb5;
@@ -73,6 +81,7 @@
             font-weight: bold;
             line-height: 1.4;
         }
+
         .desconto-box {
             background: #e1f5fe;
             padding: 10px;
@@ -81,190 +90,725 @@
             font-weight: bold;
             color: #0277bd;
         }
+
     </style>
 </head>
+
 <body>
 
-    <div class="container">
-        <h2>🏍️ Agilizar Corrida</h2>
-        
-        <!-- AVISO GRANDE SOBRE O DESCONTO DA 3ª VIAGEM -->
-        <div class="aviso-desconto-grande">
-            🎁 ATENÇÃO!<br>Na sua 3ª viagem você ganha <span style="color: #d9534f; font-size: 20px;">40% DE DESCONTO!</span>
-        </div>
+<div class="container">
 
-        <div id="painelDesconto" class="desconto-box" style="display:none;">
-            🎉 <span id="textoDesconto"></span>
-        </div>
+    <h2>🏍️ Agilizar Corrida</h2>
 
-        <p>Preencha seus dados para chamar o mototáxi:</p>
-        <input type="text" id="nomeCliente" placeholder="Seu Nome">
-        <input type="text" id="ruaCliente" placeholder="Sua Rua / Local de Partida">
-        <input type="text" id="telefoneAmigo" placeholder="Quem te indicou? (Opcional - Nome ou WhatsApp)">
-
-        <p style="font-size: 14px; margin-top: 15px;">Toque no botão abaixo para permitir o acesso ao GPS e enviar sua localização direto para o nosso WhatsApp.</p>
-        
-        <button onclick="pegarLocalizacao()">Pedir com Minha Localização</button>
-        
-        <p id="status"></p>
+    <div class="aviso-desconto-grande">
+        🎁 ATENÇÃO!<br>
+        Na sua 3ª viagem você ganha
+        <span style="color: #d9534f; font-size: 20px;">
+            40% DE DESCONTO!
+        </span>
     </div>
 
-    <script>
-    const SUPABASE_URL = 'https://etaiheynljzhzvpaqusm.supabase.co';
-    const SUPABASE_KEY = 'sb_publishable_DkBXJjtKJCBqjy2aNF8kFg_yKMK0hwg';
-    const supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+    <div id="painelDesconto" class="desconto-box" style="display:none;">
+        🎉 <span id="textoDesconto"></span>
+    </div>
 
-    async function verificarBeneficios(nome, rua) {
-        if (!nome || !rua) return { desconto: 0, mensagem: "" };
+    <p>Preencha seus dados para chamar o mototáxi:</p>
 
-        let { data: cliente, error } = await supabaseClient
-            .from('clientes')
-            .select('*')
-            .eq('nome', nome)
-            .eq('rua', rua)
-            .maybeSingle();
+    <input
+        type="text"
+        id="nomeCliente"
+        placeholder="Seu Nome"
+    >
 
-        if (error) {
-            console.error('Erro ao buscar cliente:', error);
-            return { desconto: 0, mensagem: "", erro: error.message };
-        }
+    <input
+        type="text"
+        id="ruaCliente"
+        placeholder="Sua Rua / Local de Partida"
+    >
 
-        let viagensFeitas = 0;
-        let temDescontoIndicação = false;
+    <input
+        type="text"
+        id="telefoneAmigo"
+        placeholder="Quem te indicou? (Opcional - Nome ou WhatsApp)"
+    >
 
-        if (cliente) {
-            viagensFeitas = cliente.viagens_feitas || 0;
-            temDescontoIndicação = cliente.tem_desconto_indicacao || false;
-        }
+    <p style="font-size:14px; margin-top:15px;">
+        Toque no botão abaixo para permitir o acesso ao GPS
+        e enviar sua localização diretamente para o WhatsApp.
+    </p>
 
-        let proximaViagem = viagensFeitas + 1;
-        if (proximaViagem % 3 === 0) {
-            return { desconto: 40, mensagem: "Parabéns! Na sua 3ª viagem você ganhou 40% de desconto!", viagens: viagensFeitas };
-        } else if (temDescontoIndicação) {
-            return { desconto: 20, mensagem: "Você ganhou 20% de desconto pela indicação!", viagens: viagensFeitas, usarIndicacao: true };
-        }
+    <button onclick="pegarLocalizacao()">
+        📍 Pedir com Minha Localização
+    </button>
 
-        return { desconto: 0, mensagem: "Cliente cadastrado!", viagens: viagensFeitas };
+    <p id="status"></p>
+
+</div>
+
+
+<script>
+
+const SUPABASE_URL =
+    'https://etaiheynljzhzvpaqusm.supabase.co';
+
+const SUPABASE_KEY =
+    'sb_publishable_DkBXJjtKJCBqjy2aNF8kFg_yKMK0hwg';
+
+const supabaseClient =
+    supabase.createClient(
+        SUPABASE_URL,
+        SUPABASE_KEY
+    );
+
+
+/*
+====================================================
+VERIFICAR DESCONTO DO CLIENTE
+====================================================
+*/
+
+async function verificarBeneficios(nome, rua) {
+
+    if (!nome || !rua) {
+
+        return {
+            desconto: 0,
+            mensagem: "",
+            viagens: 0,
+            faltam: 3
+        };
+
     }
 
-    async function registrarViagemNoSupabase(nome, rua, quemIndicou) {
-        if (!nome || !rua) return { ok: false, erro: "Nome ou rua vazios" };
 
-        let { data: cliente, error: erroBusca } = await supabaseClient
+    const { data: cliente, error } =
+        await supabaseClient
             .from('clientes')
             .select('*')
             .eq('nome', nome)
             .eq('rua', rua)
             .maybeSingle();
 
-        if (erroBusca) {
-            console.error(erroBusca);
-            return { ok: false, erro: erroBusca.message };
-        }
 
-        if (!cliente) {
-            if (quemIndicou) {
-                let { data: padrinho } = await supabaseClient
+    if (error) {
+
+        console.error(
+            'Erro ao buscar cliente:',
+            error
+        );
+
+        return {
+            desconto: 0,
+            mensagem: "",
+            erro: error.message
+        };
+
+    }
+
+
+    /*
+    ================================================
+    CLIENTE NOVO
+    ================================================
+    */
+
+    if (!cliente) {
+
+        return {
+
+            desconto: 0,
+
+            mensagem:
+                "Você ainda não tem 40% de desconto. Faltam 3 viagens para chegar à 3ª viagem e ganhar 40%.",
+
+            viagens: 0,
+
+            faltam: 3
+
+        };
+
+    }
+
+
+    const viagensFeitas =
+        Number(cliente.viagens_feitas || 0);
+
+
+    /*
+    ================================================
+    CALCULAR A PRÓXIMA VIAGEM
+    ================================================
+    */
+
+    const proximaViagem =
+        viagensFeitas + 1;
+
+
+    /*
+    ================================================
+    A CADA 3 VIAGENS:
+    3ª, 6ª, 9ª, 12ª...
+    ================================================
+    */
+
+    if (proximaViagem % 3 === 0) {
+
+        return {
+
+            desconto: 40,
+
+            mensagem:
+                `🎉 ESTA É SUA ${proximaViagem}ª VIAGEM! Você tem direito a 40% de desconto nesta corrida!`,
+
+            viagens: viagensFeitas,
+
+            faltam: 0
+
+        };
+
+    }
+
+
+    /*
+    ================================================
+    CALCULAR QUANTAS VIAGENS FALTAM
+    ================================================
+    */
+
+    const faltam =
+        3 - (proximaViagem % 3);
+
+
+    return {
+
+        desconto: 0,
+
+        mensagem:
+            `Você ainda não tem 40% de desconto. Faltam ${faltam} viagem${faltam === 1 ? '' : 'ens'} para ganhar 40% de desconto.`,
+
+        viagens: viagensFeitas,
+
+        faltam: faltam
+
+    };
+
+}
+
+
+/*
+====================================================
+REGISTRAR VIAGEM
+====================================================
+*/
+
+async function registrarViagemNoSupabase(
+    nome,
+    rua,
+    quemIndicou
+) {
+
+    if (!nome || !rua) {
+
+        return {
+            ok: false,
+            erro: "Nome ou rua vazios"
+        };
+
+    }
+
+
+    const {
+        data: cliente,
+        error: erroBusca
+    } = await supabaseClient
+        .from('clientes')
+        .select('*')
+        .eq('nome', nome)
+        .eq('rua', rua)
+        .maybeSingle();
+
+
+    if (erroBusca) {
+
+        console.error(erroBusca);
+
+        return {
+            ok: false,
+            erro: erroBusca.message
+        };
+
+    }
+
+
+    /*
+    ================================================
+    CLIENTE NOVO
+    ================================================
+    */
+
+    if (!cliente) {
+
+        /*
+        Se foi indicado por alguém,
+        procurar o padrinho.
+        */
+
+        if (quemIndicou) {
+
+            const {
+                data: padrinho
+            } = await supabaseClient
+                .from('clientes')
+                .select('*')
+                .eq('nome', quemIndicou)
+                .maybeSingle();
+
+
+            if (padrinho) {
+
+                await supabaseClient
                     .from('clientes')
-                    .select('*')
-                    .eq('nome', quemIndicou)
-                    .maybeSingle();
+                    .update({
+                        tem_desconto_indicacao: true
+                    })
+                    .eq('id', padrinho.id);
 
-                if (padrinho) {
-                    await supabaseClient
-                        .from('clientes')
-                        .update({ tem_desconto_indicacao: true })
-                        .eq('id', padrinho.id);
-                }
             }
 
-            let { error } = await supabaseClient.from('clientes').insert([
-                { nome: nome, rua: rua, viagens_feitas: 1, tem_desconto_indicacao: false }
-            ]);
+        }
 
-            if (error) return { ok: false, erro: error.message };
-        } else {
-            let novasViagens = (cliente.viagens_feitas || 0) + 1;
-            let zeraIndicacao = cliente.tem_desconto_indicacao ? false : cliente.tem_desconto_indicacao;
 
-            let { error } = await supabaseClient
+        /*
+        Criar cliente com 1 viagem
+        */
+
+        const { error } =
+            await supabaseClient
                 .from('clientes')
-                .update({ viagens_feitas: novasViagens, tem_desconto_indicacao: zeraIndicacao })
+                .insert([{
+
+                    nome: nome,
+
+                    rua: rua,
+
+                    viagens_feitas: 1,
+
+                    tem_desconto_indicacao: false
+
+                }]);
+
+
+        if (error) {
+
+            return {
+                ok: false,
+                erro: error.message
+            };
+
+        }
+
+    }
+
+
+    /*
+    ================================================
+    CLIENTE EXISTENTE
+    ================================================
+    */
+
+    else {
+
+        const novasViagens =
+            Number(cliente.viagens_feitas || 0) + 1;
+
+
+        /*
+        Se tinha desconto de indicação,
+        ele é usado nesta viagem.
+        */
+
+        let descontoIndicacao =
+            cliente.tem_desconto_indicacao
+                ? false
+                : false;
+
+
+        const { error } =
+            await supabaseClient
+                .from('clientes')
+                .update({
+
+                    viagens_feitas: novasViagens,
+
+                    tem_desconto_indicacao:
+                        descontoIndicacao
+
+                })
                 .eq('id', cliente.id);
 
-            if (error) return { ok: false, erro: error.message };
+
+        if (error) {
+
+            return {
+                ok: false,
+                erro: error.message
+            };
+
         }
 
-        return { ok: true };
     }
 
-    async function pegarLocalizacao() {
-        const statusDiv = document.getElementById("status");
-        const painelDesconto = document.getElementById("painelDesconto");
-        const textoDesconto = document.getElementById("textoDesconto");
-        const nome = document.getElementById("nomeCliente").value.trim();
-        const rua = document.getElementById("ruaCliente").value.trim();
-        const quemIndicou = document.getElementById("telefoneAmigo").value.trim();
 
-        if (!nome || !rua) {
-            alert("Por favor, preencha seu Nome e a sua Rua para continuar!");
-            return;
-        }
+    return {
+        ok: true
+    };
 
-        if (!navigator.geolocation) {
-            statusDiv.innerHTML = "Seu navegador não suporta geolocalização.";
-            return;
-        }
+}
 
-        statusDiv.innerHTML = "Verificando descontos e obtendo sua localização...";
-        painelDesconto.style.display = "none";
 
-        let beneficio = await verificarBeneficios(nome, rua);
+/*
+====================================================
+PEGAR LOCALIZAÇÃO
+====================================================
+*/
 
-        if (beneficio.erro) {
-            statusDiv.innerHTML = "Erro no banco de dados: " + beneficio.erro;
-            return;
-        }
+async function pegarLocalizacao() {
 
-        if (beneficio.desconto > 0) {
-            textoDesconto.innerText = beneficio.mensagem;
-            painelDesconto.style.display = "block";
-        }
+    const statusDiv =
+        document.getElementById("status");
 
-        navigator.geolocation.getCurrentPosition(
-            async (position) => {
-                const lat = position.coords.latitude;
-                const lon = position.coords.longitude;
-                const linkMaps = `https://maps.google.com/?q=\( {lat}, \){lon}`;
-                const seuNumeroWhatsApp = "5581985269588";
+    const painelDesconto =
+        document.getElementById("painelDesconto");
 
-                const registro = await registrarViagemNoSupabase(nome, rua, quemIndicou);
-                if (!registro.ok) {
-                    statusDiv.innerHTML = "Erro ao registrar viagem: " + registro.erro;
-                    return;
-                }
+    const textoDesconto =
+        document.getElementById("textoDesconto");
 
-                let textoMensagem = `Olá! Meu nome é ${nome}, estou na rua ${rua}. Quero pedir uma corrida. Estou nesta localização: ${linkMaps}`;
-                if (beneficio.desconto > 0) {
-                    textoMensagem = `Olá! Meu nome é ${nome}, estou na rua ${rua}. Tenho direito a \( {beneficio.desconto}% de desconto ( \){beneficio.mensagem}). Quero pedir uma corrida. Localização: ${linkMaps}`;
-                }
 
-                const mensagem = encodeURIComponent(textoMensagem);
-                statusDiv.innerHTML = "Tudo pronto! Redirecionando para o WhatsApp...";
+    const nome =
+        document
+            .getElementById("nomeCliente")
+            .value
+            .trim();
 
-                window.location.href = `https://wa.me/\( {seuNumeroWhatsApp}?text= \){mensagem}`;
-            },
-            (error) => {
-                let msg = "Não foi possível obter sua localização. ";
-                if (error.code === 1) msg += "Você negou a permissão do GPS. Permita e tente de novo.";
-                else if (error.code === 2) msg += "Posição indisponível.";
-                else if (error.code === 3) msg += "Tempo esgotado. Tente novamente.";
-                else msg += "Permita o GPS no navegador.";
-                statusDiv.innerHTML = msg;
-            },
-            { enableHighAccuracy: true, timeout: 15000, maximumAge: 0 }
+
+    const rua =
+        document
+            .getElementById("ruaCliente")
+            .value
+            .trim();
+
+
+    const quemIndicou =
+        document
+            .getElementById("telefoneAmigo")
+            .value
+            .trim();
+
+
+    /*
+    ================================================
+    VALIDAR DADOS
+    ================================================
+    */
+
+    if (!nome || !rua) {
+
+        alert(
+            "Por favor, preencha seu Nome e sua Rua para continuar!"
         );
+
+        return;
+
     }
+
+
+    /*
+    ================================================
+    VERIFICAR GPS
+    ================================================
+    */
+
+    if (!navigator.geolocation) {
+
+        statusDiv.innerHTML =
+            "Seu navegador não suporta geolocalização.";
+
+        return;
+
+    }
+
+
+    statusDiv.innerHTML =
+        "🔎 Verificando seu desconto...";
+
+
+    painelDesconto.style.display =
+        "none";
+
+
+    /*
+    ================================================
+    VERIFICAR BENEFÍCIO
+    ================================================
+    */
+
+    const beneficio =
+        await verificarBeneficios(
+            nome,
+            rua
+        );
+
+
+    if (beneficio.erro) {
+
+        statusDiv.innerHTML =
+            "Erro no banco de dados: " +
+            beneficio.erro;
+
+        return;
+
+    }
+
+
+    /*
+    ================================================
+    MOSTRAR DESCONTO
+    ================================================
+    */
+
+    textoDesconto.innerText =
+        beneficio.mensagem;
+
+    painelDesconto.style.display =
+        "block";
+
+
+    /*
+    ================================================
+    PEGAR GPS
+    ================================================
+    */
+
+    statusDiv.innerHTML =
+        "📍 Obtendo sua localização exata...";
+
+
+    navigator.geolocation.getCurrentPosition(
+
+        async (position) => {
+
+            /*
+            ========================================
+            COORDENADAS
+            ========================================
+            */
+
+            const lat =
+                position.coords.latitude;
+
+            const lon =
+                position.coords.longitude;
+
+
+            const precisao =
+                position.coords.accuracy;
+
+
+            /*
+            ========================================
+            LINK CORRETO DO GOOGLE MAPS
+            ========================================
+            */
+
+            const linkMaps =
+                `https://www.google.com/maps?q=${lat},${lon}`;
+
+
+            /*
+            ========================================
+            NÚMERO DO WHATSAPP
+            ========================================
+            */
+
+            const seuNumeroWhatsApp =
+                "5581985269588";
+
+
+            /*
+            ========================================
+            REGISTRAR VIAGEM
+            ========================================
+            */
+
+            statusDiv.innerHTML =
+                "📋 Registrando sua viagem...";
+
+
+            const registro =
+                await registrarViagemNoSupabase(
+                    nome,
+                    rua,
+                    quemIndicou
+                );
+
+
+            if (!registro.ok) {
+
+                statusDiv.innerHTML =
+                    "Erro ao registrar viagem: " +
+                    registro.erro;
+
+                return;
+
+            }
+
+
+            /*
+            ========================================
+            MONTAR MENSAGEM
+            ========================================
+            */
+
+            let textoMensagem =
+
+                `🏍️ NOVA CORRIDA
+
+Nome: ${nome}
+
+Rua informada: ${rua}
+
+📍 LOCALIZAÇÃO DO GPS:
+${linkMaps}
+
+Precisão aproximada do GPS:
+${Math.round(precisao)} metros`;
+
+
+            /*
+            ========================================
+            AVISO DO DESCONTO
+            ========================================
+            */
+
+            if (beneficio.desconto === 40) {
+
+                textoMensagem +=
+
+                    `
+
+🎉 DESCONTO:
+CLIENTE TEM DIREITO A 40% DE DESCONTO NESTA VIAGEM.
+
+${beneficio.mensagem}`;
+
+            }
+
+            else {
+
+                textoMensagem +=
+
+                    `
+
+🎁 PROGRAMA DE DESCONTO:
+${beneficio.mensagem}`;
+
+            }
+
+
+            /*
+            ========================================
+            ENVIAR PARA WHATSAPP
+            ========================================
+            */
+
+            const mensagem =
+                encodeURIComponent(
+                    textoMensagem
+                );
+
+
+            statusDiv.innerHTML =
+                "✅ Tudo pronto! Abrindo o WhatsApp...";
+
+
+            /*
+            ========================================
+            LINK CORRETO DO WHATSAPP
+            ========================================
+            */
+
+            window.location.href =
+                `https://wa.me/${seuNumeroWhatsApp}?text=${mensagem}`;
+
+        },
+
+
+        /*
+        ============================================
+        ERRO DO GPS
+        ============================================
+        */
+
+        (error) => {
+
+            let msg =
+                "❌ Não foi possível obter sua localização. ";
+
+
+            if (error.code === 1) {
+
+                msg +=
+                    "Você negou a permissão do GPS. Permita a localização e tente novamente.";
+
+            }
+
+            else if (error.code === 2) {
+
+                msg +=
+                    "A posição está indisponível. Verifique se o GPS está ativado.";
+
+            }
+
+            else if (error.code === 3) {
+
+                msg +=
+                    "O GPS demorou muito para responder. Tente novamente em um local com melhor sinal.";
+
+            }
+
+            else {
+
+                msg +=
+                    "Verifique as permissões de localização do navegador.";
+
+            }
+
+
+            statusDiv.innerHTML =
+                msg;
+
+        },
+
+
+        /*
+        ============================================
+        CONFIGURAÇÃO DO GPS
+        ============================================
+        */
+
+        {
+            enableHighAccuracy: true,
+
+            timeout: 30000,
+
+            maximumAge: 0
+        }
+
+    );
+
+}
+
 </script>
+
 </body>
 </html>
