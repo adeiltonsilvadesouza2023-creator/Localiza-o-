@@ -1103,12 +1103,10 @@ button::after {
 
 </div>
 
-
-<script>
-
+   <script>
 
 /* =====================================================
-   SUPABASE
+   CONFIGURAÇÃO
 ===================================================== */
 
 const SUPABASE_URL =
@@ -1117,211 +1115,80 @@ const SUPABASE_URL =
 const SUPABASE_KEY =
     'sb_publishable_DkBXJjtKJCBqjy2aNF8kFg_yKMK0hwg';
 
-
-const supabaseClient =
-    supabase.createClient(
-        SUPABASE_URL,
-        SUPABASE_KEY
-    );
+const SEU_WHATSAPP =
+    '5581985269588';
 
 
 /* =====================================================
-   VERIFICAR BENEFÍCIOS
+   SUPABASE
 ===================================================== */
 
-async function verificarBeneficios(nome) {
+let supabaseClient = null;
 
-    if (!nome) {
+try {
 
-        return {
+    if (
+        typeof supabase !== "undefined" &&
+        supabase.createClient
+    ) {
 
-            desconto: 0,
-
-            mensagem:
-                "👋 Cliente não identificado. Informe seu nome para acompanhar suas viagens.",
-
-            viagens: 0,
-
-            faltam: null,
-
-            clienteIdentificado: false
-
-        };
+        supabaseClient =
+            supabase.createClient(
+                SUPABASE_URL,
+                SUPABASE_KEY
+            );
 
     }
 
+} catch (erro) {
 
-    const {
-        data: cliente,
-        error
-    } = await supabaseClient
-
-        .from('clientes')
-
-        .select('*')
-
-        .eq('nome', nome)
-
-        .maybeSingle();
-
-
-    if (error) {
-
-        console.error(
-            'Erro ao buscar cliente:',
-            error
-        );
-
-        return {
-
-            desconto: 0,
-
-            mensagem: "",
-
-            erro: error.message,
-
-            clienteIdentificado: false
-
-        };
-
-    }
-
-
-    if (!cliente) {
-
-        return {
-
-            desconto: 0,
-
-            mensagem:
-                "🎉 Primeira viagem! Faltam 2 viagens depois desta para chegar aos 40% de desconto.",
-
-            viagens: 0,
-
-            faltam: 2,
-
-            clienteIdentificado: true
-
-        };
-
-    }
-
-
-    const viagensFeitas =
-        Number(
-            cliente.viagens_feitas || 0
-        );
-
-
-    const proximaViagem =
-        viagensFeitas + 1;
-
-
-    if (proximaViagem % 3 === 0) {
-
-        return {
-
-            desconto: 40,
-
-            mensagem:
-                `🎉 PARABÉNS! Esta é sua ${proximaViagem}ª viagem! Você ganhou 40% de desconto nesta corrida!`,
-
-            viagens: viagensFeitas,
-
-            faltam: 0,
-
-            clienteIdentificado: true
-
-        };
-
-    }
-
-
-    const faltam =
-        3 - (proximaViagem % 3);
-
-
-    return {
-
-        desconto: 0,
-
-        mensagem:
-            `🔥 Você está avançando! Faltam ${faltam} viagem${faltam === 1 ? '' : 'ens'} para ganhar 40% de desconto.`,
-
-        viagens: viagensFeitas,
-
-        faltam: faltam,
-
-        clienteIdentificado: true
-
-    };
+    console.error(
+        "Erro ao iniciar Supabase:",
+        erro
+    );
 
 }
 
 
 /* =====================================================
-   ATUALIZAR PROGRESSO VISUAL
+   ELEMENTOS
 ===================================================== */
 
-function atualizarProgresso(beneficio) {
+function elementos() {
 
-    const container =
-        document.getElementById(
-            "progressoContainer"
-        );
+    return {
 
-    const barra =
-        document.getElementById(
-            "progressoBarra"
-        );
+        status:
+            document.getElementById("status"),
 
-    const numero =
-        document.getElementById(
-            "progressoNumero"
-        );
+        painel:
+            document.getElementById("painelDesconto"),
 
+        texto:
+            document.getElementById("textoDesconto"),
 
-    if (
-        !beneficio.clienteIdentificado ||
-        beneficio.desconto === 40
-    ) {
+        botao:
+            document.getElementById("botaoCorrida"),
 
-        container.style.display =
-            "none";
+        container:
+            document.getElementById("container"),
 
-        return;
+        progressoContainer:
+            document.getElementById(
+                "progressoContainer"
+            ),
 
-    }
+        progressoBarra:
+            document.getElementById(
+                "progressoBarra"
+            ),
 
+        progressoNumero:
+            document.getElementById(
+                "progressoNumero"
+            )
 
-    container.style.display =
-        "block";
-
-
-    const viagens =
-        Number(
-            beneficio.viagens || 0
-        );
-
-
-    const progresso =
-        viagens % 3;
-
-
-    const porcentagem =
-        (progresso / 3) * 100;
-
-
-    numero.innerText =
-        `${progresso}/3`;
-
-
-    setTimeout(() => {
-
-        barra.style.width =
-            `${porcentagem}%`;
-
-    }, 100);
+    };
 
 }
 
@@ -1341,9 +1208,7 @@ function soltarConfetes() {
     ) {
 
         const confete =
-            document.createElement(
-                "div"
-            );
+            document.createElement("div");
 
 
         confete.className =
@@ -1354,26 +1219,28 @@ function soltarConfetes() {
             Math.random() * 100 + "vw";
 
 
+        const cores = [
+
+            "#25d366",
+            "#ffd700",
+            "#00d9ff",
+            "#ff4d6d",
+            "#ffffff"
+
+        ];
+
+
         confete.style.background =
-            [
-                "#25d366",
-                "#ffd700",
-                "#00d9ff",
-                "#ff4d6d",
-                "#ffffff"
-            ][
+            cores[
                 Math.floor(
-                    Math.random() * 5
+                    Math.random() *
+                    cores.length
                 )
             ];
 
 
         confete.style.animationDelay =
             Math.random() * 0.8 + "s";
-
-
-        confete.style.transform =
-            `rotate(${Math.random() * 360}deg)`;
 
 
         document.body.appendChild(
@@ -1398,23 +1265,634 @@ function soltarConfetes() {
 
 function efeitoSucesso() {
 
-    const container =
-        document.getElementById(
-            "container"
+    const el =
+        elementos();
+
+
+    if (el.container) {
+
+        el.container.classList.remove(
+            "sucesso"
         );
 
 
-    container.classList.add(
-        "su====================================
-    VALIDAR DADOS
-    ================================================
+        void el.container.offsetWidth;
+
+
+        el.container.classList.add(
+            "sucesso"
+        );
+
+    }
+
+
+    soltarConfetes();
+
+}
+
+
+/* =====================================================
+   VERIFICAR BENEFÍCIOS
+===================================================== */
+
+async function verificarBeneficios(nome) {
+
+    /*
+       SEM NOME
     */
 
-    if (!nome || !rua) {
+    if (!nome) {
 
-        alert(
-            "Por favor, preencha seu Nome e sua Rua para continuar!"
+        return {
+
+            desconto: 0,
+
+            mensagem:
+                "👋 Você pode informar seu nome para acompanhar suas viagens e participar do programa de desconto.",
+
+            viagens: 0,
+
+            faltam: null,
+
+            clienteIdentificado: false
+
+        };
+
+    }
+
+
+    /*
+       SE SUPABASE NÃO CARREGOU,
+       NÃO BLOQUEIA A CORRIDA.
+    */
+
+    if (!supabaseClient) {
+
+        console.warn(
+            "Supabase indisponível."
         );
+
+        return {
+
+            desconto: 0,
+
+            mensagem:
+                "📍 Sua localização será enviada normalmente. O histórico de desconto não pôde ser consultado agora.",
+
+            viagens: 0,
+
+            faltam: null,
+
+            clienteIdentificado: false
+
+        };
+
+    }
+
+
+    try {
+
+        const resultado =
+            await supabaseClient
+
+                .from("clientes")
+
+                .select("*")
+
+                .eq("nome", nome)
+
+                .maybeSingle();
+
+
+        const cliente =
+            resultado.data;
+
+        const error =
+            resultado.error;
+
+
+        if (error) {
+
+            console.error(
+                "Erro ao consultar cliente:",
+                error
+            );
+
+
+            return {
+
+                desconto: 0,
+
+                mensagem:
+                    "📍 Sua corrida continuará normalmente. Não foi possível consultar o desconto agora.",
+
+                viagens: 0,
+
+                faltam: null,
+
+                clienteIdentificado: false
+
+            };
+
+        }
+
+
+        /*
+           CLIENTE NOVO
+        */
+
+        if (!cliente) {
+
+            return {
+
+                desconto: 0,
+
+                mensagem:
+                    "🎉 Primeira viagem! Depois desta, faltam 2 viagens para chegar aos 40% de desconto.",
+
+                viagens: 0,
+
+                faltam: 2,
+
+                clienteIdentificado: true
+
+            };
+
+        }
+
+
+        const viagens =
+            Number(
+                cliente.viagens_feitas || 0
+            );
+
+
+        const proxima =
+            viagens + 1;
+
+
+        /*
+           3ª, 6ª, 9ª...
+        */
+
+        if (
+            proxima % 3 === 0
+        ) {
+
+            return {
+
+                desconto: 40,
+
+                mensagem:
+                    `🎉 PARABÉNS! Esta é sua ${proxima}ª viagem! Você tem direito a 40% de desconto nesta corrida!`,
+
+                viagens: viagens,
+
+                faltam: 0,
+
+                clienteIdentificado: true
+
+            };
+
+        }
+
+
+        const faltam =
+            3 - (proxima % 3);
+
+
+        return {
+
+            desconto: 0,
+
+            mensagem:
+                `🔥 Você está avançando! Faltam ${faltam} viagem${faltam === 1 ? "" : "ens"} para ganhar 40% de desconto.`,
+
+            viagens: viagens,
+
+            faltam: faltam,
+
+            clienteIdentificado: true
+
+        };
+
+    }
+
+    catch (erro) {
+
+        console.error(
+            "Erro inesperado no Supabase:",
+            erro
+        );
+
+
+        /*
+           IMPORTANTE:
+           MESMO COM ERRO,
+           NÃO BLOQUEIA A CORRIDA.
+        */
+
+        return {
+
+            desconto: 0,
+
+            mensagem:
+                "📍 Corrida liberada. O histórico de desconto será consultado posteriormente.",
+
+            viagens: 0,
+
+            faltam: null,
+
+            clienteIdentificado: false
+
+        };
+
+    }
+
+}
+
+
+/* =====================================================
+   PROGRESSO
+===================================================== */
+
+function atualizarProgresso(
+    beneficio
+) {
+
+    const el =
+        elementos();
+
+
+    if (
+        !el.progressoContainer ||
+        !el.progressoBarra ||
+        !el.progressoNumero
+    ) {
+
+        return;
+
+    }
+
+
+    if (
+        !beneficio.clienteIdentificado ||
+        beneficio.desconto === 40
+    ) {
+
+        el.progressoContainer.style.display =
+            "none";
+
+        return;
+
+    }
+
+
+    el.progressoContainer.style.display =
+        "block";
+
+
+    const viagens =
+        Number(
+            beneficio.viagens || 0
+        );
+
+
+    const progresso =
+        viagens % 3;
+
+
+    const porcentagem =
+        (progresso / 3) * 100;
+
+
+    el.progressoNumero.innerText =
+        `${progresso}/3`;
+
+
+    setTimeout(() => {
+
+        el.progressoBarra.style.width =
+            `${porcentagem}%`;
+
+    }, 100);
+
+}
+
+
+/* =====================================================
+   REGISTRAR VIAGEM
+===================================================== */
+
+async function registrarViagemNoSupabase(
+    nome,
+    quemIndicou
+) {
+
+    /*
+       SEM NOME:
+       não registra.
+    */
+
+    if (!nome) {
+
+        return {
+
+            ok: true,
+
+            registrado: false
+
+        };
+
+    }
+
+
+    /*
+       SUPABASE INDISPONÍVEL:
+       não bloqueia WhatsApp.
+    */
+
+    if (!supabaseClient) {
+
+        return {
+
+            ok: true,
+
+            registrado: false
+
+        };
+
+    }
+
+
+    try {
+
+        const resultado =
+            await supabaseClient
+
+                .from("clientes")
+
+                .select("*")
+
+                .eq("nome", nome)
+
+                .maybeSingle();
+
+
+        const cliente =
+            resultado.data;
+
+        const erroBusca =
+            resultado.error;
+
+
+        if (erroBusca) {
+
+            console.error(
+                erroBusca
+            );
+
+            return {
+
+                ok: true,
+
+                registrado: false
+
+            };
+
+        }
+
+
+        /*
+           CLIENTE NOVO
+        */
+
+        if (!cliente) {
+
+            /*
+               INDICAÇÃO
+            */
+
+            if (quemIndicou) {
+
+                try {
+
+                    const resultadoPadrinho =
+                        await supabaseClient
+
+                            .from("clientes")
+
+                            .select("*")
+
+                            .eq(
+                                "nome",
+                                quemIndicou
+                            )
+
+                            .maybeSingle();
+
+
+                    const padrinho =
+                        resultadoPadrinho.data;
+
+
+                    if (padrinho) {
+
+                        await supabaseClient
+
+                            .from("clientes")
+
+                            .update({
+
+                                tem_desconto_indicacao:
+                                    true
+
+                            })
+
+                            .eq(
+                                "id",
+                                padrinho.id
+                            );
+
+                    }
+
+                }
+
+                catch (erro) {
+
+                    console.error(
+                        "Erro na indicação:",
+                        erro
+                    );
+
+                }
+
+            }
+
+
+            /*
+               CRIAR CLIENTE
+            */
+
+            const resultadoInsert =
+                await supabaseClient
+
+                    .from("clientes")
+
+                    .insert([{
+
+                        nome: nome,
+
+                        viagens_feitas: 1,
+
+                        tem_desconto_indicacao:
+                            false
+
+                    }]);
+
+
+            if (
+                resultadoInsert.error
+            ) {
+
+                console.error(
+                    resultadoInsert.error
+                );
+
+            }
+
+
+            return {
+
+                ok: true,
+
+                registrado: true
+
+            };
+
+        }
+
+
+        /*
+           CLIENTE EXISTENTE
+        */
+
+        const novasViagens =
+            Number(
+                cliente.viagens_feitas || 0
+            ) + 1;
+
+
+        const resultadoUpdate =
+            await supabaseClient
+
+                .from("clientes")
+
+                .update({
+
+                    viagens_feitas:
+                        novasViagens,
+
+                    tem_desconto_indicacao:
+                        false
+
+                })
+
+                .eq(
+                    "id",
+                    cliente.id
+                );
+
+
+        if (
+            resultadoUpdate.error
+        ) {
+
+            console.error(
+                resultadoUpdate.error
+            );
+
+        }
+
+
+        return {
+
+            ok: true,
+
+            registrado: true
+
+        };
+
+    }
+
+    catch (erro) {
+
+        console.error(
+            "Erro registrando viagem:",
+            erro
+        );
+
+
+        /*
+           NUNCA BLOQUEAR A CORRIDA
+           POR CAUSA DO BANCO.
+        */
+
+        return {
+
+            ok: true,
+
+            registrado: false
+
+        };
+
+    }
+
+}
+
+
+/* =====================================================
+   PEGAR LOCALIZAÇÃO
+===================================================== */
+
+async function pegarLocalizacao() {
+
+    const el =
+        elementos();
+
+
+    /*
+       PEGAR CAMPOS
+    */
+
+    const nome =
+        document
+            .getElementById(
+                "nomeCliente"
+            )
+            .value
+            .trim();
+
+
+    const quemIndicou =
+        document
+            .getElementById(
+                "telefoneAmigo"
+            )
+            .value
+            .trim();
+
+
+    /*
+       VERIFICAR GPS
+    */
+
+    if (
+        !navigator.geolocation
+    ) {
+
+        el.status.innerHTML =
+            "❌ Seu celular não suporta localização GPS.";
 
         return;
 
@@ -1422,285 +1900,430 @@ function efeitoSucesso() {
 
 
     /*
-    ================================================
-    VERIFICAR GPS
-    ================================================
+       DESATIVAR BOTÃO
     */
 
-    if (!navigator.geolocation) {
-
-        statusDiv.innerHTML =
-            "Seu navegador não suporta geolocalização.";
-
-        return;
-
-    }
+    el.botao.disabled =
+        true;
 
 
-    statusDiv.innerHTML =
-        "🔎 Verificando seu desconto...";
+    el.botao.innerHTML =
+        `<span class="gps-loading">📡</span> LOCALIZANDO VOCÊ...`;
 
 
-    painelDesconto.style.display =
+    el.status.innerHTML =
+        `<span class="gps-loading">📍</span> Obtendo sua localização...`;
+
+
+    /*
+       ESCONDER PAINEL
+    */
+
+    el.painel.style.display =
         "none";
 
 
     /*
-    ================================================
-    VERIFICAR BENEFÍCIO
-    ================================================
+       =================================================
+       PRIMEIRO GPS
+       =================================================
+       
+       O GPS acontece ANTES do Supabase.
+       
+       Isso é importante.
     */
-
-    const beneficio =
-        await verificarBeneficios(
-            nome,
-            rua
-        );
-
-
-    if (beneficio.erro) {
-
-        statusDiv.innerHTML =
-            "Erro no banco de dados: " +
-            beneficio.erro;
-
-        return;
-
-    }
-
-
-    /*
-    ================================================
-    MOSTRAR DESCONTO
-    ================================================
-    */
-
-    textoDesconto.innerText =
-        beneficio.mensagem;
-
-    painelDesconto.style.display =
-        "block";
-
-
-    /*
-    ================================================
-    PEGAR GPS
-    ================================================
-    */
-
-    statusDiv.innerHTML =
-        "📍 Obtendo sua localização exata...";
-
 
     navigator.geolocation.getCurrentPosition(
 
-        async (position) => {
+        async function(position) {
 
-            /*
-            ========================================
-            COORDENADAS
-            ========================================
-            */
+            try {
 
-            const lat =
-                position.coords.latitude;
+                /*
+                   COORDENADAS
+                */
 
-            const lon =
-                position.coords.longitude;
+                const lat =
+                    position.coords.latitude;
 
 
-            const precisao =
-                position.coords.accuracy;
+                const lon =
+                    position.coords.longitude;
 
 
-            /*
-            ========================================
-            LINK CORRETO DO GOOGLE MAPS
-            ========================================
-            */
-
-            const linkMaps =
-                `https://www.google.com/maps?q=${lat},${lon}`;
+                const precisao =
+                    position.coords.accuracy;
 
 
-            /*
-            ========================================
-            NÚMERO DO WHATSAPP
-            ========================================
-            */
+                /*
+                   GOOGLE MAPS
+                */
 
-            const seuNumeroWhatsApp =
-                "5581985269588";
+                const linkMaps =
+                    `https://www.google.com/maps?q=${lat},${lon}`;
 
 
-            /*
-            ========================================
-            REGISTRAR VIAGEM
-            ========================================
-            */
+                /*
+                   GPS ENCONTRADO
+                */
 
-            statusDiv.innerHTML =
-                "📋 Registrando sua viagem...";
+                el.botao.innerHTML =
+                    "✅ LOCALIZAÇÃO ENCONTRADA!";
 
 
-            const registro =
+                el.status.innerHTML =
+                    "⚡ Localização encontrada! Preparando sua corrida...";
+
+
+                /*
+                   =================================================
+                   AGORA CONSULTA O BENEFÍCIO
+                   =================================================
+                */
+
+                let beneficio;
+
+
+                try {
+
+                    beneficio =
+                        await verificarBeneficios(
+                            nome
+                        );
+
+                }
+
+                catch (erro) {
+
+                    console.error(
+                        erro
+                    );
+
+
+                    beneficio = {
+
+                        desconto: 0,
+
+                        mensagem:
+                            "Não foi possível consultar o histórico.",
+
+                        viagens: 0,
+
+                        faltam: null,
+
+                        clienteIdentificado: false
+
+                    };
+
+                }
+
+
+                /*
+                   MOSTRAR BENEFÍCIO
+                */
+
+                el.texto.innerText =
+                    beneficio.mensagem;
+
+
+                el.painel.style.display =
+                    "block";
+
+
+                atualizarProgresso(
+                    beneficio
+                );
+
+
+                /*
+                   SE GANHOU DESCONTO
+                */
+
+                if (
+                    beneficio.desconto === 40
+                ) {
+
+                    efeitoSucesso();
+
+
+                    el.texto.innerText =
+                        "🎉🎉🎉 VOCÊ GANHOU 40% DE DESCONTO NESTA CORRIDA!";
+
+                }
+
+
+                /*
+                   =================================================
+                   REGISTRAR
+                   =================================================
+                */
+
+                el.status.innerHTML =
+                    "📋 Preparando mensagem para o mototaxista...";
+
+
                 await registrarViagemNoSupabase(
+
                     nome,
-                    rua,
+
                     quemIndicou
+
                 );
 
 
-            if (!registro.ok) {
+                /*
+                   =================================================
+                   MONTAR WHATSAPP
+                   =================================================
+                */
 
-                statusDiv.innerHTML =
-                    "Erro ao registrar viagem: " +
-                    registro.erro;
-
-                return;
-
-            }
-
-
-            /*
-            ========================================
-            MONTAR MENSAGEM
-            ========================================
-            */
-
-            let textoMensagem =
-
-                `🏍️ NOVA CORRIDA
-
-Nome: ${nome}
-
-Rua informada: ${rua}
-
-📍 LOCALIZAÇÃO DO GPS:
-${linkMaps}
-
-Precisão aproximada do GPS:
-${Math.round(precisao)} metros`;
+                let textoMensagem =
+                    `🏍️ NOVA CORRIDA\n\n`;
 
 
-            /*
-            ========================================
-            AVISO DO DESCONTO
-            ========================================
-            */
+                /*
+                   NOME
+                */
 
-            if (beneficio.desconto === 40) {
+                if (nome) {
+
+                    textoMensagem +=
+                        `👤 Nome: ${nome}\n\n`;
+
+                }
+
+                else {
+
+                    textoMensagem +=
+                        `👤 Nome: Não informado\n\n`;
+
+                }
+
+
+                /*
+                   LOCALIZAÇÃO
+                */
 
                 textoMensagem +=
 
-                    `
+                    `📍 LOCALIZAÇÃO DO CLIENTE:\n\n` +
 
-🎉 DESCONTO:
-CLIENTE TEM DIREITO A 40% DE DESCONTO NESTA VIAGEM.
+                    `${linkMaps}\n\n` +
 
-${beneficio.mensagem}`;
+                    `Latitude:\n${lat}\n\n` +
+
+                    `Longitude:\n${lon}\n\n` +
+
+                    `Precisão aproximada:\n${Math.round(precisao)} metros`;
+
+
+                /*
+                   DESCONTO
+                */
+
+                if (
+                    beneficio.desconto === 40
+                ) {
+
+                    textoMensagem +=
+
+                        `\n\n🎉 DESCONTO DE 40%!\n\n` +
+
+                        `O cliente tem direito a 40% de desconto nesta viagem.\n\n` +
+
+                        beneficio.mensagem;
+
+                }
+
+                else if (
+                    beneficio.clienteIdentificado
+                ) {
+
+                    textoMensagem +=
+
+                        `\n\n🎁 PROGRAMA DE DESCONTO:\n\n` +
+
+                        beneficio.mensagem;
+
+                }
+
+                else {
+
+                    textoMensagem +=
+
+                        `\n\nℹ️ DESCONTO:\n\n` +
+
+                        `Histórico não identificado.`;
+
+                }
+
+
+                /*
+                   INDICAÇÃO
+                */
+
+                if (quemIndicou) {
+
+                    textoMensagem +=
+
+                        `\n\n👥 Quem indicou:\n` +
+
+                        quemIndicou;
+
+                }
+
+
+                /*
+                   CODIFICAR
+                */
+
+                const mensagem =
+                    encodeURIComponent(
+                        textoMensagem
+                    );
+
+
+                /*
+                   =================================================
+                   SUCESSO
+                   =================================================
+                */
+
+                el.botao.innerHTML =
+                    "🚀 ABRINDO WHATSAPP...";
+
+
+                el.status.innerHTML =
+                    "🎉 Tudo pronto! Abrindo o WhatsApp...";
+
+
+                efeitoSucesso();
+
+
+                /*
+                   PEQUENO TEMPO PARA O CLIENTE
+                   VER O FEEDBACK
+                */
+
+                setTimeout(() => {
+
+                    window.location.href =
+                        `https://wa.me/${SEU_WHATSAPP}?text=${mensagem}`;
+
+                }, 500);
 
             }
 
-            else {
+            catch (erro) {
 
-                textoMensagem +=
-
-                    `
-
-🎁 PROGRAMA DE DESCONTO:
-${beneficio.mensagem}`;
-
-            }
-
-
-            /*
-            ========================================
-            ENVIAR PARA WHATSAPP
-            ========================================
-            */
-
-            const mensagem =
-                encodeURIComponent(
-                    textoMensagem
+                console.error(
+                    "Erro durante a solicitação:",
+                    erro
                 );
 
 
-            statusDiv.innerHTML =
-                "✅ Tudo pronto! Abrindo o WhatsApp...";
+                el.status.innerHTML =
+                    "❌ Ocorreu um erro. Tente novamente.";
 
+                el.botao.disabled =
+                    false;
 
-            /*
-            ========================================
-            LINK CORRETO DO WHATSAPP
-            ========================================
-            */
+                el.botao.innerHTML =
+                    "📍 PEDIR MOTOTÁXI AGORA";
 
-            window.location.href =
-                `https://wa.me/${seuNumeroWhatsApp}?text=${mensagem}`;
+            }
 
         },
 
 
         /*
-        ============================================
-        ERRO DO GPS
-        ============================================
+           =================================================
+           ERRO GPS
+           =================================================
         */
 
-        (error) => {
+        function(error) {
 
-            let msg =
-                "❌ Não foi possível obter sua localização. ";
+            console.error(
+                "Erro GPS:",
+                error
+            );
 
 
-            if (error.code === 1) {
+            let mensagem =
+                "";
 
-                msg +=
-                    "Você negou a permissão do GPS. Permita a localização e tente novamente.";
+
+            if (
+                error.code === 1
+            ) {
+
+                mensagem =
+                    "📍 Você bloqueou a localização. Permita o acesso ao GPS e toque novamente no botão.";
 
             }
 
-            else if (error.code === 2) {
+            else if (
+                error.code === 2
+            ) {
 
-                msg +=
-                    "A posição está indisponível. Verifique se o GPS está ativado.";
+                mensagem =
+                    "📡 Não conseguimos encontrar sua localização. Ative o GPS do celular e tente novamente.";
 
             }
 
-            else if (error.code === 3) {
+            else if (
+                error.code === 3
+            ) {
 
-                msg +=
-                    "O GPS demorou muito para responder. Tente novamente em um local com melhor sinal.";
+                mensagem =
+                    "⏱️ O GPS demorou muito para responder. Tente novamente em um local aberto.";
 
             }
 
             else {
 
-                msg +=
-                    "Verifique as permissões de localização do navegador.";
+                mensagem =
+                    "❌ Não foi possível obter sua localização. Tente novamente.";
 
             }
 
 
-            statusDiv.innerHTML =
-                msg;
+            el.status.innerHTML =
+                mensagem;
+
+
+            /*
+               REATIVAR BOTÃO
+            */
+
+            el.botao.disabled =
+                false;
+
+
+            el.botao.innerHTML =
+                "📍 TENTAR NOVAMENTE";
 
         },
 
 
         /*
-        ============================================
-        CONFIGURAÇÃO DO GPS
-        ============================================
+           =================================================
+           CONFIGURAÇÃO GPS
+           =================================================
         */
 
         {
-            enableHighAccuracy: true,
 
-            timeout: 30000,
+            enableHighAccuracy:
+                true,
 
-            maximumAge: 0
+            timeout:
+                30000,
+
+            maximumAge:
+                0
+
         }
 
     );
@@ -1708,6 +2331,15 @@ ${beneficio.mensagem}`;
 }
 
 </script>
+
+
+
+            
+                    
+    
+
+    
+            
 
 </body>
 </html>
