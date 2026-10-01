@@ -31,11 +31,12 @@
     property="og:type"
     content="website">
 
-
 <title>🛵 Chamar Mototáxi</title>
 
 
-<!-- SUPABASE -->
+<!-- =========================================================
+     SUPABASE
+========================================================= -->
 
 <script
     src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2">
@@ -1588,299 +1589,152 @@ button::after {
 
 /* =========================================================
    TABELA DE LOCAIS E PREÇOS
+   SOMENTE VISUALIZAÇÃO
 ========================================================= */
 
 .secao-locais {
 
-    margin-top: 30px;
+    margin-top:
+        30px;
 
-    padding-top: 25px;
+    padding-top:
+        25px;
 
-    border-top: 1px solid rgba(255,255,255,0.12);
+    border-top:
+        1px solid
+        rgba(255,255,255,0.12);
 
 }
 
 
 .secao-locais-titulo {
 
-    font-size: 18px;
+    font-size:
+        18px;
 
-    font-weight: 800;
+    font-weight:
+        800;
 
-    margin-bottom: 15px;
+    margin-bottom:
+        15px;
 
-    display: flex;
+    display:
+        flex;
 
-    align-items: center;
+    align-items:
+        center;
 
-    gap: 8px;
+    gap:
+        8px;
 
 }
 
 
 .tabela-locais {
 
-    width: 100%;
+    width:
+        100%;
 
-    border-collapse: collapse;
+    border-collapse:
+        collapse;
 
-    font-size: 14px;
+    font-size:
+        14px;
 
 }
 
 
 .tabela-locais th {
 
-    text-align: left;
+    text-align:
+        left;
 
-    padding: 10px 8px;
+    padding:
+        10px 8px;
 
-    color: rgba(255,255,255,0.55);
+    color:
+        rgba(255,255,255,0.55);
 
-    font-weight: 600;
+    font-weight:
+        600;
 
-    font-size: 12px;
+    font-size:
+        12px;
 
-    border-bottom: 1px solid rgba(255,255,255,0.12);
+    border-bottom:
+        1px solid
+        rgba(255,255,255,0.12);
 
 }
 
 
 .tabela-locais td {
 
-    padding: 12px 8px;
+    padding:
+        12px 8px;
 
-    border-bottom: 1px solid rgba(255,255,255,0.08);
+    border-bottom:
+        1px solid
+        rgba(255,255,255,0.08);
 
-    vertical-align: middle;
+    vertical-align:
+        middle;
 
 }
 
 
 .tabela-locais tr:last-child td {
 
-    border-bottom: none;
+    border-bottom:
+        none;
 
 }
 
 
 .tabela-locais .preco {
 
-    font-weight: 800;
+    font-weight:
+        800;
 
-    color: #25d366;
+    color:
+        #25d366;
 
-    white-space: nowrap;
-
-}
-
-
-.tabela-locais .acoes {
-
-    display: flex;
-
-    gap: 6px;
-
-    justify-content: flex-end;
-
-}
-
-
-.btn-acao {
-
-    background: rgba(255,255,255,0.08);
-
-    border: 1px solid rgba(255,255,255,0.15);
-
-    color: #fff;
-
-    border-radius: 10px;
-
-    padding: 6px 10px;
-
-    font-size: 12px;
-
-    cursor: pointer;
-
-    transition: 0.2s;
-
-    width: auto;
-
-    margin: 0;
-
-    animation: none;
-
-    box-shadow: none;
-
-}
-
-
-.btn-acao:hover {
-
-    background: rgba(255,255,255,0.15);
-
-}
-
-
-.btn-acao.editar:hover {
-
-    border-color: #25d366;
-
-    color: #25d366;
-
-}
-
-
-.btn-acao.excluir:hover {
-
-    border-color: #ff4d6d;
-
-    color: #ff4d6d;
-
-}
-
-
-.btn-acao.salvar {
-
-    background: linear-gradient(135deg, #25d366, #128c7e);
-
-    border: none;
-
-}
-
-
-.btn-acao.cancelar {
-
-    background: rgba(255,255,255,0.06);
-
-}
-
-
-.form-novo-local {
-
-    margin-top: 18px;
-
-    padding: 16px;
-
-    border-radius: 16px;
-
-    background: rgba(255,255,255,0.06);
-
-    border: 1px solid rgba(255,255,255,0.12);
-
-    display: none;
-
-}
-
-
-.form-novo-local.ativo {
-
-    display: block;
-
-    animation: aparecer 0.4s ease;
-
-}
-
-
-.form-novo-local .input-wrapper {
-
-    margin: 8px 0;
-
-}
-
-
-.form-novo-local input {
-
-    padding: 13px 14px;
-
-    font-size: 15px;
-
-}
-
-
-.form-botoes {
-
-    display: flex;
-
-    gap: 10px;
-
-    margin-top: 12px;
-
-}
-
-
-.form-botoes button {
-
-    margin-top: 0;
-
-    padding: 13px;
-
-    font-size: 14px;
-
-}
-
-
-.btn-adicionar {
-
-    margin-top: 16px;
-
-    background: rgba(255,255,255,0.08);
-
-    border: 1px dashed rgba(255,255,255,0.25);
-
-    color: rgba(255,255,255,0.85);
-
-    box-shadow: none;
-
-    animation: none;
-
-}
-
-
-.btn-adicionar:hover {
-
-    background: rgba(37,211,102,0.12);
-
-    border-color: #25d366;
-
-    color: #25d366;
+    white-space:
+        nowrap;
 
 }
 
 
 .tabela-vazia {
 
-    text-align: center;
+    text-align:
+        center;
 
-    padding: 25px 10px;
+    padding:
+        25px 10px;
 
-    color: rgba(255,255,255,0.45);
+    color:
+        rgba(255,255,255,0.45);
 
-    font-size: 14px;
-
-}
-
-
-.editando input {
-
-    padding: 8px 10px;
-
-    font-size: 14px;
-
-    border-radius: 10px;
+    font-size:
+        14px;
 
 }
 
 
 .status-locais {
 
-    margin-top: 12px;
+    margin-top:
+        12px;
 
-    font-size: 13px;
+    font-size:
+        13px;
 
-    color: rgba(255,255,255,0.6);
+    color:
+        rgba(255,255,255,0.6);
 
-    min-height: 20px;
+    min-height:
+        20px;
 
 }
 
@@ -2181,6 +2035,7 @@ button::after {
 
     <!-- =====================================================
          TABELA DE LOCAIS E PREÇOS
+         SOMENTE LEITURA
     ====================================================== -->
 
     <div class="secao-locais">
@@ -2192,66 +2047,50 @@ button::after {
         <div id="tabelaLocaisContainer">
 
             <table class="tabela-locais">
+
                 <thead>
+
                     <tr>
-                        <th>Local</th>
-                        <th>Preço</th>
-                        <th style="text-align:right;">Ações</th>
+
+                        <th>
+                            Local
+                        </th>
+
+                        <th>
+                            Preço
+                        </th>
+
                     </tr>
+
                 </thead>
+
+
                 <tbody id="tabelaLocaisBody">
+
                     <!-- preenchido via JS -->
+
                 </tbody>
+
             </table>
 
-            <div id="tabelaVazia" class="tabela-vazia" style="display:none;">
+
+            <div
+                id="tabelaVazia"
+                class="tabela-vazia"
+                style="display:none;"
+            >
+
                 Nenhum local cadastrado ainda.
+
             </div>
 
         </div>
 
-        <button
-            type="button"
-            class="btn-adicionar"
-            id="btnMostrarForm"
-            onclick="mostrarFormNovoLocal()"
-        >
-            ＋ Adicionar Local
-        </button>
 
-        <div class="form-novo-local" id="formNovoLocal">
-
-            <div class="input-wrapper">
-                <input
-                    type="text"
-                    id="novoLocalNome"
-                    placeholder="Nome do local (ex: Centro)"
-                    maxlength="80"
-                >
-            </div>
-
-            <div class="input-wrapper">
-                <input
-                    type="number"
-                    id="novoLocalPreco"
-                    placeholder="Preço (ex: 15.00)"
-                    min="0"
-                    step="0.50"
-                >
-            </div>
-
-            <div class="form-botoes">
-                <button type="button" onclick="salvarNovoLocal()">
-                    💾 Salvar
-                </button>
-                <button type="button" class="btn-acao cancelar" onclick="esconderFormNovoLocal()">
-                    Cancelar
-                </button>
-            </div>
-
-        </div>
-
-        <div class="status-locais" id="statusLocais"></div>
+        <div
+            class="status-locais"
+            id="statusLocais"
+        ></div>
 
     </div>
 
@@ -2319,8 +2158,6 @@ let codigoCliente = null;
 let dadosCliente = null;
 
 let listaLocais = [];
-
-let editandoId = null;
 
 
 /* =========================================================
@@ -2399,26 +2236,6 @@ function elementos() {
         tabelaVazia:
             document.getElementById(
                 "tabelaVazia"
-            ),
-
-        formNovoLocal:
-            document.getElementById(
-                "formNovoLocal"
-            ),
-
-        btnMostrarForm:
-            document.getElementById(
-                "btnMostrarForm"
-            ),
-
-        novoLocalNome:
-            document.getElementById(
-                "novoLocalNome"
-            ),
-
-        novoLocalPreco:
-            document.getElementById(
-                "novoLocalPreco"
             ),
 
         statusLocais:
@@ -3053,6 +2870,7 @@ function formatarPreco(
 
     const numero =
         Number(valor) || 0;
+
 
     return (
         "R$ " +
@@ -3858,6 +3676,7 @@ function tratarErroGPS(
 
 /* =========================================================
    ========== LOCAIS E PREÇOS ==========
+   SOMENTE LEITURA
 ========================================================= */
 
 async function carregarLocais() {
@@ -3872,6 +3691,7 @@ async function carregarLocais() {
 
     }
 
+
     try {
 
         const {
@@ -3881,6 +3701,7 @@ async function carregarLocais() {
             "listar_locais"
         );
 
+
         if (error) {
 
             console.error(
@@ -3888,13 +3709,16 @@ async function carregarLocais() {
                 error
             );
 
+
             mostrarStatusLocais(
                 "❌ Erro ao carregar locais."
             );
 
+
             return;
 
         }
+
 
         if (
             !data ||
@@ -3902,6 +3726,19 @@ async function carregarLocais() {
         ) {
 
             listaLocais = [];
+
+
+            if (
+                data &&
+                data.mensagem
+            ) {
+
+                console.error(
+                    "Supabase listar_locais:",
+                    data.mensagem
+                );
+
+            }
 
         } else {
 
@@ -3912,7 +3749,9 @@ async function carregarLocais() {
 
         }
 
+
         renderizarTabelaLocais();
+
 
     } catch (erro) {
 
@@ -3920,6 +3759,7 @@ async function carregarLocais() {
             "Erro ao carregar locais:",
             erro
         );
+
 
         mostrarStatusLocais(
             "❌ Erro ao carregar locais."
@@ -3930,10 +3770,16 @@ async function carregarLocais() {
 }
 
 
+/* =========================================================
+   RENDERIZAR LOCAIS
+   SEM BOTÕES DE EDIÇÃO
+========================================================= */
+
 function renderizarTabelaLocais() {
 
     const el =
         elementos();
+
 
     if (
         !el.tabelaBody
@@ -3943,8 +3789,10 @@ function renderizarTabelaLocais() {
 
     }
 
+
     el.tabelaBody.innerHTML =
         "";
+
 
     if (
         !listaLocais ||
@@ -3958,9 +3806,11 @@ function renderizarTabelaLocais() {
 
         }
 
+
         return;
 
     }
+
 
     if (el.tabelaVazia) {
 
@@ -3968,6 +3818,7 @@ function renderizarTabelaLocais() {
             "none";
 
     }
+
 
     listaLocais.forEach(
         function(local) {
@@ -3977,61 +3828,49 @@ function renderizarTabelaLocais() {
                     "tr"
                 );
 
-            tr.dataset.id =
-                local.id;
 
-            if (
-                editandoId === local.id
-            ) {
+            /*
+             * IMPORTANTE:
+             * Usamos textContent em vez de
+             * inserir dados diretamente no HTML.
+             */
 
-                // Modo edição
-                tr.className =
-                    "editando";
 
-                tr.innerHTML =
+            const tdNome =
+                document.createElement(
+                    "td"
+                );
 
-                    '<td>' +
-                    '<input type="text" id="editNome" value="' +
-                    escaparHTML(local.nome || "") +
-                    '" maxlength="80">' +
-                    '</td>' +
 
-                    '<td>' +
-                    '<input type="number" id="editPreco" value="' +
-                    Number(local.preco || 0).toFixed(2) +
-                    '" min="0" step="0.50" style="width:90px;">' +
-                    '</td>' +
+            tdNome.textContent =
+                local.nome || "";
 
-                    '<td class="acoes">' +
-                    '<button type="button" class="btn-acao salvar" onclick="salvarEdicao(\'' +
-                    local.id +
-                    '\')">💾</button>' +
-                    '<button type="button" class="btn-acao cancelar" onclick="cancelarEdicao()">✕</button>' +
-                    '</td>';
 
-            } else {
+            const tdPreco =
+                document.createElement(
+                    "td"
+                );
 
-                // Modo visualização
-                tr.innerHTML =
 
-                    '<td>' +
-                    escaparHTML(local.nome || "") +
-                    '</td>' +
+            tdPreco.className =
+                "preco";
 
-                    '<td class="preco">' +
-                    formatarPreco(local.preco) +
-                    '</td>' +
 
-                    '<td class="acoes">' +
-                    '<button type="button" class="btn-acao editar" onclick="iniciarEdicao(\'' +
-                    local.id +
-                    '\')">✏️</button>' +
-                    '<button type="button" class="btn-acao excluir" onclick="excluirLocal(\'' +
-                    local.id +
-                    '\')">🗑️</button>' +
-                    '</td>';
+            tdPreco.textContent =
+                formatarPreco(
+                    local.preco
+                );
 
-            }
+
+            tr.appendChild(
+                tdNome
+            );
+
+
+            tr.appendChild(
+                tdPreco
+            );
+
 
             el.tabelaBody.appendChild(
                 tr
@@ -4039,461 +3878,6 @@ function renderizarTabelaLocais() {
 
         }
     );
-
-}
-
-
-function mostrarFormNovoLocal() {
-
-    const el =
-        elementos();
-
-    if (el.formNovoLocal) {
-
-        el.formNovoLocal.classList.add(
-            "ativo"
-        );
-
-    }
-
-    if (el.btnMostrarForm) {
-
-        el.btnMostrarForm.style.display =
-            "none";
-
-    }
-
-    if (el.novoLocalNome) {
-
-        el.novoLocalNome.value =
-            "";
-
-        el.novoLocalNome.focus();
-
-    }
-
-    if (el.novoLocalPreco) {
-
-        el.novoLocalPreco.value =
-            "";
-
-    }
-
-}
-
-
-function esconderFormNovoLocal() {
-
-    const el =
-        elementos();
-
-    if (el.formNovoLocal) {
-
-        el.formNovoLocal.classList.remove(
-            "ativo"
-        );
-
-    }
-
-    if (el.btnMostrarForm) {
-
-        el.btnMostrarForm.style.display =
-            "block";
-
-    }
-
-}
-
-
-async function salvarNovoLocal() {
-
-    const el =
-        elementos();
-
-    const nome =
-        (el.novoLocalNome?.value || "").trim();
-
-    const preco =
-        Number(el.novoLocalPreco?.value);
-
-    if (!nome) {
-
-        mostrarStatusLocais(
-            "⚠️ Digite o nome do local."
-        );
-
-        return;
-
-    }
-
-    if (
-        isNaN(preco) ||
-        preco < 0
-    ) {
-
-        mostrarStatusLocais(
-            "⚠️ Digite um preço válido."
-        );
-
-        return;
-
-    }
-
-    if (!supabaseClient) {
-
-        mostrarStatusLocais(
-            "⚠️ Supabase não disponível."
-        );
-
-        return;
-
-    }
-
-    mostrarStatusLocais(
-        "⏳ Salvando..."
-    );
-
-    try {
-
-        const {
-            data,
-            error
-        } = await supabaseClient.rpc(
-
-            "criar_local",
-
-            {
-                p_nome: nome,
-                p_preco: preco,
-                p_ordem: listaLocais.length
-            }
-
-        );
-
-        if (error) {
-
-            console.error(
-                "Erro ao criar local:",
-                error
-            );
-
-            mostrarStatusLocais(
-                "❌ Erro ao salvar: " +
-                (error.message || "tente novamente")
-            );
-
-            return;
-
-        }
-
-        if (
-            !data ||
-            data.sucesso !== true
-        ) {
-
-            mostrarStatusLocais(
-                "❌ " +
-                (data?.mensagem || "Não foi possível salvar.")
-            );
-
-            return;
-
-        }
-
-        mostrarStatusLocais(
-            "✅ Local adicionado!"
-        );
-
-        esconderFormNovoLocal();
-
-        await carregarLocais();
-
-        setTimeout(
-            function() {
-                mostrarStatusLocais("");
-            },
-            2500
-        );
-
-    } catch (erro) {
-
-        console.error(
-            "Erro ao salvar local:",
-            erro
-        );
-
-        mostrarStatusLocais(
-            "❌ Erro ao salvar."
-        );
-
-    }
-
-}
-
-
-function iniciarEdicao(
-    id
-) {
-
-    editandoId =
-        id;
-
-    renderizarTabelaLocais();
-
-}
-
-
-function cancelarEdicao() {
-
-    editandoId =
-        null;
-
-    renderizarTabelaLocais();
-
-}
-
-
-async function salvarEdicao(
-    id
-) {
-
-    const inputNome =
-        document.getElementById(
-            "editNome"
-        );
-
-    const inputPreco =
-        document.getElementById(
-            "editPreco"
-        );
-
-    if (
-        !inputNome ||
-        !inputPreco
-    ) {
-
-        return;
-
-    }
-
-    const nome =
-        inputNome.value.trim();
-
-    const preco =
-        Number(inputPreco.value);
-
-    if (!nome) {
-
-        mostrarStatusLocais(
-            "⚠️ Nome não pode ficar vazio."
-        );
-
-        return;
-
-    }
-
-    if (
-        isNaN(preco) ||
-        preco < 0
-    ) {
-
-        mostrarStatusLocais(
-            "⚠️ Preço inválido."
-        );
-
-        return;
-
-    }
-
-    if (!supabaseClient) {
-
-        mostrarStatusLocais(
-            "⚠️ Supabase não disponível."
-        );
-
-        return;
-
-    }
-
-    mostrarStatusLocais(
-        "⏳ Salvando alterações..."
-    );
-
-    try {
-
-        const {
-            data,
-            error
-        } = await supabaseClient.rpc(
-
-            "atualizar_local",
-
-            {
-                p_id: id,
-                p_nome: nome,
-                p_preco: preco
-            }
-
-        );
-
-        if (error) {
-
-            console.error(
-                "Erro ao atualizar:",
-                error
-            );
-
-            mostrarStatusLocais(
-                "❌ Erro ao atualizar."
-            );
-
-            return;
-
-        }
-
-        if (
-            !data ||
-            data.sucesso !== true
-        ) {
-
-            mostrarStatusLocais(
-                "❌ " +
-                (data?.mensagem || "Não foi possível atualizar.")
-            );
-
-            return;
-
-        }
-
-        editandoId =
-            null;
-
-        mostrarStatusLocais(
-            "✅ Atualizado!"
-        );
-
-        await carregarLocais();
-
-        setTimeout(
-            function() {
-                mostrarStatusLocais("");
-            },
-            2500
-        );
-
-    } catch (erro) {
-
-        console.error(
-            "Erro ao atualizar local:",
-            erro
-        );
-
-        mostrarStatusLocais(
-            "❌ Erro ao atualizar."
-        );
-
-    }
-
-}
-
-
-async function excluirLocal(
-    id
-) {
-
-    if (
-        !confirm(
-            "Tem certeza que deseja excluir este local?"
-        )
-    ) {
-
-        return;
-
-    }
-
-    if (!supabaseClient) {
-
-        mostrarStatusLocais(
-            "⚠️ Supabase não disponível."
-        );
-
-        return;
-
-    }
-
-    mostrarStatusLocais(
-        "⏳ Excluindo..."
-    );
-
-    try {
-
-        const {
-            data,
-            error
-        } = await supabaseClient.rpc(
-
-            "excluir_local",
-
-            {
-                p_id: id
-            }
-
-        );
-
-        if (error) {
-
-            console.error(
-                "Erro ao excluir:",
-                error
-            );
-
-            mostrarStatusLocais(
-                "❌ Erro ao excluir."
-            );
-
-            return;
-
-        }
-
-        if (
-            !data ||
-            data.sucesso !== true
-        ) {
-
-            mostrarStatusLocais(
-                "❌ " +
-                (data?.mensagem || "Não foi possível excluir.")
-            );
-
-            return;
-
-        }
-
-        mostrarStatusLocais(
-            "✅ Local excluído!"
-        );
-
-        await carregarLocais();
-
-        setTimeout(
-            function() {
-                mostrarStatusLocais("");
-            },
-            2500
-        );
-
-    } catch (erro) {
-
-        console.error(
-            "Erro ao excluir local:",
-            erro
-        );
-
-        mostrarStatusLocais(
-            "❌ Erro ao excluir."
-        );
-
-    }
 
 }
 
@@ -4506,8 +3890,15 @@ async function inicializar() {
 
     try {
 
-        // Carrega locais em paralelo
-        carregarLocais();
+        /*
+         * Carrega somente os locais.
+         *
+         * O frontend não possui mais nenhuma
+         * função para criar, editar ou excluir.
+         */
+
+        await carregarLocais();
+
 
         const codigoURL =
             pegarCodigoDaURL();
@@ -4528,7 +3919,9 @@ async function inicializar() {
 
                 "👋 Informe seu nome se quiser criar " +
                 "seu cadastro de fidelidade."
+
             );
+
 
             return;
 
@@ -4586,7 +3979,10 @@ async function inicializar() {
 
 
             mostrarStatus(
-                "✅ Cliente identificado. Você já pode pedir sua corrida."
+
+                "✅ Cliente identificado. " +
+                "Você já pode pedir sua corrida."
+
             );
 
         } else {
@@ -4595,6 +3991,7 @@ async function inicializar() {
 
                 "👋 Não encontramos seu cadastro. " +
                 "Ele será criado quando você pedir a corrida."
+
             );
 
         }
@@ -4611,6 +4008,7 @@ async function inicializar() {
         mostrarStatus(
 
             "👋 Pronto para solicitar sua corrida."
+
         );
 
     }
