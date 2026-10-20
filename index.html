@@ -1,4062 +1,490 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-
 <head>
-
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#061b17">
 
-<meta name="viewport"
-      content="width=device-width, initial-scale=1.0">
-
-<meta name="theme-color"
-      content="#061b17">
-
-<meta
-    property="og:title"
-    content="🛵 Chamar Mototáxi Agora">
-
-<meta
-    property="og:description"
-    content="Toque aqui para permitir sua localização e agilizar sua corrida direto no WhatsApp!">
-
-<meta
-    property="og:image"
-    content="https://adeiltonsilvadesouza2023-creator.github.io/Localiza-o-/banner.png">
-
-<meta
-    property="og:url"
-    content="https://adeiltonsilvadesouza2023-creator.github.io/Localiza-o-/">
-
-<meta
-    property="og:type"
-    content="website">
+<meta property="og:title" content="🛵 Chamar Mototáxi Agora">
+<meta property="og:description" content="Toque aqui para permitir sua localização e agilizar sua corrida direto no WhatsApp!">
+<meta property="og:image" content="https://adeiltonsilvadesouza2023-creator.github.io/Localiza-o-/banner.png">
+<meta property="og:url" content="https://adeiltonsilvadesouza2023-creator.github.io/Localiza-o-/">
+<meta property="og:type" content="website">
 
 <title>🛵 Chamar Mototáxi</title>
 
-
-<!-- =========================================================
-     SUPABASE
-========================================================= -->
-
-<script
-    src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2">
-</script>
-
-
 <style>
-
-/* =========================================================
-   RESET
-========================================================= */
-
 * {
-
     box-sizing: border-box;
-
     margin: 0;
-
     padding: 0;
-
 }
-
-
-/* =========================================================
-   BODY
-========================================================= */
 
 body {
-
-    font-family:
-        -apple-system,
-        BlinkMacSystemFont,
-        "Segoe UI",
-        Arial,
-        sans-serif;
-
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
     min-height: 100vh;
-
     color: #ffffff;
-
     background:
-
-        radial-gradient(
-            circle at 20% 20%,
-            rgba(37,211,102,0.20),
-            transparent 30%
-        ),
-
-        radial-gradient(
-            circle at 80% 80%,
-            rgba(0,180,255,0.18),
-            transparent 30%
-        ),
-
-        linear-gradient(
-            135deg,
-            #061b17,
-            #071f2a,
-            #03110e
-        );
-
+        radial-gradient(circle at 20% 20%, rgba(37,211,102,0.20), transparent 30%),
+        radial-gradient(circle at 80% 80%, rgba(0,180,255,0.18), transparent 30%),
+        linear-gradient(135deg, #061b17, #071f2a, #03110e);
     overflow-x: hidden;
-
     padding: 25px 15px;
-
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
-
-/* =========================================================
-   FUNDO ANIMADO
-========================================================= */
-
+/* Fundo animado */
 body::before {
-
     content: "";
-
     position: fixed;
-
     width: 350px;
     height: 350px;
-
     border-radius: 50%;
-
-    background:
-        rgba(37,211,102,0.10);
-
+    background: rgba(37,211,102,0.10);
     filter: blur(60px);
-
     top: -100px;
-
     left: -100px;
-
-    animation:
-        flutuar 8s ease-in-out infinite;
-
+    animation: flutuar 8s ease-in-out infinite;
     pointer-events: none;
-
 }
-
 
 body::after {
-
     content: "";
-
     position: fixed;
-
     width: 300px;
     height: 300px;
-
     border-radius: 50%;
-
-    background:
-        rgba(0,200,255,0.10);
-
+    background: rgba(0,200,255,0.10);
     filter: blur(70px);
-
     right: -100px;
-
     bottom: -100px;
-
-    animation:
-        flutuar2 10s ease-in-out infinite;
-
+    animation: flutuar2 10s ease-in-out infinite;
     pointer-events: none;
-
 }
-
 
 @keyframes flutuar {
-
-    0%,100% {
-
-        transform:
-            translate(0,0);
-
-    }
-
-    50% {
-
-        transform:
-            translate(80px,50px);
-
-    }
-
+    0%, 100% { transform: translate(0, 0); }
+    50% { transform: translate(80px, 50px); }
 }
-
 
 @keyframes flutuar2 {
-
-    0%,100% {
-
-        transform:
-            translate(0,0);
-
-    }
-
-    50% {
-
-        transform:
-            translate(-60px,-50px);
-
-    }
-
+    0%, 100% { transform: translate(0, 0); }
+    50% { transform: translate(-60px, -50px); }
 }
 
-
-/* =========================================================
-   CONTAINER
-========================================================= */
-
+/* Container */
 .container {
-
     position: relative;
-
     z-index: 2;
-
-    max-width: 430px;
-
-    margin: auto;
-
-    padding: 28px 22px 25px;
-
+    width: 100%;
+    max-width: 420px;
+    padding: 32px 24px 28px;
     border-radius: 28px;
-
-    background:
-        rgba(255,255,255,0.075);
-
-    border:
-        1px solid
-        rgba(255,255,255,0.15);
-
-    backdrop-filter:
-        blur(20px);
-
-    -webkit-backdrop-filter:
-        blur(20px);
-
-    box-shadow:
-        0 25px 70px
-        rgba(0,0,0,0.45);
-
-    animation:
-        entrada 0.8s ease;
-
+    background: rgba(255,255,255,0.075);
+    border: 1px solid rgba(255,255,255,0.15);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    box-shadow: 0 25px 70px rgba(0,0,0,0.45);
+    text-align: center;
+    animation: entrada 0.8s ease;
 }
-
 
 @keyframes entrada {
-
     from {
-
         opacity: 0;
-
-        transform:
-            translateY(30px)
-            scale(0.96);
-
+        transform: translateY(30px) scale(0.96);
     }
-
     to {
-
         opacity: 1;
-
-        transform:
-            translateY(0)
-            scale(1);
-
+        transform: translateY(0) scale(1);
     }
-
 }
 
-
-/* =========================================================
-   CABEÇALHO
-========================================================= */
-
+/* Logo */
 .logo {
-
-    font-size: 54px;
-
+    font-size: 64px;
     display: inline-block;
-
-    animation:
-        motoPulse 2.5s ease-in-out infinite;
-
+    animation: motoPulse 2.5s ease-in-out infinite;
+    margin-bottom: 8px;
 }
-
 
 @keyframes motoPulse {
-
-    0%,100% {
-
-        transform:
-            scale(1)
-            rotate(0deg);
-
-    }
-
-    50% {
-
-        transform:
-            scale(1.08)
-            rotate(-3deg);
-
-    }
-
+    0%, 100% { transform: scale(1) rotate(0deg); }
+    50% { transform: scale(1.08) rotate(-3deg); }
 }
 
-
-h2 {
-
-    margin-top: 8px;
-
-    font-size: 28px;
-
+h1 {
+    font-size: 26px;
     font-weight: 800;
-
-    background:
-
-        linear-gradient(
-            90deg,
-            #ffffff,
-            #25d366,
-            #ffffff
-        );
-
-    background-size:
-        200% auto;
-
-    -webkit-background-clip:
-        text;
-
-    -webkit-text-fill-color:
-        transparent;
-
-    animation:
-        brilhoTexto 3s linear infinite;
-
+    background: linear-gradient(90deg, #ffffff, #25d366, #ffffff);
+    background-size: 200% auto;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: brilhoTexto 3s linear infinite;
+    margin-bottom: 8px;
 }
-
 
 @keyframes brilhoTexto {
-
-    to {
-
-        background-position:
-            200% center;
-
-    }
-
+    to { background-position: 200% center; }
 }
-
 
 .subtitulo {
-
-    margin-top: 8px;
-
-    color:
-        rgba(255,255,255,0.70);
-
-    font-size: 14px;
-
-}
-
-
-/* =========================================================
-   CARTÃO DESCONTO
-========================================================= */
-
-.aviso-desconto-grande {
-
-    position: relative;
-
-    overflow: hidden;
-
-    margin:
-        25px 0 18px;
-
-    padding:
-        20px 15px;
-
-    border-radius:
-        20px;
-
-    background:
-
-        linear-gradient(
-            135deg,
-            #fff4b0,
-            #ffd84d,
-            #fff0a0
-        );
-
-    color:
-        #493800;
-
-    box-shadow:
-
-        0 10px 30px
-        rgba(255,210,40,0.22);
-
-    animation:
-        descontoPulse 2.5s ease-in-out infinite;
-
-}
-
-
-@keyframes descontoPulse {
-
-    0%,100% {
-
-        transform:
-            scale(1);
-
-        box-shadow:
-            0 10px 30px
-            rgba(255,210,40,0.20);
-
-    }
-
-    50% {
-
-        transform:
-            scale(1.015);
-
-        box-shadow:
-            0 15px 40px
-            rgba(255,210,40,0.38);
-
-    }
-
-}
-
-
-.aviso-desconto-grande::after {
-
-    content: "";
-
-    position: absolute;
-
-    top: -50%;
-
-    left: -100%;
-
-    width: 60px;
-
-    height: 200%;
-
-    background:
-        rgba(255,255,255,0.55);
-
-    transform:
-        rotate(20deg);
-
-    animation:
-        shine 3.5s infinite;
-
-}
-
-
-@keyframes shine {
-
-    0% {
-
-        left: -100%;
-
-    }
-
-    55%,100% {
-
-        left: 150%;
-
-    }
-
-}
-
-
-.desconto-titulo {
-
+    color: rgba(255,255,255,0.70);
     font-size: 15px;
-
-    font-weight: 800;
-
+    margin-bottom: 28px;
+    line-height: 1.4;
 }
 
-
-.desconto-40 {
-
-    display: block;
-
-    margin-top: 4px;
-
-    font-size: 27px;
-
-    font-weight: 1000;
-
-    color:
-        #d62828;
-
-    animation:
-        descontoTexto 1.5s ease-in-out infinite;
-
-}
-
-
-@keyframes descontoTexto {
-
-    0%,100% {
-
-        transform:
-            scale(1);
-
-    }
-
-    50% {
-
-        transform:
-            scale(1.06);
-
-    }
-
-}
-
-
-/* =========================================================
-   PAINEL CLIENTE
-========================================================= */
-
-.desconto-box {
-
-    display: none;
-
-    margin:
-        15px 0;
-
-    padding:
-        17px;
-
-    border-radius:
-        18px;
-
-    background:
-
-        linear-gradient(
-            135deg,
-            rgba(0,180,255,0.18),
-            rgba(37,211,102,0.12)
-        );
-
-    border:
-        1px solid
-        rgba(255,255,255,0.15);
-
-    color:
-        #ffffff;
-
-    font-weight:
-        700;
-
-    animation:
-        aparecer 0.5s ease;
-
-}
-
-
-@keyframes aparecer {
-
-    from {
-
-        opacity: 0;
-
-        transform:
-            translateY(15px)
-            scale(0.95);
-
-    }
-
-    to {
-
-        opacity: 1;
-
-        transform:
-            translateY(0)
-            scale(1);
-
-    }
-
-}
-
-
-/* =========================================================
-   PROGRESSO
-========================================================= */
-
-.progresso-container {
-
-    margin-top:
-        12px;
-
-}
-
-
-.progresso-texto {
-
-    display:
-        flex;
-
-    justify-content:
-        space-between;
-
-    font-size:
-        12px;
-
-    color:
-        rgba(255,255,255,0.75);
-
-    margin-bottom:
-        7px;
-
-}
-
-
-.progresso {
-
-    height:
-        9px;
-
-    width:
-        100%;
-
-    background:
-        rgba(255,255,255,0.12);
-
-    border-radius:
-        20px;
-
-    overflow:
-        hidden;
-
-}
-
-
-.progresso-barra {
-
-    height:
-        100%;
-
-    width:
-        0%;
-
-    border-radius:
-        20px;
-
-    background:
-
-        linear-gradient(
-            90deg,
-            #25d366,
-            #b6ff00
-        );
-
-    box-shadow:
-
-        0 0 15px
-        rgba(37,211,102,0.8);
-
-    transition:
-        width 1s ease;
-
-}
-
-
-/* =========================================================
-   DESCRIÇÃO
-========================================================= */
-
-.descricao {
-
-    margin:
-        18px 0;
-
-    line-height:
-        1.55;
-
-    font-size:
-        15px;
-
-    color:
-        rgba(255,255,255,0.82);
-
-}
-
-
-/* =========================================================
-   INPUTS
-========================================================= */
-
-.input-wrapper {
-
-    position:
-        relative;
-
-    margin:
-        12px 0;
-
-}
-
-
-input {
-
-    width:
-        100%;
-
-    padding:
-        16px 17px;
-
-    border-radius:
-        15px;
-
-    border:
-        1px solid
-        rgba(255,255,255,0.18);
-
-    outline:
-        none;
-
-    font-size:
-        16px;
-
-    color:
-        #ffffff;
-
-    background:
-        rgba(255,255,255,0.08);
-
-    transition:
-        0.25s;
-
-}
-
-
-input::placeholder {
-
-    color:
-        rgba(255,255,255,0.55);
-
-}
-
-
-input:focus {
-
-    border-color:
-        #25d366;
-
-    background:
-        rgba(37,211,102,0.08);
-
-    box-shadow:
-
-        0 0 0 4px
-        rgba(37,211,102,0.10),
-
-        0 0 25px
-        rgba(37,211,102,0.15);
-
-    transform:
-        translateY(-2px);
-
-}
-
-
-/* =========================================================
-   BOTÃO
-========================================================= */
-
+/* Botão principal */
 button {
-
-    position:
-        relative;
-
-    overflow:
-        hidden;
-
-    width:
-        100%;
-
-    margin-top:
-        15px;
-
-    padding:
-        18px 15px;
-
-    border:
-        none;
-
-    border-radius:
-        18px;
-
-    cursor:
-        pointer;
-
-    color:
-        #ffffff;
-
-    font-size:
-        18px;
-
-    font-weight:
-        900;
-
-    background:
-
-        linear-gradient(
-            135deg,
-            #25d366,
-            #128c7e
-        );
-
-    box-shadow:
-
-        0 10px 30px
-        rgba(37,211,102,0.35);
-
-    animation:
-        botaoPulse 2s ease-in-out infinite;
-
-    transition:
-        transform 0.15s,
-        box-shadow 0.15s;
-
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+    padding: 20px 16px;
+    border: none;
+    border-radius: 18px;
+    cursor: pointer;
+    color: #ffffff;
+    font-size: 18px;
+    font-weight: 900;
+    background: linear-gradient(135deg, #25d366, #128c7e);
+    box-shadow: 0 10px 30px rgba(37,211,102,0.35);
+    animation: botaoPulse 2s ease-in-out infinite;
+    transition: transform 0.15s, box-shadow 0.15s;
 }
-
 
 @keyframes botaoPulse {
-
-    0%,100% {
-
-        transform:
-            scale(1);
-
-    }
-
-    50% {
-
-        transform:
-            scale(1.025);
-
-    }
-
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.025); }
 }
-
 
 button:hover {
-
-    box-shadow:
-
-        0 15px 40px
-        rgba(37,211,102,0.55);
-
+    box-shadow: 0 15px 40px rgba(37,211,102,0.55);
 }
-
 
 button:active {
-
-    transform:
-        scale(0.96);
-
+    transform: scale(0.96);
 }
-
 
 button:disabled {
-
-    opacity:
-        0.75;
-
-    cursor:
-        wait;
-
-    animation:
-        none;
-
+    opacity: 0.75;
+    cursor: wait;
+    animation: none;
 }
-
 
 button::after {
-
     content: "";
-
-    position:
-        absolute;
-
-    top:
-        0;
-
-    left:
-        -120%;
-
-    width:
-        70px;
-
-    height:
-        100%;
-
-    background:
-        rgba(255,255,255,0.35);
-
-    transform:
-        skewX(-20deg);
-
-    animation:
-        botaoBrilho 3s infinite;
-
+    position: absolute;
+    top: 0;
+    left: -120%;
+    width: 70px;
+    height: 100%;
+    background: rgba(255,255,255,0.35);
+    transform: skewX(-20deg);
+    animation: botaoBrilho 3s infinite;
 }
-
 
 @keyframes botaoBrilho {
-
-    0% {
-
-        left:
-            -120%;
-
-    }
-
-    45%,100% {
-
-        left:
-            140%;
-
-    }
-
+    0% { left: -120%; }
+    45%, 100% { left: 140%; }
 }
 
-
-/* =========================================================
-   STATUS
-========================================================= */
-
+/* Status */
 #status {
-
-    min-height:
-        25px;
-
-    margin-top:
-        18px;
-
-    font-size:
-        14px;
-
-    line-height:
-        1.5;
-
-    color:
-        rgba(255,255,255,0.75);
-
+    min-height: 28px;
+    margin-top: 20px;
+    font-size: 14px;
+    line-height: 1.5;
+    color: rgba(255,255,255,0.80);
 }
 
-
-/* =========================================================
-   GPS
-========================================================= */
-
-.gps-loading {
-
-    display:
-        inline-block;
-
-    animation:
-        gpsPulse 1s infinite;
-
-}
-
-
-@keyframes gpsPulse {
-
-    0%,100% {
-
-        transform:
-            scale(1);
-
-    }
-
-    50% {
-
-        transform:
-            scale(1.3);
-
-    }
-
-}
-
-
-/* =========================================================
-   RODAPÉ
-========================================================= */
-
+/* Rodapé */
 .rodape {
-
-    margin-top:
-        20px;
-
-    font-size:
-        11px;
-
-    color:
-        rgba(255,255,255,0.38);
-
+    margin-top: 22px;
+    font-size: 12px;
+    color: rgba(255,255,255,0.40);
 }
 
-
-/* =========================================================
-   CONFETES
-========================================================= */
-
-.confete {
-
-    position:
-        fixed;
-
-    top:
-        -20px;
-
-    width:
-        9px;
-
-    height:
-        14px;
-
-    z-index:
-        9999;
-
-    pointer-events:
-        none;
-
-    animation:
-        cair 2.5s linear forwards;
-
-}
-
-
-@keyframes cair {
-
-    0% {
-
-        transform:
-            translateY(0)
-            rotate(0deg);
-
-        opacity:
-            1;
-
-    }
-
-    100% {
-
-        transform:
-            translateY(110vh)
-            rotate(720deg);
-
-        opacity:
-            0;
-
-    }
-
-}
-
-
-/* =========================================================
-   SUCESSO
-========================================================= */
-
-.sucesso {
-
-    animation:
-        sucesso 0.7s ease;
-
-}
-
-
-@keyframes sucesso {
-
-    0% {
-
-        transform:
-            scale(1);
-
-    }
-
-    40% {
-
-        transform:
-            scale(1.08);
-
-    }
-
-    70% {
-
-        transform:
-            scale(0.98);
-
-    }
-
-    100% {
-
-        transform:
-            scale(1);
-
-    }
-
-}
-
-
-/* =========================================================
-   PEQUENO INDICADOR DE CLIENTE
-========================================================= */
-
-.cliente-identificado {
-
-    display:
-        none;
-
-    margin-top:
-        10px;
-
-    padding:
-        9px 12px;
-
-    border-radius:
-        12px;
-
-    background:
-        rgba(37,211,102,0.10);
-
-    border:
-        1px solid
-        rgba(37,211,102,0.18);
-
-    font-size:
-        12px;
-
-    color:
-        rgba(255,255,255,0.75);
-
-}
-
-
-/* =========================================================
-   BANNER GIGANTE DE LOCALIZAÇÃO
-========================================================= */
-
+/* ========== BANNER GPS (aviso chamativo) ========== */
 .banner-localizacao {
-
-    position:
-        fixed;
-
-    inset:
-        0;
-
-    z-index:
-        99999;
-
-    display:
-        none;
-
-    align-items:
-        center;
-
-    justify-content:
-        center;
-
-    padding:
-        18px;
-
-    background:
-        rgba(0,0,0,0.88);
-
-    backdrop-filter:
-        blur(12px);
-
-    -webkit-backdrop-filter:
-        blur(12px);
-
+    position: fixed;
+    inset: 0;
+    z-index: 99999;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 18px;
+    background: rgba(0,0,0,0.88);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
 }
-
 
 .banner-localizacao.ativo {
-
-    display:
-        flex;
-
-    animation:
-        bannerEntrada 0.35s ease;
-
+    display: flex;
+    animation: bannerEntrada 0.35s ease;
 }
-
 
 @keyframes bannerEntrada {
-
-    from {
-
-        opacity:
-            0;
-
-    }
-
-    to {
-
-        opacity:
-            1;
-
-    }
-
+    from { opacity: 0; }
+    to { opacity: 1; }
 }
 
-
-.banner-localizacao-caixa {
-
-    width:
-        100%;
-
-    max-width:
-        430px;
-
-    max-height:
-        92vh;
-
-    overflow-y:
-        auto;
-
-    padding:
-        30px 22px;
-
-    border-radius:
-        28px;
-
-    text-align:
-        center;
-
-    background:
-
-        linear-gradient(
-            145deg,
-            #071f18,
-            #092b26,
-            #06151c
-        );
-
-    border:
-        2px solid
-        rgba(37,211,102,0.65);
-
-    box-shadow:
-
-        0 0 35px
-        rgba(37,211,102,0.30),
-
-        0 25px 80px
-        rgba(0,0,0,0.80);
-
-    animation:
-        caixaGPS 0.5s ease;
-
+.banner-caixa {
+    width: 100%;
+    max-width: 400px;
+    padding: 30px 22px;
+    border-radius: 28px;
+    text-align: center;
+    background: linear-gradient(145deg, #071f18, #092b26, #06151c);
+    border: 2px solid rgba(37,211,102,0.65);
+    box-shadow: 0 0 35px rgba(37,211,102,0.30), 0 25px 80px rgba(0,0,0,0.80);
+    animation: caixaGPS 0.5s ease;
 }
-
 
 @keyframes caixaGPS {
-
     from {
-
-        transform:
-            scale(0.85)
-            translateY(30px);
-
-        opacity:
-            0;
-
+        transform: scale(0.85) translateY(30px);
+        opacity: 0;
     }
-
     to {
-
-        transform:
-            scale(1)
-            translateY(0);
-
-        opacity:
-            1;
-
+        transform: scale(1) translateY(0);
+        opacity: 1;
     }
-
 }
 
-
-.banner-localizacao-icone {
-
-    font-size:
-        78px;
-
-    line-height:
-        1;
-
-    margin-bottom:
-        15px;
-
-    animation:
-        gpsGigante 1.3s ease-in-out infinite;
-
+.banner-icone {
+    font-size: 72px;
+    margin-bottom: 12px;
+    animation: gpsGigante 1.3s ease-in-out infinite;
 }
-
 
 @keyframes gpsGigante {
-
-    0%,100% {
-
-        transform:
-            scale(1)
-            translateY(0);
-
-    }
-
-    50% {
-
-        transform:
-            scale(1.12)
-            translateY(-7px);
-
-    }
-
+    0%, 100% { transform: scale(1) translateY(0); }
+    50% { transform: scale(1.12) translateY(-7px); }
 }
 
-
-.banner-localizacao-titulo {
-
-    font-size:
-        30px;
-
-    line-height:
-        1.05;
-
-    font-weight:
-        1000;
-
-    color:
-        #ffffff;
-
-    margin-bottom:
-        12px;
-
+.banner-titulo {
+    font-size: 26px;
+    font-weight: 1000;
+    color: #ffffff;
+    margin-bottom: 12px;
+    line-height: 1.1;
 }
 
-
-.banner-localizacao-destaque {
-
-    display:
-        inline-block;
-
-    padding:
-        9px 14px;
-
-    border-radius:
-        999px;
-
-    font-size:
-        15px;
-
-    font-weight:
-        1000;
-
-    color:
-        #ffffff;
-
-    background:
-        linear-gradient(
-            135deg,
-            #d62828,
-            #a4161a
-        );
-
-    box-shadow:
-        0 8px 25px
-        rgba(214,40,40,0.35);
-
-    animation:
-        alertaGPS 1s ease-in-out infinite;
-
+.banner-destaque {
+    display: inline-block;
+    padding: 9px 16px;
+    border-radius: 999px;
+    font-size: 14px;
+    font-weight: 1000;
+    color: #ffffff;
+    background: linear-gradient(135deg, #d62828, #a4161a);
+    box-shadow: 0 8px 25px rgba(214,40,40,0.35);
+    animation: alertaGPS 1s ease-in-out infinite;
+    margin-bottom: 18px;
 }
-
 
 @keyframes alertaGPS {
-
-    0%,100% {
-
-        transform:
-            scale(1);
-
-    }
-
-    50% {
-
-        transform:
-            scale(1.04);
-
-    }
-
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.05); }
 }
 
-
-.banner-localizacao-texto {
-
-    margin-top:
-        20px;
-
-    font-size:
-        16px;
-
-    line-height:
-        1.55;
-
-    color:
-        rgba(255,255,255,0.85);
-
+.banner-texto {
+    font-size: 15px;
+    line-height: 1.55;
+    color: rgba(255,255,255,0.85);
+    margin-bottom: 20px;
 }
 
-
-.banner-localizacao-texto strong {
-
-    color:
-        #25d366;
-
+.banner-texto strong {
+    color: #25d366;
 }
 
-
-.banner-localizacao-passos {
-
-    margin-top:
-        20px;
-
-    padding:
-        17px;
-
-    border-radius:
-        18px;
-
-    text-align:
-        left;
-
-    background:
-        rgba(255,255,255,0.07);
-
-    border:
-        1px solid
-        rgba(255,255,255,0.12);
-
-    font-size:
-        14px;
-
-    line-height:
-        1.8;
-
-    color:
-        rgba(255,255,255,0.90);
-
+.banner-passos {
+    padding: 16px;
+    border-radius: 16px;
+    text-align: left;
+    background: rgba(255,255,255,0.07);
+    border: 1px solid rgba(255,255,255,0.12);
+    font-size: 14px;
+    line-height: 1.8;
+    color: rgba(255,255,255,0.90);
+    margin-bottom: 22px;
 }
 
-
-.banner-localizacao-passo {
-
-    margin:
-        5px 0;
-
+.banner-botao {
+    width: 100%;
+    padding: 18px 14px;
+    font-size: 16px;
+    font-weight: 1000;
+    color: #ffffff;
+    background: linear-gradient(135deg, #25d366, #128c7e);
+    border: none;
+    border-radius: 16px;
+    box-shadow: 0 10px 35px rgba(37,211,102,0.40);
+    cursor: pointer;
 }
 
-
-.banner-localizacao-botao {
-
-    margin-top:
-        22px;
-
-    padding:
-        18px 14px;
-
-    font-size:
-        17px;
-
-    font-weight:
-        1000;
-
-    color:
-        #ffffff;
-
-    background:
-
-        linear-gradient(
-            135deg,
-            #25d366,
-            #128c7e
-        );
-
-    box-shadow:
-
-        0 10px 35px
-        rgba(37,211,102,0.40);
-
+.banner-ajuda {
+    margin-top: 14px;
+    font-size: 12px;
+    color: rgba(255,255,255,0.55);
+    line-height: 1.5;
 }
 
-
-.banner-localizacao-ajuda {
-
-    margin-top:
-        15px;
-
-    font-size:
-        12px;
-
-    line-height:
-        1.5;
-
-    color:
-        rgba(255,255,255,0.55);
-
+.banner-ajuda strong {
+    color: #ffffff;
 }
-
-
-.banner-localizacao-ajuda strong {
-
-    color:
-        #ffffff;
-
-}
-
-
-@media (
-    max-height: 650px
-) {
-
-    .banner-localizacao-caixa {
-
-        padding:
-            20px 18px;
-
-    }
-
-
-    .banner-localizacao-icone {
-
-        font-size:
-            55px;
-
-    }
-
-
-    .banner-localizacao-titulo {
-
-        font-size:
-            24px;
-
-    }
-
-
-    .banner-localizacao-texto {
-
-        margin-top:
-            12px;
-
-        font-size:
-            14px;
-
-    }
-
-
-    .banner-localizacao-passos {
-
-        margin-top:
-            12px;
-
-        padding:
-            12px;
-
-    }
-
-
-    .banner-localizacao-botao {
-
-        margin-top:
-            14px;
-
-    }
-
-}
-
-
-/* =========================================================
-   TABELA DE LOCAIS E PREÇOS
-   SOMENTE VISUALIZAÇÃO
-========================================================= */
-
-.secao-locais {
-
-    margin-top:
-        30px;
-
-    padding-top:
-        25px;
-
-    border-top:
-        1px solid
-        rgba(255,255,255,0.12);
-
-}
-
-
-.secao-locais-titulo {
-
-    font-size:
-        18px;
-
-    font-weight:
-        800;
-
-    margin-bottom:
-        15px;
-
-    display:
-        flex;
-
-    align-items:
-        center;
-
-    gap:
-        8px;
-
-}
-
-
-.tabela-locais {
-
-    width:
-        100%;
-
-    border-collapse:
-        collapse;
-
-    font-size:
-        14px;
-
-}
-
-
-.tabela-locais th {
-
-    text-align:
-        left;
-
-    padding:
-        10px 8px;
-
-    color:
-        rgba(255,255,255,0.55);
-
-    font-weight:
-        600;
-
-    font-size:
-        12px;
-
-    border-bottom:
-        1px solid
-        rgba(255,255,255,0.12);
-
-}
-
-
-.tabela-locais td {
-
-    padding:
-        12px 8px;
-
-    border-bottom:
-        1px solid
-        rgba(255,255,255,0.08);
-
-    vertical-align:
-        middle;
-
-}
-
-
-.tabela-locais tr:last-child td {
-
-    border-bottom:
-        none;
-
-}
-
-
-.tabela-locais .preco {
-
-    font-weight:
-        800;
-
-    color:
-        #25d366;
-
-    white-space:
-        nowrap;
-
-}
-
-
-.tabela-vazia {
-
-    text-align:
-        center;
-
-    padding:
-        25px 10px;
-
-    color:
-        rgba(255,255,255,0.45);
-
-    font-size:
-        14px;
-
-}
-
-
-.status-locais {
-
-    margin-top:
-        12px;
-
-    font-size:
-        13px;
-
-    color:
-        rgba(255,255,255,0.6);
-
-    min-height:
-        20px;
-
-}
-
 </style>
-
 </head>
-
-
 <body>
 
+<!-- Banner de aviso GPS -->
+<div id="bannerLocalizacao" class="banner-localizacao">
+    <div class="banner-caixa">
+        <div class="banner-icone">📍</div>
+        <div class="banner-titulo">ATIVE SUA LOCALIZAÇÃO</div>
+        <div class="banner-destaque">⚠️ LOCALIZAÇÃO DESATIVADA</div>
 
-<!-- =====================================================
-     BANNER GIGANTE DE LOCALIZAÇÃO
-====================================================== -->
-
-<div
-    id="bannerLocalizacao"
-    class="banner-localizacao"
->
-
-    <div
-        class="banner-localizacao-caixa"
-    >
-
-        <div
-            class="banner-localizacao-icone"
-        >
-            📍
+        <div class="banner-texto">
+            Para pedir o mototáxi, precisamos saber onde você está.<br><br>
+            <strong>Ative a localização/GPS do seu celular e tente novamente.</strong>
         </div>
 
-
-        <div
-            class="banner-localizacao-titulo"
-        >
-            ATIVE SUA LOCALIZAÇÃO
+        <div class="banner-passos">
+            1️⃣ Abra as configurações rápidas do celular.<br>
+            2️⃣ Ative <strong>Localização / GPS</strong>.<br>
+            3️⃣ Volte para esta página.<br>
+            4️⃣ Toque no botão abaixo.
         </div>
 
-
-        <div
-            class="banner-localizacao-destaque"
-        >
-            ⚠️ LOCALIZAÇÃO DESATIVADA
-        </div>
-
-
-        <div
-            class="banner-localizacao-texto"
-        >
-
-            Para pedir o mototáxi,
-            precisamos saber onde você está.
-
-            <br><br>
-
-            <strong>
-                Ative a localização/GPS
-                do seu celular e tente novamente.
-            </strong>
-
-        </div>
-
-
-        <div
-            class="banner-localizacao-passos"
-        >
-
-            <div class="banner-localizacao-passo">
-                1️⃣ Abra as configurações rápidas do celular.
-            </div>
-
-            <div class="banner-localizacao-passo">
-                2️⃣ Ative <strong>Localização / GPS</strong>.
-            </div>
-
-            <div class="banner-localizacao-passo">
-                3️⃣ Volte para esta página.
-            </div>
-
-            <div class="banner-localizacao-passo">
-                4️⃣ Toque no botão abaixo.
-            </div>
-
-        </div>
-
-
-        <button
-            type="button"
-            class="banner-localizacao-botao"
-            onclick="tentarLocalizacaoNovamente()"
-        >
-
+        <button class="banner-botao" onclick="tentarNovamente()">
             📍 JÁ ATIVEI — TENTAR NOVAMENTE
-
         </button>
 
-
-        <div
-            class="banner-localizacao-ajuda"
-        >
-
-            Se o navegador perguntar se pode
-            acessar sua localização,
-            toque em <strong>Permitir</strong>.
-
+        <div class="banner-ajuda">
+            Se o navegador perguntar se pode acessar sua localização, toque em <strong>Permitir</strong>.
         </div>
-
     </div>
-
 </div>
 
+<!-- Conteúdo principal -->
+<div class="container">
+    <div class="logo">🏍️</div>
+    <h1>Chamar Mototáxi</h1>
+    <p class="subtitulo">Toque no botão e enviaremos sua localização direto no WhatsApp ⚡</p>
 
-
-<div
-    class="container"
-    id="container"
->
-
-
-    <!-- =====================================================
-         CABEÇALHO
-    ====================================================== -->
-
-    <div class="logo">
-        🏍️
-    </div>
-
-
-    <h2>
-        Agilizar Corrida
-    </h2>
-
-
-    <div class="subtitulo">
-        Sua corrida começa em poucos segundos ⚡
-    </div>
-
-
-    <!-- =====================================================
-         DESCONTO
-    ====================================================== -->
-
-    <div class="aviso-desconto-grande">
-
-        <div class="desconto-titulo">
-            🎁 PROGRAMA DE FIDELIDADE
-        </div>
-
-        <span class="desconto-40">
-            40% DE DESCONTO
-        </span>
-
-        <div>
-            na sua 3ª viagem!
-        </div>
-
-    </div>
-
-
-    <!-- =====================================================
-         PAINEL DO CLIENTE
-    ====================================================== -->
-
-    <div
-        id="painelDesconto"
-        class="desconto-box"
-    >
-
-        <div id="textoDesconto"></div>
-
-
-        <div
-            id="progressoContainer"
-            class="progresso-container"
-            style="display:none;"
-        >
-
-            <div class="progresso-texto">
-
-                <span>
-                    Próxima recompensa
-                </span>
-
-                <span id="progressoNumero">
-                    0/3
-                </span>
-
-            </div>
-
-
-            <div class="progresso">
-
-                <div
-                    id="progressoBarra"
-                    class="progresso-barra"
-                ></div>
-
-            </div>
-
-        </div>
-
-    </div>
-
-
-    <!-- =====================================================
-         IDENTIFICAÇÃO
-    ====================================================== -->
-
-    <div
-        id="clienteIdentificado"
-        class="cliente-identificado"
-    ></div>
-
-
-    <!-- =====================================================
-         DESCRIÇÃO
-    ====================================================== -->
-
-    <p class="descricao">
-
-        👋 Se esta é sua primeira vez,
-        informe seu nome abaixo.
-
-        <br><br>
-
-        🔐 Depois que seu cliente for criado,
-        seu celular poderá guardar sua identificação
-        automaticamente.
-
-        <br><br>
-
-        📍 Toque no botão e enviaremos
-        sua localização pelo GPS.
-
-    </p>
-
-
-    <!-- =====================================================
-         NOME
-    ====================================================== -->
-
-    <div class="input-wrapper">
-
-        <input
-            type="text"
-            id="nomeCliente"
-            placeholder="👤 Seu nome (opcional)"
-            autocomplete="name"
-            maxlength="100"
-        >
-
-    </div>
-
-
-    <!-- =====================================================
-         INDICADOR
-    ====================================================== -->
-
-    <div class="input-wrapper">
-
-        <input
-            type="text"
-            id="codigoIndicador"
-            placeholder="👥 Código de indicação (opcional)"
-            maxlength="100"
-        >
-
-    </div>
-
-
-    <!-- =====================================================
-         BOTÃO
-    ====================================================== -->
-
-    <button
-        id="botaoCorrida"
-        onclick="pegarLocalizacao()"
-    >
-
-        📍 PEDIR MOTOTÁXI AGORA
-
+    <button id="botao" onclick="pegarLocalizacao()">
+        📍 Pedir Mototáxi agora com minha localização
     </button>
-
-
-    <!-- =====================================================
-         STATUS
-    ====================================================== -->
 
     <p id="status"></p>
 
-
     <div class="rodape">
-
-        🔒 Sua localização é utilizada
-        somente para agilizar sua corrida.
-
+        🔒 Sua localização é usada somente para agilizar sua corrida.
     </div>
-
-
-    <!-- =====================================================
-         TABELA DE LOCAIS E PREÇOS
-         SOMENTE LEITURA
-    ====================================================== -->
-
-    <div class="secao-locais">
-
-        <div class="secao-locais-titulo">
-            💰 Locais e Preços
-        </div>
-
-        <div id="tabelaLocaisContainer">
-
-            <table class="tabela-locais">
-
-                <thead>
-
-                    <tr>
-
-                        <th>
-                            Local
-                        </th>
-
-                        <th>
-                            Preço
-                        </th>
-
-                    </tr>
-
-                </thead>
-
-
-                <tbody id="tabelaLocaisBody">
-
-                    <!-- preenchido via JS -->
-
-                </tbody>
-
-            </table>
-
-
-            <div
-                id="tabelaVazia"
-                class="tabela-vazia"
-                style="display:none;"
-            >
-
-                Nenhum local cadastrado ainda.
-
-            </div>
-
-        </div>
-
-
-        <div
-            class="status-locais"
-            id="statusLocais"
-        ></div>
-
-    </div>
-
-
 </div>
 
-
-
 <script>
+const SEU_WHATSAPP = "5581985269588";
 
-/* =========================================================
-   CONFIGURAÇÃO
-========================================================= */
-
-const SUPABASE_URL =
-    "https://etaiheynljzhzvpaqusm.supabase.co";
-
-
-const SUPABASE_KEY =
-    "sb_publishable_DkBXJjtKJCBqjy2aNF8kFg_yKMK0hwg";
-
-
-const SEU_WHATSAPP =
-    "5581985269588";
-
-
-/* =========================================================
-   SUPABASE
-========================================================= */
-
-let supabaseClient = null;
-
-
-try {
-
-    if (
-        typeof supabase !== "undefined" &&
-        supabase.createClient
-    ) {
-
-        supabaseClient =
-            supabase.createClient(
-                SUPABASE_URL,
-                SUPABASE_KEY
-            );
-
-    }
-
-} catch (erro) {
-
-    console.error(
-        "Erro ao iniciar Supabase:",
-        erro
-    );
-
+function mostrarStatus(msg) {
+    document.getElementById("status").innerHTML = msg;
 }
 
-
-/* =========================================================
-   VARIÁVEIS
-========================================================= */
-
-let codigoCliente = null;
-
-let dadosCliente = null;
-
-let listaLocais = [];
-
-
-/* =========================================================
-   ELEMENTOS
-========================================================= */
-
-function elementos() {
-
-    return {
-
-        status:
-            document.getElementById(
-                "status"
-            ),
-
-        painel:
-            document.getElementById(
-                "painelDesconto"
-            ),
-
-        texto:
-            document.getElementById(
-                "textoDesconto"
-            ),
-
-        botao:
-            document.getElementById(
-                "botaoCorrida"
-            ),
-
-        container:
-            document.getElementById(
-                "container"
-            ),
-
-        progressoContainer:
-            document.getElementById(
-                "progressoContainer"
-            ),
-
-        progressoBarra:
-            document.getElementById(
-                "progressoBarra"
-            ),
-
-        progressoNumero:
-            document.getElementById(
-                "progressoNumero"
-            ),
-
-        nome:
-            document.getElementById(
-                "nomeCliente"
-            ),
-
-        indicador:
-            document.getElementById(
-                "codigoIndicador"
-            ),
-
-        clienteIdentificado:
-            document.getElementById(
-                "clienteIdentificado"
-            ),
-
-        bannerLocalizacao:
-            document.getElementById(
-                "bannerLocalizacao"
-            ),
-
-        tabelaBody:
-            document.getElementById(
-                "tabelaLocaisBody"
-            ),
-
-        tabelaVazia:
-            document.getElementById(
-                "tabelaVazia"
-            ),
-
-        statusLocais:
-            document.getElementById(
-                "statusLocais"
-            )
-
-    };
-
+function mostrarBanner() {
+    document.getElementById("bannerLocalizacao").classList.add("ativo");
 }
 
-
-/* =========================================================
-   MOSTRAR BANNER DE LOCALIZAÇÃO
-========================================================= */
-
-function mostrarBannerLocalizacao() {
-
-    const el =
-        elementos();
-
-
-    if (
-        el.bannerLocalizacao
-    ) {
-
-        el.bannerLocalizacao.classList.add(
-            "ativo"
-        );
-
-    }
-
+function esconderBanner() {
+    document.getElementById("bannerLocalizacao").classList.remove("ativo");
 }
 
-
-/* =========================================================
-   ESCONDER BANNER DE LOCALIZAÇÃO
-========================================================= */
-
-function esconderBannerLocalizacao() {
-
-    const el =
-        elementos();
-
-
-    if (
-        el.bannerLocalizacao
-    ) {
-
-        el.bannerLocalizacao.classList.remove(
-            "ativo"
-        );
-
-    }
-
+function tentarNovamente() {
+    esconderBanner();
+    mostrarStatus("📡 Tentando localizar você novamente...");
+    setTimeout(pegarLocalizacao, 300);
 }
-
-
-/* =========================================================
-   TENTAR LOCALIZAÇÃO NOVAMENTE
-========================================================= */
-
-function tentarLocalizacaoNovamente() {
-
-    esconderBannerLocalizacao();
-
-
-    mostrarStatus(
-
-        "📡 Tentando localizar você novamente..."
-
-    );
-
-
-    setTimeout(
-
-        function() {
-
-            pegarLocalizacao();
-
-        },
-
-        250
-
-    );
-
-}
-
-
-/* =========================================================
-   STATUS
-========================================================= */
-
-function mostrarStatus(
-    mensagem
-) {
-
-    const el =
-        elementos();
-
-    if (el.status) {
-
-        el.status.innerHTML =
-            mensagem;
-
-    }
-
-}
-
-
-function mostrarStatusLocais(
-    mensagem
-) {
-
-    const el =
-        elementos();
-
-    if (el.statusLocais) {
-
-        el.statusLocais.innerHTML =
-            mensagem;
-
-    }
-
-}
-
-
-/* =========================================================
-   CONFETES
-========================================================= */
-
-function soltarConfetes() {
-
-    const quantidade = 80;
-
-
-    for (
-        let i = 0;
-        i < quantidade;
-        i++
-    ) {
-
-        const confete =
-            document.createElement(
-                "div"
-            );
-
-
-        confete.className =
-            "confete";
-
-
-        confete.style.left =
-            Math.random() * 100 +
-            "vw";
-
-
-        const cores = [
-
-            "#25d366",
-            "#ffd700",
-            "#00d9ff",
-            "#ff4d6d",
-            "#ffffff"
-
-        ];
-
-
-        confete.style.background =
-            cores[
-                Math.floor(
-                    Math.random() *
-                    cores.length
-                )
-            ];
-
-
-        confete.style.animationDelay =
-            Math.random() * 0.8 +
-            "s";
-
-
-        document.body.appendChild(
-            confete
-        );
-
-
-        setTimeout(
-            () => confete.remove(),
-            3500
-        );
-
-    }
-
-}
-
-
-/* =========================================================
-   EFEITO DE SUCESSO
-========================================================= */
-
-function efeitoSucesso() {
-
-    const el =
-        elementos();
-
-
-    if (el.container) {
-
-        el.container.classList.remove(
-            "sucesso"
-        );
-
-
-        void el.container.offsetWidth;
-
-
-        el.container.classList.add(
-            "sucesso"
-        );
-
-    }
-
-
-    soltarConfetes();
-
-}
-
-
-/* =========================================================
-   VALIDAR UUID
-========================================================= */
-
-function uuidValido(
-    valor
-) {
-
-    if (!valor) {
-
-        return false;
-
-    }
-
-
-    const regex =
-        /^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i;
-
-
-    return regex.test(
-        valor
-    );
-
-}
-
-
-/* =========================================================
-   PEGAR CÓDIGO DA URL
-========================================================= */
-
-function pegarCodigoDaURL() {
-
-    const parametros =
-        new URLSearchParams(
-            window.location.search
-        );
-
-
-    const codigo =
-        parametros.get(
-            "cliente"
-        );
-
-
-    if (
-        codigo &&
-        uuidValido(codigo)
-    ) {
-
-        return codigo;
-
-    }
-
-
-    return null;
-
-}
-
-
-/* =========================================================
-   CARREGAR CÓDIGO SALVO
-========================================================= */
-
-function carregarCodigoSalvo() {
-
-    try {
-
-        const salvo =
-            localStorage.getItem(
-                "mototaxi_codigo_cliente"
-            );
-
-
-        if (
-            salvo &&
-            uuidValido(salvo)
-        ) {
-
-            return salvo;
-
-        }
-
-    } catch (erro) {
-
-        console.warn(
-            "LocalStorage indisponível:",
-            erro
-        );
-
-    }
-
-
-    return null;
-
-}
-
-
-/* =========================================================
-   SALVAR CÓDIGO
-========================================================= */
-
-function salvarCodigoCliente(
-    codigo
-) {
-
-    try {
-
-        localStorage.setItem(
-            "mototaxi_codigo_cliente",
-            codigo
-        );
-
-    } catch (erro) {
-
-        console.warn(
-            "Não foi possível salvar cliente:",
-            erro
-        );
-
-    }
-
-}
-
-
-/* =========================================================
-   BUSCAR CLIENTE
-========================================================= */
-
-async function buscarCliente(
-    codigo
-) {
-
-    if (
-        !supabaseClient ||
-        !uuidValido(codigo)
-    ) {
-
-        return null;
-
-    }
-
-
-    try {
-
-        const {
-            data,
-            error
-        } = await supabaseClient.rpc(
-
-            "buscar_cliente",
-
-            {
-                p_codigo: codigo
-            }
-
-        );
-
-
-        if (error) {
-
-            console.error(
-                "Erro RPC buscar_cliente:",
-                error
-            );
-
-            return null;
-
-        }
-
-
-        if (
-            !data ||
-            data.sucesso !== true
-        ) {
-
-            return null;
-
-        }
-
-
-        return data.cliente || null;
-
-    } catch (erro) {
-
-        console.error(
-            "Erro ao buscar cliente:",
-            erro
-        );
-
-        return null;
-
-    }
-
-}
-
-
-/* =========================================================
-   MOSTRAR BENEFÍCIOS
-========================================================= */
-
-function mostrarBeneficios(
-    cliente
-) {
-
-    const el =
-        elementos();
-
-
-    if (
-        !cliente ||
-        !el.painel
-    ) {
-
-        return;
-
-    }
-
-
-    el.painel.style.display =
-        "block";
-
-
-    const viagens =
-        Number(
-            cliente.viagens_feitas || 0
-        );
-
-
-    const proxima =
-        viagens + 1;
-
-
-    const teraDesconto =
-        proxima % 3 === 0;
-
-
-    let mensagem = "";
-
-
-    if (teraDesconto) {
-
-        mensagem =
-
-            "🎉 <strong>PARABÉNS!</strong><br>" +
-
-            "Sua próxima viagem é a " +
-            proxima +
-            "ª viagem e terá " +
-            "<strong>40% DE DESCONTO!</strong>";
-
-        if (el.progressoContainer) {
-
-            el.progressoContainer.style.display =
-                "none";
-
-        }
-
-    } else {
-
-        const faltam =
-            3 -
-            (proxima % 3);
-
-
-        mensagem =
-
-            "🛵 Você já realizou " +
-            viagens +
-            " viagem" +
-            (
-                viagens === 1
-                    ? ""
-                    : "s"
-            ) +
-            ".<br><br>" +
-
-            "🎁 Faltam " +
-            "<strong>" +
-            faltam +
-            "</strong>" +
-
-            " viagem" +
-            (
-                faltam === 1
-                    ? ""
-                    : "s"
-            ) +
-
-            " para ganhar " +
-            "<strong>40% DE DESCONTO.</strong>";
-
-
-        if (
-            el.progressoContainer &&
-            el.progressoBarra &&
-            el.progressoNumero
-        ) {
-
-            el.progressoContainer.style.display =
-                "block";
-
-
-            const progresso =
-                viagens % 3;
-
-
-            const porcentagem =
-                (
-                    progresso /
-                    3
-                ) * 100;
-
-
-            el.progressoBarra.style.width =
-                porcentagem + "%";
-
-
-            el.progressoNumero.textContent =
-                progresso +
-                "/3";
-
-        }
-
-    }
-
-
-    el.texto.innerHTML =
-        mensagem;
-
-}
-
-
-/* =========================================================
-   MOSTRAR CLIENTE IDENTIFICADO
-========================================================= */
-
-function mostrarClienteIdentificado(
-    cliente
-) {
-
-    const el =
-        elementos();
-
-
-    if (
-        !cliente ||
-        !el.clienteIdentificado
-    ) {
-
-        return;
-
-    }
-
-
-    const nome =
-        cliente.nome ||
-        "Cliente";
-
-
-    el.clienteIdentificado.style.display =
-        "block";
-
-
-    el.clienteIdentificado.innerHTML =
-
-        "🔐 Cliente identificado: <strong>" +
-        escaparHTML(nome) +
-        "</strong>";
-
-}
-
-
-/* =========================================================
-   ESCAPAR HTML
-========================================================= */
-
-function escaparHTML(
-    texto
-) {
-
-    const div =
-        document.createElement(
-            "div"
-        );
-
-
-    div.textContent =
-        texto || "";
-
-
-    return div.innerHTML;
-
-}
-
-
-/* =========================================================
-   FORMATAR PREÇO
-========================================================= */
-
-function formatarPreco(
-    valor
-) {
-
-    const numero =
-        Number(valor) || 0;
-
-
-    return (
-        "R$ " +
-        numero.toFixed(2).replace(".", ",")
-    );
-
-}
-
-
-/* =========================================================
-   CRIAR CLIENTE
-========================================================= */
-
-async function criarCliente() {
-
-    if (!supabaseClient) {
-
-        throw new Error(
-            "Supabase não está disponível."
-        );
-
-    }
-
-
-    const el =
-        elementos();
-
-
-    const nome =
-        el.nome.value.trim();
-
-
-    let codigoIndicador =
-        el.indicador.value.trim();
-
-
-    if (
-        codigoIndicador.includes(
-            "cliente="
-        )
-    ) {
-
-        try {
-
-            const url =
-                new URL(
-                    codigoIndicador
-                );
-
-
-            codigoIndicador =
-                url.searchParams.get(
-                    "cliente"
-                ) || "";
-
-        } catch (erro) {
-
-            console.warn(
-                "Código de indicação não é uma URL válida."
-            );
-
-        }
-
-    }
-
-
-    if (
-        codigoIndicador &&
-        !uuidValido(codigoIndicador)
-    ) {
-
-        throw new Error(
-            "O código de indicação informado não é válido."
-        );
-
-    }
-
-
-    const {
-        data,
-        error
-    } = await supabaseClient.rpc(
-
-        "criar_cliente",
-
-        {
-
-            p_nome:
-                nome || null,
-
-            p_telefone:
-                null,
-
-            p_codigo_indicador:
-                codigoIndicador || null
-
-        }
-
-    );
-
-
-    if (error) {
-
-        console.error(
-            "Erro RPC criar_cliente:",
-            error
-        );
-
-        throw new Error(
-            error.message ||
-            "Não foi possível criar o cliente."
-        );
-
-    }
-
-
-    if (
-        !data ||
-        data.sucesso !== true ||
-        !data.cliente
-    ) {
-
-        throw new Error(
-            data?.mensagem ||
-            "Não foi possível criar o cliente."
-        );
-
-    }
-
-
-    codigoCliente =
-        data.cliente.codigo_cliente;
-
-
-    dadosCliente =
-        data.cliente;
-
-
-    salvarCodigoCliente(
-        codigoCliente
-    );
-
-
-    return dadosCliente;
-
-}
-
-
-/* =========================================================
-   GARANTIR CLIENTE
-========================================================= */
-
-async function garantirCliente() {
-
-    const codigoURL =
-        pegarCodigoDaURL();
-
-
-    if (codigoURL) {
-
-        const cliente =
-            await buscarCliente(
-                codigoURL
-            );
-
-
-        if (cliente) {
-
-            codigoCliente =
-                codigoURL;
-
-            dadosCliente =
-                cliente;
-
-
-            salvarCodigoCliente(
-                codigoURL
-            );
-
-
-            return cliente;
-
-        }
-
-    }
-
-
-    const codigoSalvo =
-        carregarCodigoSalvo();
-
-
-    if (codigoSalvo) {
-
-        const cliente =
-            await buscarCliente(
-                codigoSalvo
-            );
-
-
-        if (cliente) {
-
-            codigoCliente =
-                codigoSalvo;
-
-            dadosCliente =
-                cliente;
-
-
-            return cliente;
-
-        }
-
-    }
-
-
-    return await criarCliente();
-
-}
-
-
-/* =========================================================
-   SOLICITAR CORRIDA
-========================================================= */
-
-async function solicitarCorrida(
-    latitude,
-    longitude,
-    precisao,
-    mapaURL
-) {
-
-    if (
-        !codigoCliente ||
-        !uuidValido(codigoCliente)
-    ) {
-
-        throw new Error(
-            "Cliente não identificado."
-        );
-
-    }
-
-
-    if (!supabaseClient) {
-
-        throw new Error(
-            "Supabase não está disponível."
-        );
-
-    }
-
-
-    const {
-        data,
-        error
-    } = await supabaseClient.rpc(
-
-        "solicitar_corrida",
-
-        {
-
-            p_codigo_cliente:
-                codigoCliente,
-
-            p_latitude:
-                latitude,
-
-            p_longitude:
-                longitude,
-
-            p_precisao:
-                precisao || null,
-
-            p_mapa_url:
-                mapaURL,
-
-            p_observacao:
-                null
-
-        }
-
-    );
-
-
-    if (error) {
-
-        console.error(
-            "Erro RPC solicitar_corrida:",
-            error
-        );
-
-        throw new Error(
-            error.message ||
-            "Não foi possível registrar a corrida."
-        );
-
-    }
-
-
-    if (
-        !data ||
-        data.sucesso !== true
-    ) {
-
-        throw new Error(
-
-            data?.mensagem ||
-
-            "Não foi possível registrar a corrida."
-
-        );
-
-    }
-
-
-    return data;
-
-}
-
-
-/* =========================================================
-   MENSAGEM WHATSAPP
-========================================================= */
-
-function criarMensagemWhatsApp(
-    dadosCorrida,
-    latitude,
-    longitude,
-    precisao,
-    mapaURL
-) {
-
-    const nome =
-        dadosCliente?.nome ||
-        "Cliente";
-
-
-    const desconto =
-        Number(
-            dadosCorrida
-                ?.desconto_percentual ||
-            0
-        );
-
-
-    let mensagem =
-
-        "🛵 *NOVO PEDIDO DE MOTOTÁXI*%0A" +
-        "%0A" +
-
-        "👤 *Cliente:* " +
-        encodeURIComponent(
-            nome
-        ) +
-
-        "%0A%0A" +
-
-        "📍 *LOCALIZAÇÃO:*%0A" +
-
-        encodeURIComponent(
-            mapaURL
-        ) +
-
-        "%0A%0A" +
-
-        "🌎 *Latitude:* " +
-        encodeURIComponent(
-            latitude
-        ) +
-
-        "%0A" +
-
-        "🌎 *Longitude:* " +
-        encodeURIComponent(
-            longitude
-        ) +
-
-        "%0A";
-
-
-    if (precisao) {
-
-        mensagem +=
-
-            "%0A📡 *Precisão aproximada:* " +
-
-            encodeURIComponent(
-                Math.round(
-                    precisao
-                ) + " metros"
-            );
-
-    }
-
-
-    if (
-        desconto === 40
-    ) {
-
-        mensagem +=
-
-            "%0A%0A🎁 *ATENÇÃO:* " +
-
-            "CLIENTE ELEGÍVEL PARA " +
-
-            "*40% DE DESCONTO* " +
-
-            "NESTA VIAGEM.";
-
-    }
-
-
-    mensagem +=
-
-        "%0A%0A" +
-
-        "🆔 *Corrida:* " +
-
-        encodeURIComponent(
-            dadosCorrida.corrida_id
-        );
-
-
-    return mensagem;
-
-}
-
-
-/* =========================================================
-   GEOLOCALIZAÇÃO
-========================================================= */
 
 function pegarLocalizacao() {
-
-    const el =
-        elementos();
-
-
-    esconderBannerLocalizacao();
-
+    const botao = document.getElementById("botao");
+    esconderBanner();
 
     if (!navigator.geolocation) {
-
-        mostrarStatus(
-
-            "❌ Seu navegador não oferece suporte à localização."
-
-        );
-
-        mostrarBannerLocalizacao();
-
+        mostrarStatus("❌ Seu navegador não suporta localização.");
+        mostrarBanner();
         return;
-
     }
-
 
     if (!window.isSecureContext) {
-
-        mostrarStatus(
-
-            "🔒 A localização precisa ser acessada por HTTPS. " +
-            "Abra o endereço do seu site pelo GitHub Pages."
-
-        );
-
+        mostrarStatus("🔒 A localização só funciona em HTTPS.");
         return;
-
     }
 
-
-    el.botao.disabled =
-        true;
-
-
-    el.botao.innerHTML =
-
-        '<span class="gps-loading">📡</span> ' +
-
-        "LOCALIZANDO VOCÊ...";
-
-
-    mostrarStatus(
-
-        "📡 Obtendo sua localização pelo GPS..."
-
-    );
-
+    botao.disabled = true;
+    botao.innerHTML = "📡 LOCALIZANDO VOCÊ...";
+    mostrarStatus("📡 Obtendo sua localização pelo GPS...");
 
     navigator.geolocation.getCurrentPosition(
+        function(pos) {
+            const lat = pos.coords.latitude;
+            const lng = pos.coords.longitude;
+            const precisao = Math.round(pos.coords.accuracy || 0);
 
-        async function(posicao) {
+            const mapaURL = `https://www.google.com/maps?q=\( {lat}, \){lng}`;
 
-            esconderBannerLocalizacao();
+            let mensagem = 
+                "🛵 *NOVO PEDIDO DE MOTOTÁXI*%0A%0A" +
+                "📍 *LOCALIZAÇÃO:*%0A" + encodeURIComponent(mapaURL) + "%0A%0A" +
+                "🌎 *Latitude:* " + lat + "%0A" +
+                "🌎 *Longitude:* " + lng;
 
-            await processarLocalizacao(
-                posicao
-            );
+            if (precisao) {
+                mensagem += "%0A📡 *Precisão aproximada:* " + precisao + " metros";
+            }
 
+            mostrarStatus("✅ Localização encontrada!<br>📲 Abrindo WhatsApp...");
+
+            const whatsappURL = `https://wa.me/\( {SEU_WHATSAPP}?text= \){mensagem}`;
+
+            setTimeout(() => {
+                window.location.href = whatsappURL;
+            }, 600);
         },
-
-
         function(erro) {
+            botao.disabled = false;
+            botao.innerHTML = "📍 Pedir Mototáxi agora com minha localização";
 
-            tratarErroGPS(
-                erro
-            );
+            let msg = "";
+            switch (erro.code) {
+                case 1:
+                    msg = "📍 Permissão de localização negada.<br>Permita o acesso e tente novamente.";
+                    break;
+                case 2:
+                    msg = "📡 Não foi possível encontrar sua localização.<br>Verifique se o GPS está ligado.";
+                    break;
+                case 3:
+                    msg = "⏱️ O GPS demorou muito para responder.<br>Tente novamente.";
+                    break;
+                default:
+                    msg = "❌ Não foi possível obter sua localização.";
+            }
 
+            mostrarStatus(msg);
+            if (erro.code === 1 || erro.code === 2) {
+                mostrarBanner();
+            }
         },
-
-
         {
-
-            enableHighAccuracy:
-                true,
-
-            timeout:
-                30000,
-
-            maximumAge:
-                0
-
-        }
-
-    );
-
-}
-
-
-/* =========================================================
-   PROCESSAR LOCALIZAÇÃO
-========================================================= */
-
-async function processarLocalizacao(
-    posicao
-) {
-
-    const el =
-        elementos();
-
-
-    try {
-
-        const latitude =
-            posicao.coords.latitude;
-
-
-        const longitude =
-            posicao.coords.longitude;
-
-
-        const precisao =
-            posicao.coords.accuracy;
-
-
-        const mapaURL =
-
-            "https://www.google.com/maps?q=" +
-
-            latitude +
-            "," +
-            longitude;
-
-
-        mostrarStatus(
-
-            "📍 Localização encontrada!<br>" +
-            "⏳ Preparando sua corrida..."
-
-        );
-
-
-        if (!dadosCliente) {
-
-            mostrarStatus(
-
-                "👤 Identificando seu cadastro..."
-
-            );
-
-
-            await garantirCliente();
-
-        }
-
-
-        if (dadosCliente) {
-
-            mostrarBeneficios(
-                dadosCliente
-            );
-
-
-            mostrarClienteIdentificado(
-                dadosCliente
-            );
-
-        }
-
-
-        mostrarStatus(
-
-            "🛵 Registrando sua solicitação..."
-
-        );
-
-
-        const dadosCorrida =
-            await solicitarCorrida(
-
-                latitude,
-
-                longitude,
-
-                precisao,
-
-                mapaURL
-
-            );
-
-
-        if (
-            dadosCorrida
-                .desconto_percentual === 40
-        ) {
-
-            efeitoSucesso();
-
-        }
-
-
-        const mensagem =
-            criarMensagemWhatsApp(
-
-                dadosCorrida,
-
-                latitude,
-
-                longitude,
-
-                precisao,
-
-                mapaURL
-
-            );
-
-
-        mostrarStatus(
-
-            "✅ Pedido registrado!<br>" +
-            "📲 Abrindo WhatsApp..."
-
-        );
-
-
-        const whatsappURL =
-
-            "https://wa.me/" +
-
-            SEU_WHATSAPP +
-
-            "?text=" +
-
-            mensagem;
-
-
-        setTimeout(
-
-            function() {
-
-                window.location.href =
-                    whatsappURL;
-
-            },
-
-            700
-
-        );
-
-
-    } catch (erro) {
-
-        console.error(
-            "Erro ao processar corrida:",
-            erro
-        );
-
-
-        mostrarStatus(
-
-            "❌ " +
-
-            escaparHTML(
-                erro.message ||
-                "Não foi possível registrar sua corrida."
-            ) +
-
-            "<br><br>" +
-
-            "Tente novamente."
-
-        );
-
-
-        el.botao.disabled =
-            false;
-
-
-        el.botao.innerHTML =
-            "📍 PEDIR MOTOTÁXI AGORA";
-
-    }
-
-}
-
-
-/* =========================================================
-   ERRO GPS
-========================================================= */
-
-function tratarErroGPS(
-    erro
-) {
-
-    const el =
-        elementos();
-
-
-    let mensagem = "";
-
-
-    switch (
-        erro.code
-    ) {
-
-        case 1:
-
-            mensagem =
-
-                "📍 Permissão de localização negada.<br><br>" +
-
-                "Permita que o navegador acesse sua localização " +
-
-                "e tente novamente.";
-
-            break;
-
-
-        case 2:
-
-            mensagem =
-
-                "📡 Não foi possível encontrar sua localização.<br><br>" +
-
-                "Verifique se o GPS/localização do celular está ligado.";
-
-            break;
-
-
-        case 3:
-
-            mensagem =
-
-                "⏱️ O GPS demorou muito para responder.<br><br>" +
-
-                "Tente novamente em um local com melhor sinal.";
-
-            break;
-
-
-        default:
-
-            mensagem =
-
-                "❌ Não foi possível obter sua localização.";
-
-    }
-
-
-    mostrarStatus(
-        mensagem
-    );
-
-
-    el.botao.disabled =
-        false;
-
-
-    el.botao.innerHTML =
-        "📍 PEDIR MOTOTÁXI AGORA";
-
-
-    if (
-        erro.code === 1 ||
-        erro.code === 2
-    ) {
-
-        mostrarBannerLocalizacao();
-
-    }
-
-}
-
-
-/* =========================================================
-   ========== LOCAIS E PREÇOS ==========
-   SOMENTE LEITURA
-========================================================= */
-
-async function carregarLocais() {
-
-    if (!supabaseClient) {
-
-        mostrarStatusLocais(
-            "⚠️ Supabase não disponível."
-        );
-
-        return;
-
-    }
-
-
-    try {
-
-        const {
-            data,
-            error
-        } = await supabaseClient.rpc(
-            "listar_locais"
-        );
-
-
-        if (error) {
-
-            console.error(
-                "Erro ao listar locais:",
-                error
-            );
-
-
-            mostrarStatusLocais(
-                "❌ Erro ao carregar locais."
-            );
-
-
-            return;
-
-        }
-
-
-        if (
-            !data ||
-            data.sucesso !== true
-        ) {
-
-            listaLocais = [];
-
-
-            if (
-                data &&
-                data.mensagem
-            ) {
-
-                console.error(
-                    "Supabase listar_locais:",
-                    data.mensagem
-                );
-
-            }
-
-        } else {
-
-            listaLocais =
-                Array.isArray(data.locais)
-                    ? data.locais
-                    : [];
-
-        }
-
-
-        renderizarTabelaLocais();
-
-
-    } catch (erro) {
-
-        console.error(
-            "Erro ao carregar locais:",
-            erro
-        );
-
-
-        mostrarStatusLocais(
-            "❌ Erro ao carregar locais."
-        );
-
-    }
-
-}
-
-
-/* =========================================================
-   RENDERIZAR LOCAIS
-   SEM BOTÕES DE EDIÇÃO
-========================================================= */
-
-function renderizarTabelaLocais() {
-
-    const el =
-        elementos();
-
-
-    if (
-        !el.tabelaBody
-    ) {
-
-        return;
-
-    }
-
-
-    el.tabelaBody.innerHTML =
-        "";
-
-
-    if (
-        !listaLocais ||
-        listaLocais.length === 0
-    ) {
-
-        if (el.tabelaVazia) {
-
-            el.tabelaVazia.style.display =
-                "block";
-
-        }
-
-
-        return;
-
-    }
-
-
-    if (el.tabelaVazia) {
-
-        el.tabelaVazia.style.display =
-            "none";
-
-    }
-
-
-    listaLocais.forEach(
-        function(local) {
-
-            const tr =
-                document.createElement(
-                    "tr"
-                );
-
-
-            /*
-             * IMPORTANTE:
-             * Usamos textContent em vez de
-             * inserir dados diretamente no HTML.
-             */
-
-
-            const tdNome =
-                document.createElement(
-                    "td"
-                );
-
-
-            tdNome.textContent =
-                local.nome || "";
-
-
-            const tdPreco =
-                document.createElement(
-                    "td"
-                );
-
-
-            tdPreco.className =
-                "preco";
-
-
-            tdPreco.textContent =
-                formatarPreco(
-                    local.preco
-                );
-
-
-            tr.appendChild(
-                tdNome
-            );
-
-
-            tr.appendChild(
-                tdPreco
-            );
-
-
-            el.tabelaBody.appendChild(
-                tr
-            );
-
+            enableHighAccuracy: true,
+            timeout: 25000,
+            maximumAge: 0
         }
     );
-
 }
-
-
-/* =========================================================
-   CARREGAR CLIENTE AO ABRIR A PÁGINA
-========================================================= */
-
-async function inicializar() {
-
-    try {
-
-        /*
-         * Carrega somente os locais.
-         *
-         * O frontend não possui mais nenhuma
-         * função para criar, editar ou excluir.
-         */
-
-        await carregarLocais();
-
-
-        const codigoURL =
-            pegarCodigoDaURL();
-
-
-        const codigoSalvo =
-            carregarCodigoSalvo();
-
-
-        const codigo =
-            codigoURL ||
-            codigoSalvo;
-
-
-        if (!codigo) {
-
-            mostrarStatus(
-
-                "👋 Informe seu nome se quiser criar " +
-                "seu cadastro de fidelidade."
-
-            );
-
-
-            return;
-
-        }
-
-
-        mostrarStatus(
-            "🔐 Identificando cliente..."
-        );
-
-
-        const cliente =
-            await buscarCliente(
-                codigo
-            );
-
-
-        if (cliente) {
-
-            codigoCliente =
-                codigo;
-
-            dadosCliente =
-                cliente;
-
-
-            salvarCodigoCliente(
-                codigo
-            );
-
-
-            mostrarBeneficios(
-                cliente
-            );
-
-
-            mostrarClienteIdentificado(
-                cliente
-            );
-
-
-            const el =
-                elementos();
-
-
-            if (
-                el.nome &&
-                cliente.nome
-            ) {
-
-                el.nome.value =
-                    cliente.nome;
-
-            }
-
-
-            mostrarStatus(
-
-                "✅ Cliente identificado. " +
-                "Você já pode pedir sua corrida."
-
-            );
-
-        } else {
-
-            mostrarStatus(
-
-                "👋 Não encontramos seu cadastro. " +
-                "Ele será criado quando você pedir a corrida."
-
-            );
-
-        }
-
-
-    } catch (erro) {
-
-        console.error(
-            "Erro na inicialização:",
-            erro
-        );
-
-
-        mostrarStatus(
-
-            "👋 Pronto para solicitar sua corrida."
-
-        );
-
-    }
-
-}
-
-
-/* =========================================================
-   TRATAMENTO GLOBAL DE ERROS
-========================================================= */
-
-window.addEventListener(
-    "error",
-    function(evento) {
-
-        console.error(
-            "Erro JavaScript:",
-            evento.error
-        );
-
-    }
-);
-
-
-window.addEventListener(
-    "unhandledrejection",
-    function(evento) {
-
-        console.error(
-            "Promise rejeitada:",
-            evento.reason
-        );
-
-    }
-);
-
-
-/* =========================================================
-   INICIAR
-========================================================= */
-
-document.addEventListener(
-    "DOMContentLoaded",
-    inicializar
-);
-
 </script>
 
 </body>
-
 </html>
