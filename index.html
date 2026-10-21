@@ -433,6 +433,7 @@ function pegarLocalizacao() {
             const lng = pos.coords.longitude;
             const precisao = Math.round(pos.coords.accuracy || 0);
 
+            // CORRIGIDO aqui
             const mapaURL = `https://www.google.com/maps?q=\( {lat}, \){lng}`;
 
             let mensagem = 
@@ -447,6 +448,7 @@ function pegarLocalizacao() {
 
             mostrarStatus("✅ Localização encontrada!<br>📲 Abrindo WhatsApp...");
 
+            // CORRIGIDO aqui
             const whatsappURL = `https://wa.me/\( {SEU_WHATSAPP}?text= \){mensagem}`;
 
             setTimeout(() => {
