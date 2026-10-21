@@ -1,492 +1,883 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="theme-color" content="#061b17">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#061b17">
 
-<meta property="og:title" content="🛵 Chamar Mototáxi Agora">
-<meta property="og:description" content="Toque aqui para permitir sua localização e agilizar sua corrida direto no WhatsApp!">
-<meta property="og:image" content="https://adeiltonsilvadesouza2023-creator.github.io/Localiza-o-/banner2.png">
-<meta property="og:url" content="https://adeiltonsilvadesouza2023-creator.github.io/Localiza-o-/">
-<meta property="og:type" content="website">
+    <meta name="description" content="Chame seu mototáxi rapidamente pelo WhatsApp, compartilhando sua localização.">
 
-<title>🛵 Chamar Mototáxi</title>
+    <meta property="og:title" content="🛵 Chamar Mototáxi Agora">
+    <meta property="og:description" content="Compartilhe sua localização e agilize sua corrida diretamente pelo WhatsApp!">
+    <meta property="og:image" content="https://adeiltonsilvadesouza2023-creator.github.io/Localiza-o-/banner2.png">
+    <meta property="og:url" content="https://adeiltonsilvadesouza2023-creator.github.io/Localiza-o-/">
+    <meta property="og:type" content="website">
 
-<style>
-* {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-}
+    <title>🛵 Chamar Mototáxi</title>
 
-body {
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
-    min-height: 100vh;
-    color: #ffffff;
-    background:
-        radial-gradient(circle at 20% 20%, rgba(37,211,102,0.20), transparent 30%),
-        radial-gradient(circle at 80% 80%, rgba(0,180,255,0.18), transparent 30%),
-        linear-gradient(135deg, #061b17, #071f2a, #03110e);
-    overflow-x: hidden;
-    padding: 25px 15px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
 
-/* Fundo animado */
-body::before {
-    content: "";
-    position: fixed;
-    width: 350px;
-    height: 350px;
-    border-radius: 50%;
-    background: rgba(37,211,102,0.10);
-    filter: blur(60px);
-    top: -100px;
-    left: -100px;
-    animation: flutuar 8s ease-in-out infinite;
-    pointer-events: none;
-}
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+            min-height: 100vh;
+            min-height: 100dvh;
+            color: #ffffff;
 
-body::after {
-    content: "";
-    position: fixed;
-    width: 300px;
-    height: 300px;
-    border-radius: 50%;
-    background: rgba(0,200,255,0.10);
-    filter: blur(70px);
-    right: -100px;
-    bottom: -100px;
-    animation: flutuar2 10s ease-in-out infinite;
-    pointer-events: none;
-}
+            background:
+                radial-gradient(circle at 20% 20%, rgba(37,211,102,0.20), transparent 30%),
+                radial-gradient(circle at 80% 80%, rgba(0,180,255,0.18), transparent 30%),
+                linear-gradient(135deg, #061b17, #071f2a, #03110e);
 
-@keyframes flutuar {
-    0%, 100% { transform: translate(0, 0); }
-    50% { transform: translate(80px, 50px); }
-}
+            overflow-x: hidden;
+            padding: 25px 15px;
 
-@keyframes flutuar2 {
-    0%, 100% { transform: translate(0, 0); }
-    50% { transform: translate(-60px, -50px); }
-}
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
 
-/* Container */
-.container {
-    position: relative;
-    z-index: 2;
-    width: 100%;
-    max-width: 420px;
-    padding: 32px 24px 28px;
-    border-radius: 28px;
-    background: rgba(255,255,255,0.075);
-    border: 1px solid rgba(255,255,255,0.15);
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
-    box-shadow: 0 25px 70px rgba(0,0,0,0.45);
-    text-align: center;
-    animation: entrada 0.8s ease;
-}
+        body::before,
+        body::after {
+            content: "";
+            position: fixed;
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 0;
+        }
 
-@keyframes entrada {
-    from {
-        opacity: 0;
-        transform: translateY(30px) scale(0.96);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0) scale(1);
-    }
-}
+        body::before {
+            width: 350px;
+            height: 350px;
+            background: rgba(37,211,102,0.10);
+            filter: blur(60px);
+            top: -100px;
+            left: -100px;
+            animation: flutuar 8s ease-in-out infinite;
+        }
 
-/* Logo */
-.logo {
-    font-size: 64px;
-    display: inline-block;
-    animation: motoPulse 2.5s ease-in-out infinite;
-    margin-bottom: 8px;
-}
+        body::after {
+            width: 300px;
+            height: 300px;
+            background: rgba(0,200,255,0.10);
+            filter: blur(70px);
+            right: -100px;
+            bottom: -100px;
+            animation: flutuar2 10s ease-in-out infinite;
+        }
 
-@keyframes motoPulse {
-    0%, 100% { transform: scale(1) rotate(0deg); }
-    50% { transform: scale(1.08) rotate(-3deg); }
-}
+        @keyframes flutuar {
+            0%, 100% {
+                transform: translate(0, 0);
+            }
 
-h1 {
-    font-size: 26px;
-    font-weight: 800;
-    background: linear-gradient(90deg, #ffffff, #25d366, #ffffff);
-    background-size: 200% auto;
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    animation: brilhoTexto 3s linear infinite;
-    margin-bottom: 8px;
-}
+            50% {
+                transform: translate(80px, 50px);
+            }
+        }
 
-@keyframes brilhoTexto {
-    to { background-position: 200% center; }
-}
+        @keyframes flutuar2 {
+            0%, 100% {
+                transform: translate(0, 0);
+            }
 
-.subtitulo {
-    color: rgba(255,255,255,0.70);
-    font-size: 15px;
-    margin-bottom: 28px;
-    line-height: 1.4;
-}
+            50% {
+                transform: translate(-60px, -50px);
+            }
+        }
 
-/* Botão principal */
-button {
-    position: relative;
-    overflow: hidden;
-    width: 100%;
-    padding: 20px 16px;
-    border: none;
-    border-radius: 18px;
-    cursor: pointer;
-    color: #ffffff;
-    font-size: 18px;
-    font-weight: 900;
-    background: linear-gradient(135deg, #25d366, #128c7e);
-    box-shadow: 0 10px 30px rgba(37,211,102,0.35);
-    animation: botaoPulse 2s ease-in-out infinite;
-    transition: transform 0.15s, box-shadow 0.15s;
-}
+        .container {
+            position: relative;
+            z-index: 2;
 
-@keyframes botaoPulse {
-    0%, 100% { transform: scale(1); }
-    50% { transform: scale(1.025); }
-}
+            width: 100%;
+            max-width: 420px;
 
-button:hover {
-    box-shadow: 0 15px 40px rgba(37,211,102,0.55);
-}
+            padding: 32px 24px 28px;
+            border-radius: 28px;
 
-button:active {
-    transform: scale(0.96);
-}
+            background: rgba(255,255,255,0.075);
+            border: 1px solid rgba(255,255,255,0.15);
 
-button:disabled {
-    opacity: 0.75;
-    cursor: wait;
-    animation: none;
-}
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
 
-button::after {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: -120%;
-    width: 70px;
-    height: 100%;
-    background: rgba(255,255,255,0.35);
-    transform: skewX(-20deg);
-    animation: botaoBrilho 3s infinite;
-}
+            box-shadow: 0 25px 70px rgba(0,0,0,0.45);
 
-@keyframes botaoBrilho {
-    0% { left: -120%; }
-    45%, 100% { left: 140%; }
-}
+            text-align: center;
+            animation: entrada 0.8s ease;
+        }
 
-/* Status */
-#status {
-    min-height: 28px;
-    margin-top: 20px;
-    font-size: 14px;
-    line-height: 1.5;
-    color: rgba(255,255,255,0.80);
-}
+        @keyframes entrada {
+            from {
+                opacity: 0;
+                transform: translateY(30px) scale(0.96);
+            }
 
-/* Rodapé */
-.rodape {
-    margin-top: 22px;
-    font-size: 12px;
-    color: rgba(255,255,255,0.40);
-}
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
 
-/* ========== BANNER GPS (aviso chamativo) ========== */
-.banner-localizacao {
-    position: fixed;
-    inset: 0;
-    z-index: 99999;
-    display: none;
-    align-items: center;
-    justify-content: center;
-    padding: 18px;
-    background: rgba(0,0,0,0.88);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-}
+        .logo {
+            font-size: 64px;
+            display: inline-block;
+            animation: motoPulse 2.5s ease-in-out infinite;
+            margin-bottom: 8px;
+        }
 
-.banner-localizacao.ativo {
-    display: flex;
-    animation: bannerEntrada 0.35s ease;
-}
+        @keyframes motoPulse {
+            0%, 100% {
+                transform: scale(1) rotate(0deg);
+            }
 
-@keyframes bannerEntrada {
-    from { opacity: 0; }
-    to { opacity: 1; }
-}
+            50% {
+                transform: scale(1.08) rotate(-3deg);
+            }
+        }
 
-.banner-caixa {
-    width: 100%;
-    max-width: 400px;
-    padding: 30px 22px;
-    border-radius: 28px;
-    text-align: center;
-    background: linear-gradient(145deg, #071f18, #092b26, #06151c);
-    border: 2px solid rgba(37,211,102,0.65);
-    box-shadow: 0 0 35px rgba(37,211,102,0.30), 0 25px 80px rgba(0,0,0,0.80);
-    animation: caixaGPS 0.5s ease;
-}
+        h1 {
+            font-size: 26px;
+            font-weight: 800;
 
-@keyframes caixaGPS {
-    from {
-        transform: scale(0.85) translateY(30px);
-        opacity: 0;
-    }
-    to {
-        transform: scale(1) translateY(0);
-        opacity: 1;
-    }
-}
+            background: linear-gradient(90deg, #ffffff, #25d366, #ffffff);
+            background-size: 200% auto;
 
-.banner-icone {
-    font-size: 72px;
-    margin-bottom: 12px;
-    animation: gpsGigante 1.3s ease-in-out infinite;
-}
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
 
-@keyframes gpsGigante {
-    0%, 100% { transform: scale(1) translateY(0); }
-    50% { transform: scale(1.12) translateY(-7px); }
-}
+            animation: brilhoTexto 3s linear infinite;
+            margin-bottom: 8px;
+        }
 
-.banner-titulo {
-    font-size: 26px;
-    font-weight: 1000;
-    color: #ffffff;
-    margin-bottom: 12px;
-    line-height: 1.1;
-}
+        @keyframes brilhoTexto {
+            to {
+                background-position: 200% center;
+            }
+        }
 
-.banner-destaque {
-    display: inline-block;
-    padding: 9px 16px;
-    border-radius: 999px;
-    font-size: 14px;
-    font-weight: 1000;
-    color: #ffffff;
-    background: linear-gradient(135deg, #d62828, #a4161a);
-    box-shadow: 0 8px 25px rgba(214,40,40,0.35);
-    animation: alertaGPS 1s ease-in-out infinite;
-    margin-bottom: 18px;
-}
+        .subtitulo {
+            color: rgba(255,255,255,0.70);
+            font-size: 15px;
+            margin-bottom: 28px;
+            line-height: 1.5;
+        }
 
-@keyframes alertaGPS {
-    0%, 100% { transform: scale(1); }
-    50% { transform: scale(1.05); }
-}
+        button {
+            position: relative;
+            overflow: hidden;
 
-.banner-texto {
-    font-size: 15px;
-    line-height: 1.55;
-    color: rgba(255,255,255,0.85);
-    margin-bottom: 20px;
-}
+            width: 100%;
+            padding: 20px 16px;
 
-.banner-texto strong {
-    color: #25d366;
-}
+            border: none;
+            border-radius: 18px;
 
-.banner-passos {
-    padding: 16px;
-    border-radius: 16px;
-    text-align: left;
-    background: rgba(255,255,255,0.07);
-    border: 1px solid rgba(255,255,255,0.12);
-    font-size: 14px;
-    line-height: 1.8;
-    color: rgba(255,255,255,0.90);
-    margin-bottom: 22px;
-}
+            cursor: pointer;
+            color: #ffffff;
 
-.banner-botao {
-    width: 100%;
-    padding: 18px 14px;
-    font-size: 16px;
-    font-weight: 1000;
-    color: #ffffff;
-    background: linear-gradient(135deg, #25d366, #128c7e);
-    border: none;
-    border-radius: 16px;
-    box-shadow: 0 10px 35px rgba(37,211,102,0.40);
-    cursor: pointer;
-}
+            font-size: 17px;
+            font-weight: 900;
 
-.banner-ajuda {
-    margin-top: 14px;
-    font-size: 12px;
-    color: rgba(255,255,255,0.55);
-    line-height: 1.5;
-}
+            background: linear-gradient(135deg, #25d366, #128c7e);
 
-.banner-ajuda strong {
-    color: #ffffff;
-}
-</style>
+            box-shadow: 0 10px 30px rgba(37,211,102,0.35);
+
+            animation: botaoPulse 2s ease-in-out infinite;
+            transition: box-shadow 0.2s, opacity 0.2s;
+        }
+
+        @keyframes botaoPulse {
+            0%, 100% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.025);
+            }
+        }
+
+        button:hover {
+            box-shadow: 0 15px 40px rgba(37,211,102,0.55);
+        }
+
+        button:active {
+            transform: scale(0.97);
+        }
+
+        button:disabled {
+            opacity: 0.70;
+            cursor: wait;
+            animation: none;
+        }
+
+        button::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: -120%;
+
+            width: 70px;
+            height: 100%;
+
+            background: rgba(255,255,255,0.30);
+            transform: skewX(-20deg);
+
+            animation: botaoBrilho 3s infinite;
+            pointer-events: none;
+        }
+
+        button:disabled::after {
+            animation: none;
+        }
+
+        @keyframes botaoBrilho {
+            0% {
+                left: -120%;
+            }
+
+            45%, 100% {
+                left: 140%;
+            }
+        }
+
+        #status {
+            min-height: 28px;
+            margin-top: 20px;
+
+            font-size: 14px;
+            line-height: 1.6;
+
+            color: rgba(255,255,255,0.85);
+            overflow-wrap: anywhere;
+        }
+
+        .rodape {
+            margin-top: 22px;
+            font-size: 12px;
+            line-height: 1.5;
+            color: rgba(255,255,255,0.50);
+        }
+
+        /* Banner de localização */
+
+        .banner-localizacao {
+            position: fixed;
+            inset: 0;
+            z-index: 99999;
+
+            display: none;
+            align-items: center;
+            justify-content: center;
+
+            padding: 18px;
+
+            background: rgba(0,0,0,0.88);
+
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+
+            overflow-y: auto;
+        }
+
+        .banner-localizacao.ativo {
+            display: flex;
+            animation: bannerEntrada 0.35s ease;
+        }
+
+        @keyframes bannerEntrada {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        .banner-caixa {
+            width: 100%;
+            max-width: 400px;
+
+            padding: 30px 22px;
+            border-radius: 28px;
+
+            text-align: center;
+
+            background: linear-gradient(145deg, #071f18, #092b26, #06151c);
+
+            border: 2px solid rgba(37,211,102,0.65);
+
+            box-shadow:
+                0 0 35px rgba(37,211,102,0.30),
+                0 25px 80px rgba(0,0,0,0.80);
+
+            animation: caixaGPS 0.5s ease;
+
+            margin: auto;
+        }
+
+        @keyframes caixaGPS {
+            from {
+                transform: scale(0.85) translateY(30px);
+                opacity: 0;
+            }
+
+            to {
+                transform: scale(1) translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .banner-icone {
+            font-size: 65px;
+            margin-bottom: 12px;
+            animation: gpsGigante 1.3s ease-in-out infinite;
+        }
+
+        @keyframes gpsGigante {
+            0%, 100% {
+                transform: scale(1) translateY(0);
+            }
+
+            50% {
+                transform: scale(1.10) translateY(-5px);
+            }
+        }
+
+        .banner-titulo {
+            font-size: 25px;
+            font-weight: 900;
+            color: #ffffff;
+            margin-bottom: 12px;
+            line-height: 1.2;
+        }
+
+        .banner-destaque {
+            display: inline-block;
+            padding: 9px 16px;
+
+            border-radius: 999px;
+
+            font-size: 13px;
+            font-weight: 900;
+            color: #ffffff;
+
+            background: linear-gradient(135deg, #d62828, #a4161a);
+
+            box-shadow: 0 8px 25px rgba(214,40,40,0.35);
+
+            animation: alertaGPS 1s ease-in-out infinite;
+            margin-bottom: 18px;
+        }
+
+        @keyframes alertaGPS {
+            0%, 100% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.04);
+            }
+        }
+
+        .banner-texto {
+            font-size: 15px;
+            line-height: 1.6;
+
+            color: rgba(255,255,255,0.85);
+            margin-bottom: 20px;
+        }
+
+        .banner-texto strong {
+            color: #25d366;
+        }
+
+        .banner-passos {
+            padding: 16px;
+            border-radius: 16px;
+
+            text-align: left;
+
+            background: rgba(255,255,255,0.07);
+            border: 1px solid rgba(255,255,255,0.12);
+
+            font-size: 14px;
+            line-height: 1.9;
+
+            color: rgba(255,255,255,0.90);
+            margin-bottom: 22px;
+        }
+
+        .banner-botao {
+            width: 100%;
+            padding: 18px 12px;
+
+            font-size: 15px;
+            font-weight: 900;
+
+            color: #ffffff;
+
+            background: linear-gradient(135deg, #25d366, #128c7e);
+
+            border: none;
+            border-radius: 16px;
+
+            box-shadow: 0 10px 35px rgba(37,211,102,0.40);
+
+            cursor: pointer;
+            animation: none;
+        }
+
+        .banner-ajuda {
+            margin-top: 14px;
+
+            font-size: 12px;
+            line-height: 1.6;
+
+            color: rgba(255,255,255,0.60);
+        }
+
+        .banner-ajuda strong {
+            color: #ffffff;
+        }
+
+        button:focus-visible {
+            outline: 3px solid #ffffff;
+            outline-offset: 4px;
+        }
+
+        @media (max-width: 360px) {
+            .container {
+                padding: 26px 18px;
+            }
+
+            h1 {
+                font-size: 23px;
+            }
+
+            button {
+                font-size: 15px;
+            }
+
+            .banner-caixa {
+                padding: 24px 17px;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            *,
+            *::before,
+            *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                scroll-behavior: auto !important;
+            }
+        }
+    </style>
 </head>
+
 <body>
 
-<!-- Banner de aviso GPS -->
-<div id="bannerLocalizacao" class="banner-localizacao">
-    <div class="banner-caixa">
-        <div class="banner-icone">📍</div>
-        <div class="banner-titulo">ATIVE SUA LOCALIZAÇÃO</div>
-        <div class="banner-destaque">⚠️ LOCALIZAÇÃO DESATIVADA</div>
+    <!-- Banner de localização -->
 
-        <div class="banner-texto">
-            Para pedir o mototáxi, precisamos saber onde você está.<br><br>
-            <strong>Ative a localização/GPS do seu celular e tente novamente.</strong>
+    <div
+        id="bannerLocalizacao"
+        class="banner-localizacao"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="bannerTitulo"
+        aria-describedby="bannerTexto"
+    >
+        <div class="banner-caixa">
+
+            <div class="banner-icone" aria-hidden="true">📍</div>
+
+            <div class="banner-titulo" id="bannerTitulo">
+                ATIVE SUA LOCALIZAÇÃO
+            </div>
+
+            <div class="banner-destaque" id="bannerDestaque">
+                ⚠️ LOCALIZAÇÃO INDISPONÍVEL
+            </div>
+
+            <div class="banner-texto" id="bannerTexto">
+                Para pedir o mototáxi, precisamos obter sua localização.
+
+                <br><br>
+
+                <strong>
+                    Verifique se a localização do celular está ativada
+                    e se o navegador tem permissão para acessá-la.
+                </strong>
+            </div>
+
+            <div class="banner-passos">
+                1️⃣ Abra as configurações rápidas do celular.<br>
+                2️⃣ Ative <strong>Localização / GPS</strong>.<br>
+                3️⃣ Confira a permissão de localização do navegador.<br>
+                4️⃣ Volte para esta página e tente novamente.
+            </div>
+
+            <button
+                type="button"
+                class="banner-botao"
+                onclick="tentarNovamente()"
+            >
+                📍 JÁ VERIFIQUEI — TENTAR NOVAMENTE
+            </button>
+
+            <div class="banner-ajuda">
+                Se o navegador perguntar se pode acessar sua localização,
+                toque em <strong>Permitir</strong>.
+            </div>
+
         </div>
+    </div>
 
-        <div class="banner-passos">
-            1️⃣ Abra as configurações rápidas do celular.<br>
-            2️⃣ Ative <strong>Localização / GPS</strong>.<br>
-            3️⃣ Volte para esta página.<br>
-            4️⃣ Toque no botão abaixo.
-        </div>
+    <!-- Conteúdo principal -->
 
-        <button class="banner-botao" onclick="tentarNovamente()">
-            📍 JÁ ATIVEI — TENTAR NOVAMENTE
+    <main class="container">
+
+        <div class="logo" aria-hidden="true">🏍️</div>
+
+        <h1>Chamar Mototáxi</h1>
+
+        <p class="subtitulo">
+            Toque no botão e enviaremos sua localização diretamente
+            pelo WhatsApp ⚡
+        </p>
+
+        <button
+            id="botao"
+            type="button"
+            onclick="pegarLocalizacao()"
+        >
+            📍 Pedir Mototáxi agora com minha localização
         </button>
 
-        <div class="banner-ajuda">
-            Se o navegador perguntar se pode acessar sua localização, toque em <strong>Permitir</strong>.
+        <p
+            id="status"
+            role="status"
+            aria-live="polite"
+        ></p>
+
+        <div class="rodape">
+            🔒 Sua localização é utilizada para agilizar sua corrida.
         </div>
-    </div>
-</div>
 
-<!-- Conteúdo principal -->
-<div class="container">
-    <div class="logo">🏍️</div>
-    <h1>Chamar Mototáxi</h1>
-    <p class="subtitulo">Toque no botão e enviaremos sua localização direto no WhatsApp ⚡</p>
+    </main>
 
-    <button id="botao" onclick="pegarLocalizacao()">
-        📍 Pedir Mototáxi agora com minha localização
-    </button>
+    <script>
+        "use strict";
 
-    <p id="status"></p>
+        // ==========================================
+        // CONFIGURAÇÃO
+        // ==========================================
 
-    <div class="rodape">
-        🔒 Sua localização é usada somente para agilizar sua corrida.
-    </div>
-</div>
+        const SEU_WHATSAPP = "5581985269588";
 
-<script>
-const SEU_WHATSAPP = "5581985269588";
+        const TEXTO_BOTAO =
+            "📍 Pedir Mototáxi agora com minha localização";
 
-function mostrarStatus(msg) {
-    document.getElementById("status").innerHTML = msg;
-}
+        const botao = document.getElementById("botao");
+        const statusEl = document.getElementById("status");
+        const banner = document.getElementById("bannerLocalizacao");
+        const bannerDestaque = document.getElementById("bannerDestaque");
 
-function mostrarBanner() {
-    document.getElementById("bannerLocalizacao").classList.add("ativo");
-}
+        let solicitacaoEmAndamento = false;
 
-function esconderBanner() {
-    document.getElementById("bannerLocalizacao").classList.remove("ativo");
-}
+        // ==========================================
+        // INTERFACE
+        // ==========================================
 
-function tentarNovamente() {
-    esconderBanner();
-    mostrarStatus("📡 Tentando localizar você novamente...");
-    setTimeout(pegarLocalizacao, 300);
-}
-
-function pegarLocalizacao() {
-    const botao = document.getElementById("botao");
-    esconderBanner();
-
-    if (!navigator.geolocation) {
-        mostrarStatus("❌ Seu navegador não suporta localização.");
-        mostrarBanner();
-        return;
-    }
-
-    if (!window.isSecureContext) {
-        mostrarStatus("🔒 A localização só funciona em HTTPS.");
-        return;
-    }
-
-    botao.disabled = true;
-    botao.innerHTML = "📡 LOCALIZANDO VOCÊ...";
-    mostrarStatus("📡 Obtendo sua localização pelo GPS...");
-
-    navigator.geolocation.getCurrentPosition(
-        function(pos) {
-            const lat = pos.coords.latitude;
-            const lng = pos.coords.longitude;
-            const precisao = Math.round(pos.coords.accuracy || 0);
-
-            // Monta o link do mapa
-            const mapaURL = "https://www.google.com/maps?q=" + lat + "," + lng;
-
-            // Monta a mensagem do WhatsApp
-            let mensagem = "🛵 *NOVO PEDIDO DE MOTOTÁXI*%0A%0A";
-            mensagem += "📍 *LOCALIZAÇÃO:*%0A" + encodeURIComponent(mapaURL) + "%0A%0A";
-            mensagem += "🌎 *Latitude:* " + lat + "%0A";
-            mensagem += "🌎 *Longitude:* " + lng;
-
-            if (precisao) {
-                mensagem += "%0A📡 *Precisão aproximada:* " + precisao + " metros";
-            }
-
-            mostrarStatus("✅ Localização encontrada!<br>📲 Abrindo WhatsApp...");
-
-            // Abre o WhatsApp
-            const whatsappURL = "https://wa.me/" + SEU_WHATSAPP + "?text=" + mensagem;
-
-            setTimeout(function() {
-                window.location.href = whatsappURL;
-            }, 600);
-        },
-        function(erro) {
-            botao.disabled = false;
-            botao.innerHTML = "📍 Pedir Mototáxi agora com minha localização";
-
-            let msg = "";
-            switch (erro.code) {
-                case 1:
-                    msg = "📍 Permissão de localização negada.<br>Permita o acesso e tente novamente.";
-                    break;
-                case 2:
-                    msg = "📡 Não foi possível encontrar sua localização.<br>Verifique se o GPS está ligado.";
-                    break;
-                case 3:
-                    msg = "⏱️ O GPS demorou muito para responder.<br>Tente novamente.";
-                    break;
-                default:
-                    msg = "❌ Não foi possível obter sua localização.";
-            }
-
-            mostrarStatus(msg);
-            if (erro.code === 1 || erro.code === 2) {
-                mostrarBanner();
-            }
-        },
-        {
-            enableHighAccuracy: true,
-            timeout: 25000,
-            maximumAge: 0
+        function mostrarStatus(msg) {
+            statusEl.innerHTML = msg;
         }
-    );
-}
-</script>
+
+        function esconderBanner() {
+            banner.classList.remove("ativo");
+        }
+
+        function mostrarBanner(tipo) {
+            if (tipo === "permissao") {
+                bannerDestaque.textContent =
+                    "⚠️ PERMISSÃO DE LOCALIZAÇÃO NEGADA";
+            } else {
+                bannerDestaque.textContent =
+                    "⚠️ LOCALIZAÇÃO INDISPONÍVEL";
+            }
+
+            banner.classList.add("ativo");
+        }
+
+        function restaurarBotao() {
+            solicitacaoEmAndamento = false;
+            botao.disabled = false;
+            botao.textContent = TEXTO_BOTAO;
+        }
+
+        // ==========================================
+        // TENTAR NOVAMENTE
+        // ==========================================
+
+        function tentarNovamente() {
+            esconderBanner();
+
+            mostrarStatus(
+                "📡 Tentando obter sua localização novamente..."
+            );
+
+            setTimeout(function () {
+                pegarLocalizacao();
+            }, 300);
+        }
+
+        // ==========================================
+        // PREPARAR A MENSAGEM
+        // ==========================================
+
+        function criarMensagem(lat, lng, precisao) {
+            const coordenadas = lat + "," + lng;
+
+            const mapaURL =
+                "https://www.google.com/maps?q=" +
+                encodeURIComponent(coordenadas);
+
+            let mensagem =
+                "🛵 NOVO PEDIDO DE MOTOTÁXI\n\n" +
+                "📍 LOCALIZAÇÃO:\n" +
+                mapaURL +
+                "\n\n" +
+                "🌎 Latitude: " + lat + "\n" +
+                "🌎 Longitude: " + lng;
+
+            if (precisao > 0) {
+                mensagem +=
+                    "\n📡 Precisão aproximada: " +
+                    precisao +
+                    " metros";
+            }
+
+            return mensagem;
+        }
+
+        // ==========================================
+        // ABRIR O WHATSAPP
+        // ==========================================
+
+        function abrirWhatsApp(lat, lng, precisao) {
+            const mensagem = criarMensagem(
+                lat,
+                lng,
+                precisao
+            );
+
+            const parametros = new URLSearchParams();
+
+            parametros.set("text", mensagem);
+
+            const whatsappURL =
+                "https://wa.me/" +
+                SEU_WHATSAPP +
+                "?" +
+                parametros.toString();
+
+            mostrarStatus(
+                "✅ Localização encontrada!" +
+                "<br>📲 Abrindo o WhatsApp..."
+            );
+
+            /*
+             * A navegação é iniciada após a localização ser obtida.
+             * Dependendo do navegador, o usuário poderá precisar
+             * confirmar a abertura do WhatsApp.
+             */
+
+            window.location.href = whatsappURL;
+        }
+
+        // ==========================================
+        // TRATAR ERROS
+        // ==========================================
+
+        function tratarErroLocalizacao(erro) {
+            restaurarBotao();
+
+            switch (erro.code) {
+
+                case 1:
+                    mostrarStatus(
+                        "📍 Permissão de localização negada." +
+                        "<br>Permita o acesso à localização nas " +
+                        "configurações do navegador."
+                    );
+
+                    mostrarBanner("permissao");
+                    break;
+
+                case 2:
+                    mostrarStatus(
+                        "📡 Não foi possível determinar sua localização." +
+                        "<br>Verifique se o GPS está ativado e tente novamente."
+                    );
+
+                    mostrarBanner("indisponivel");
+                    break;
+
+                case 3:
+                    mostrarStatus(
+                        "⏱️ O tempo para localizar você terminou." +
+                        "<br>Tente novamente em um local com melhor recepção."
+                    );
+                    break;
+
+                default:
+                    mostrarStatus(
+                        "❌ Ocorreu um erro ao obter sua localização." +
+                        "<br>Tente novamente."
+                    );
+            }
+        }
+
+        // ==========================================
+        // FUNÇÃO PRINCIPAL
+        // ==========================================
+
+        function pegarLocalizacao() {
+
+            // Impede chamadas simultâneas.
+
+            if (solicitacaoEmAndamento) {
+                return;
+            }
+
+            esconderBanner();
+
+            // Verifica suporte à geolocalização.
+
+            if (!navigator.geolocation) {
+                mostrarStatus(
+                    "❌ Seu navegador não oferece suporte à localização."
+                );
+
+                mostrarBanner("indisponivel");
+                return;
+            }
+
+            // A geolocalização exige contexto seguro.
+
+            if (!window.isSecureContext) {
+                mostrarStatus(
+                    "🔒 A localização exige uma conexão HTTPS." +
+                    "<br>Abra a página pelo endereço seguro do site."
+                );
+
+                return;
+            }
+
+            // Verifica se o número foi configurado.
+
+            if (!/^\d{10,15}$/.test(SEU_WHATSAPP)) {
+                mostrarStatus(
+                    "❌ O número do WhatsApp está configurado incorretamente."
+                );
+
+                return;
+            }
+
+            solicitacaoEmAndamento = true;
+
+            botao.disabled = true;
+            botao.textContent = "📡 LOCALIZANDO VOCÊ...";
+
+            mostrarStatus(
+                "📡 Obtendo sua localização..." +
+                "<br>Aguarde alguns instantes."
+            );
+
+            try {
+
+                navigator.geolocation.getCurrentPosition(
+
+                    function (pos) {
+
+                        try {
+                            const lat = pos.coords.latitude;
+                            const lng = pos.coords.longitude;
+
+                            const precisao = Math.round(
+                                pos.coords.accuracy || 0
+                            );
+
+                            // Confirma que as coordenadas são válidas.
+
+                            if (
+                                !Number.isFinite(lat) ||
+                                !Number.isFinite(lng) ||
+                                lat < -90 ||
+                                lat > 90 ||
+                                lng < -180 ||
+                                lng > 180
+                            ) {
+                                throw new Error(
+                                    "Coordenadas inválidas."
+                                );
+                            }
+
+                            abrirWhatsApp(
+                                lat,
+                                lng,
+                                precisao
+                            );
+
+                        } catch (erro) {
+                            console.error(
+                                "Erro ao preparar o pedido:",
+                                erro
+                            );
+
+                            restaurarBotao();
+
+                            mostrarStatus(
+                                "❌ Não foi possível preparar a mensagem." +
+                                "<br>Tente novamente."
+                            );
+                        }
+                    },
+
+                    function (erro) {
+                        tratarErroLocalizacao(erro);
+                    },
+
+                    {
+                        enableHighAccuracy: true,
+                        timeout: 25000,
+                        maximumAge: 0
+                    }
+                );
+
+            } catch (erro) {
+                console.error(
+                    "Erro ao solicitar localização:",
+                    erro
+                );
+
+                restaurarBotao();
+
+                mostrarStatus(
+                    "❌ Não foi possível iniciar a localização." +
+                    "<br>Verifique as permissões do navegador."
+                );
+            }
+        }
+    </script>
 
 </body>
 </html>
