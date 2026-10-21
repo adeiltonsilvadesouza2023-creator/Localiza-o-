@@ -433,14 +433,14 @@ function pegarLocalizacao() {
             const lng = pos.coords.longitude;
             const precisao = Math.round(pos.coords.accuracy || 0);
 
-            // CORRIGIDO aqui
-            const mapaURL = `https://www.google.com/maps?q=\( {lat}, \){lng}`;
+            // Monta o link do mapa
+            const mapaURL = "https://www.google.com/maps?q=" + lat + "," + lng;
 
-            let mensagem = 
-                "🛵 *NOVO PEDIDO DE MOTOTÁXI*%0A%0A" +
-                "📍 *LOCALIZAÇÃO:*%0A" + encodeURIComponent(mapaURL) + "%0A%0A" +
-                "🌎 *Latitude:* " + lat + "%0A" +
-                "🌎 *Longitude:* " + lng;
+            // Monta a mensagem do WhatsApp
+            let mensagem = "🛵 *NOVO PEDIDO DE MOTOTÁXI*%0A%0A";
+            mensagem += "📍 *LOCALIZAÇÃO:*%0A" + encodeURIComponent(mapaURL) + "%0A%0A";
+            mensagem += "🌎 *Latitude:* " + lat + "%0A";
+            mensagem += "🌎 *Longitude:* " + lng;
 
             if (precisao) {
                 mensagem += "%0A📡 *Precisão aproximada:* " + precisao + " metros";
@@ -448,10 +448,10 @@ function pegarLocalizacao() {
 
             mostrarStatus("✅ Localização encontrada!<br>📲 Abrindo WhatsApp...");
 
-            // CORRIGIDO aqui
-            const whatsappURL = `https://wa.me/\( {SEU_WHATSAPP}?text= \){mensagem}`;
+            // Abre o WhatsApp
+            const whatsappURL = "https://wa.me/" + SEU_WHATSAPP + "?text=" + mensagem;
 
-            setTimeout(() => {
+            setTimeout(function() {
                 window.location.href = whatsappURL;
             }, 600);
         },
