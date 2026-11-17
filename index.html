@@ -6,9 +6,18 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="theme-color" content="#061b17">
 
-<title>🛵 DAN EXPRESS 4.0</title>
+<title>🛵 DAN EXPRESS 5.0</title>
 
 <style>
+
+:root{
+    --verde:#25d366;
+    --verde2:#00ff9d;
+    --azul:#00c8ff;
+    --fundo:#030b12;
+    --card:#102923;
+    --texto:#ffffff;
+}
 
 *{
     box-sizing:border-box;
@@ -18,13 +27,24 @@
 
 body{
     font-family:Arial,sans-serif;
-    background:
-    radial-gradient(circle at 20% 10%,#123e35,transparent 35%),
-    radial-gradient(circle at 90% 80%,#092d50,transparent 40%),
-    linear-gradient(135deg,#030b12,#071b20,#03110e);
-    color:white;
+    color:var(--texto);
     min-height:100vh;
-    padding:15px 12px 40px;
+    padding:15px 12px 45px;
+    background:
+    radial-gradient(circle at 10% 5%,#0b6045 0%,transparent 30%),
+    radial-gradient(circle at 95% 40%,#073d66 0%,transparent 35%),
+    radial-gradient(circle at 50% 100%,#06452e 0%,transparent 40%),
+    linear-gradient(135deg,#02070c,#071b20,#020b09);
+    background-attachment:fixed;
+    overflow-x:hidden;
+}
+
+button,input,textarea{
+    font-family:inherit;
+}
+
+button{
+    -webkit-tap-highlight-color:transparent;
 }
 
 .container{
@@ -32,28 +52,80 @@ body{
     margin:auto;
 }
 
+/* ANIMAÇÕES */
+
+@keyframes pulse{
+    50%{transform:scale(1.07)}
+}
+
+@keyframes brilho{
+    0%,100%{box-shadow:0 0 10px #25d36630}
+    50%{box-shadow:0 0 30px #25d36690}
+}
+
+@keyframes entrada{
+    from{
+        opacity:0;
+        transform:translateY(25px);
+    }
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+}
+
+@keyframes flutuar{
+    50%{transform:translateY(-8px)}
+}
+
+@keyframes neon{
+    0%,100%{border-color:#25d36670}
+    50%{border-color:#00c8ffff}
+}
+
+@keyframes rotacao{
+    to{transform:rotate(360deg)}
+}
+
+/* TOPO */
+
 .topo{
     text-align:center;
-    padding:25px 15px;
-    border:1px solid #ffffff20;
-    border-radius:25px;
-    background:#ffffff0b;
-    backdrop-filter:blur(15px);
+    padding:28px 16px;
+    border:1px solid #ffffff25;
+    border-radius:27px;
+    background:linear-gradient(145deg,#ffffff12,#ffffff04);
+    backdrop-filter:blur(18px);
     box-shadow:0 0 35px #00ff8830;
+    animation:entrada .7s ease;
+    position:relative;
+    overflow:hidden;
+}
+
+.topo:before{
+    content:"";
+    position:absolute;
+    width:200px;
+    height:200px;
+    background:#25d36615;
+    border-radius:50%;
+    top:-100px;
+    right:-70px;
+    filter:blur(15px);
 }
 
 .logo{
-    font-size:58px;
-    animation:pulse 2s infinite;
-}
-
-@keyframes pulse{
-    50%{transform:scale(1.09)}
+    font-size:65px;
+    display:inline-block;
+    animation:flutuar 3s infinite;
+    filter:drop-shadow(0 0 15px #25d366);
 }
 
 h1{
-    font-size:29px;
-    background:linear-gradient(90deg,#fff,#25ff9b,#00c8ff);
+    font-size:34px;
+    font-weight:1000;
+    letter-spacing:2px;
+    background:linear-gradient(90deg,#ffffff,#25ff9b,#00c8ff);
     background-clip:text;
     -webkit-background-clip:text;
     color:transparent;
@@ -63,214 +135,197 @@ h1{
 .sub{
     color:#b7d7d0;
     font-size:13px;
-    line-height:1.6;
-}
-
-.aviso{
-    margin-top:16px;
-    background:#25d36618;
-    border:1px solid #25d36655;
-    padding:13px;
-    border-radius:13px;
-    font-size:12px;
     line-height:1.7;
 }
 
-/* ESCOLHA INICIAL */
+.aviso{
+    margin-top:18px;
+    padding:14px;
+    border-radius:15px;
+    background:#25d36612;
+    border:1px solid #25d36650;
+    font-size:12px;
+    line-height:1.9;
+}
+
+/* ETIQUETA */
+
+.etiqueta{
+    display:inline-block;
+    margin-top:13px;
+    padding:7px 13px;
+    border-radius:30px;
+    color:#00180e;
+    background:linear-gradient(90deg,#25d366,#00ffb3);
+    font-size:10px;
+    font-weight:900;
+    letter-spacing:1px;
+    box-shadow:0 0 15px #25d36670;
+}
+
+/* ESCOLHA */
+
+.secao-titulo{
+    margin:26px 0 14px;
+    font-size:19px;
+    text-align:center;
+}
 
 .escolha-modo{
-    margin-top:22px;
     display:grid;
-    grid-template-columns:1fr;
     gap:15px;
+    margin-top:20px;
 }
 
 .modo-card{
     width:100%;
-    padding:23px 15px;
-    border-radius:22px;
-    border:1px solid #ffffff30;
-    color:white;
-    cursor:pointer;
-    text-align:center;
-    transition:.3s;
+    position:relative;
+    overflow:hidden;
+    padding:23px 17px;
+    border-radius:23px;
+    border:1px solid #25d36680;
     background:linear-gradient(145deg,#123d35,#09251f);
-    box-shadow:0 0 22px #25d36620;
-}
-
-.modo-card:active{
-    transform:scale(.96);
+    color:white;
+    text-align:center;
+    cursor:pointer;
+    transition:.3s;
+    animation:entrada .7s ease,brilho 3s infinite;
 }
 
 .modo-card.viagem{
     background:linear-gradient(145deg,#123b58,#091b35);
-    border:1px solid #00c8ff80;
-    box-shadow:0 0 25px #00c8ff30;
+    border-color:#00c8ff90;
+    box-shadow:0 0 25px #00c8ff25;
+}
+
+.modo-card:active{
+    transform:scale(.95);
+}
+
+.modo-card:before{
+    content:"";
+    position:absolute;
+    width:150px;
+    height:150px;
+    background:#ffffff10;
+    border-radius:50%;
+    top:-90px;
+    right:-60px;
 }
 
 .modo-emoji{
-    font-size:48px;
     display:block;
-    margin-bottom:12px;
+    font-size:53px;
+    margin-bottom:13px;
+    animation:flutuar 3s infinite;
 }
 
 .modo-card strong{
     display:block;
-    font-size:18px;
-    margin-bottom:8px;
+    font-size:19px;
+    margin-bottom:9px;
 }
 
 .modo-card small{
-    color:#b9d8d3;
+    color:#c0ddd5;
     font-size:12px;
-    line-height:1.6;
+    line-height:1.7;
 }
 
-/* VIAGEM */
+.modo-seta{
+    display:inline-block;
+    margin-top:15px;
+    padding:9px 20px;
+    background:#ffffff15;
+    border:1px solid #ffffff30;
+    border-radius:30px;
+    font-size:12px;
+    font-weight:bold;
+}
+
+/* ÁREA DE VIAGEM */
 
 .viagem-box{
     margin-top:22px;
     padding:22px 17px;
-    border-radius:22px;
+    border-radius:23px;
     background:linear-gradient(145deg,#102d40,#101d35);
     border:1px solid #00c8ff70;
     box-shadow:0 0 25px #00c8ff20;
+    animation:entrada .5s ease;
 }
 
 .viagem-box h2{
+    font-size:22px;
     margin-bottom:10px;
-    font-size:21px;
 }
 
 .viagem-box p{
-    font-size:13px;
     color:#a9c8d7;
-    line-height:1.6;
+    font-size:13px;
+    line-height:1.7;
+}
+
+.viagem-icone{
+    font-size:50px;
+    text-align:center;
+    margin-bottom:15px;
+    animation:flutuar 3s infinite;
 }
 
 .botao-viagem{
     width:100%;
-    padding:18px;
+    padding:19px;
     margin-top:18px;
     border:0;
-    border-radius:15px;
+    border-radius:16px;
     background:linear-gradient(135deg,#00c8ff,#006eaa);
     color:white;
     font-size:16px;
     font-weight:900;
     cursor:pointer;
-    box-shadow:0 0 25px #00c8ff50;
+    box-shadow:0 0 25px #00c8ff70;
+    transition:.2s;
+}
+
+.botao-viagem:active{
+    transform:scale(.96);
 }
 
 .botao-viagem:disabled{
     opacity:.6;
 }
 
-.botao-voltar{
+/* CAMPOS */
+
+.campo{
     width:100%;
-    padding:13px;
-    margin-top:15px;
+    margin-top:13px;
+    padding:15px;
+    border-radius:13px;
     border:1px solid #ffffff30;
-    border-radius:12px;
-    background:#ffffff12;
+    background:#ffffff0b;
     color:white;
-    font-weight:bold;
-    cursor:pointer;
-}
-
-.oculto{
-    display:none!important;
-}
-
-/* VOZ */
-
-.voz-box{
-    margin-top:22px;
-    padding:22px 16px;
-    border-radius:22px;
-    text-align:center;
-    background:linear-gradient(145deg,#102d40,#101d35);
-    border:1px solid #00c8ff70;
-    box-shadow:0 0 25px #00c8ff20;
-}
-
-.voz-box h2{
-    font-size:19px;
-    margin-bottom:8px;
-}
-
-.voz-box p{
-    font-size:12px;
-    color:#a9c8d7;
-    line-height:1.6;
-}
-
-.microfone{
-    width:85px;
-    height:85px;
-    border-radius:50%;
-    border:3px solid #00d9ff;
-    background:linear-gradient(145deg,#006e91,#00364f);
-    color:white;
-    font-size:36px;
-    margin:18px auto 12px;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    cursor:pointer;
-    box-shadow:0 0 25px #00c8ff60;
+    outline:none;
+    font-size:14px;
     transition:.3s;
 }
 
-.microfone:active{
-    transform:scale(.90);
+.campo:focus{
+    border-color:#25d366;
+    box-shadow:0 0 15px #25d36640;
 }
 
-.microfone.ouvindo{
-    background:linear-gradient(145deg,#ff3155,#a90032);
-    border-color:#ff8b9e;
-    animation:ouvindo 1s infinite;
+.campo::placeholder{
+    color:#91aaa3;
 }
 
-@keyframes ouvindo{
-    50%{
-        box-shadow:0 0 45px #ff3155;
-        transform:scale(1.08);
-    }
+textarea.campo{
+    resize:vertical;
+    min-height:80px;
 }
 
-.voz-status{
-    font-size:13px;
-    min-height:25px;
-    color:#00d9ff;
-    margin-top:8px;
-}
-
-.transcricao{
-    display:none;
-    width:100%;
-    margin-top:12px;
-    padding:13px;
-    border-radius:12px;
-    background:#ffffff10;
-    border:1px solid #ffffff25;
-    color:white;
-    font-size:13px;
-    line-height:1.5;
-}
-
-.voz-ajuda{
-    margin-top:12px;
-    font-size:11px!important;
-    color:#8daebd!important;
-}
-
-/* PRODUTOS */
-
-.secao-titulo{
-    margin:25px 0 13px;
-    font-size:18px;
-}
+/* CATEGORIAS */
 
 .grid{
     display:grid;
@@ -279,45 +334,50 @@ h1{
 }
 
 .produto{
-    min-height:115px;
+    min-height:125px;
     border:1px solid #ffffff20;
-    border-radius:20px;
-    background:linear-gradient(145deg,#ffffff12,#ffffff05);
+    border-radius:21px;
+    background:linear-gradient(145deg,#ffffff13,#ffffff05);
     color:white;
-    padding:13px 8px;
+    padding:14px 8px;
     cursor:pointer;
     display:flex;
     flex-direction:column;
     align-items:center;
     justify-content:center;
-    gap:8px;
+    gap:9px;
     transition:.25s;
+    animation:entrada .6s ease;
 }
 
 .produto:active{
-    transform:scale(.93);
+    transform:scale(.91);
+    background:#25d36630;
 }
 
 .produto:hover{
     border-color:#25d366;
-    box-shadow:0 0 22px #25d36650;
+    box-shadow:0 0 22px #25d36640;
+    transform:translateY(-3px);
 }
 
 .emoji{
-    font-size:35px;
+    font-size:37px;
+    filter:drop-shadow(0 0 8px #ffffff40);
 }
 
 .produto strong{
-    font-size:14px;
+    font-size:13px;
 }
 
 .produto small{
-    color:#9dbbb4;
-    font-size:11px;
+    color:#a4c1b9;
+    font-size:10px;
 }
 
 .produto-especial{
     grid-column:span 2;
+    min-height:110px;
     background:linear-gradient(135deg,#173c56,#142b48);
     border:1px solid #00c8ff80;
 }
@@ -327,10 +387,11 @@ h1{
 .carrinho{
     margin-top:25px;
     padding:20px;
-    border-radius:22px;
+    border-radius:23px;
     background:linear-gradient(145deg,#102e2a,#071a25);
     border:1px solid #25d36670;
-    box-shadow:0 0 25px #25d36620;
+    box-shadow:0 0 25px #25d36625;
+    animation:entrada .5s ease;
 }
 
 .carrinho-topo{
@@ -341,28 +402,30 @@ h1{
 }
 
 .contador{
-    background:#25d366;
+    background:linear-gradient(135deg,#25d366,#00ff9d);
     color:#03150c;
-    font-weight:bold;
-    padding:8px 13px;
+    font-weight:900;
+    padding:9px 14px;
     border-radius:30px;
+    box-shadow:0 0 15px #25d36670;
 }
 
 .item{
-    padding:14px 0;
+    padding:15px 0;
     border-bottom:1px solid #ffffff18;
+    animation:entrada .3s ease;
 }
 
 .item-nome{
     font-size:14px;
     font-weight:bold;
-    margin-bottom:7px;
+    margin-bottom:8px;
 }
 
 .item-descricao{
     color:#a9c8bf;
     font-size:12px;
-    line-height:1.7;
+    line-height:1.8;
     margin-bottom:10px;
     overflow-wrap:anywhere;
 }
@@ -374,8 +437,8 @@ h1{
 
 .item-acoes button{
     border:0;
-    border-radius:9px;
-    padding:8px 12px;
+    border-radius:10px;
+    padding:9px 13px;
     font-weight:bold;
     cursor:pointer;
 }
@@ -393,25 +456,9 @@ h1{
 .vazio{
     text-align:center;
     color:#829e98;
-    padding:20px 0;
+    padding:22px 0;
     font-size:13px;
-    line-height:1.7;
-}
-
-.campo{
-    width:100%;
-    margin-top:13px;
-    padding:14px;
-    border-radius:12px;
-    border:1px solid #ffffff25;
-    background:#ffffff0b;
-    color:white;
-    outline:none;
-    font-size:14px;
-}
-
-.campo::placeholder{
-    color:#91aaa3;
+    line-height:1.8;
 }
 
 .botao-finalizar{
@@ -426,7 +473,11 @@ h1{
     background:linear-gradient(135deg,#25d366,#008f68);
     box-shadow:0 0 25px #25d36660;
     cursor:pointer;
-    animation:pulse 2s infinite;
+    animation:brilho 2s infinite;
+}
+
+.botao-finalizar:active{
+    transform:scale(.96);
 }
 
 .botao-finalizar:disabled{
@@ -434,20 +485,37 @@ h1{
     animation:none;
 }
 
+/* BOTÃO VOLTAR */
+
+.botao-voltar{
+    width:100%;
+    padding:14px;
+    margin-top:15px;
+    border:1px solid #ffffff30;
+    border-radius:13px;
+    background:#ffffff10;
+    color:white;
+    font-weight:bold;
+    cursor:pointer;
+}
+
+/* STATUS */
+
 .status{
     text-align:center;
     font-size:13px;
     margin-top:15px;
     color:#b9e9d7;
-    line-height:1.6;
+    line-height:1.7;
+    overflow-wrap:anywhere;
 }
 
 .rodape{
     text-align:center;
     font-size:11px;
     color:#78948d;
-    margin-top:25px;
-    line-height:1.8;
+    margin-top:28px;
+    line-height:1.9;
 }
 
 /* MODAL */
@@ -462,7 +530,7 @@ h1{
     z-index:100;
     padding:15px;
     overflow-y:auto;
-    backdrop-filter:blur(8px);
+    backdrop-filter:blur(10px);
 }
 
 .modal.ativo{
@@ -475,8 +543,10 @@ h1{
     padding:23px;
     background:linear-gradient(145deg,#102923,#071a25);
     border:1px solid #25d366;
-    border-radius:22px;
+    border-radius:23px;
     margin:auto;
+    box-shadow:0 0 40px #25d36630;
+    animation:entrada .3s ease;
 }
 
 .modal-caixa h2{
@@ -493,28 +563,23 @@ h1{
     color:#25d366;
 }
 
-.modal-caixa textarea{
-    resize:vertical;
-    min-height:75px;
-    font-family:Arial,sans-serif;
-}
-
 .botao-salvar{
     width:100%;
-    padding:16px;
+    padding:17px;
     border:0;
-    border-radius:13px;
+    border-radius:14px;
     margin-top:20px;
     background:linear-gradient(135deg,#25d366,#008f68);
     color:white;
     font-weight:900;
     font-size:15px;
     cursor:pointer;
+    box-shadow:0 0 20px #25d36640;
 }
 
 .botao-cancelar{
     width:100%;
-    padding:13px;
+    padding:14px;
     border:0;
     border-radius:12px;
     margin-top:9px;
@@ -545,17 +610,29 @@ h1{
     margin-top:12px;
 }
 
+.oculto{
+    display:none!important;
+}
+
 @media(max-width:350px){
+
     .grid{gap:8px}
-    .produto{min-height:105px}
+
+    .produto{min-height:110px}
+
     .modal-caixa{padding:17px}
+
+    h1{font-size:29px}
+
 }
 
 @media(prefers-reduced-motion:reduce){
+
     *,*::before,*::after{
         animation:none!important;
         transition:none!important;
     }
+
 }
 
 </style>
@@ -564,6 +641,8 @@ h1{
 <body>
 
 <div class="container">
+
+<!-- CABEÇALHO -->
 
 <header class="topo">
 
@@ -574,24 +653,28 @@ h1{
 <p class="sub">
 Seu comércio de bairro na palma da mão!
 <br>
-Escolha o serviço e resolva tudo pelo celular.
+Praticidade, rapidez e comodidade.
 </p>
 
+<div class="etiqueta">
+⚡ ATENDIMENTO PELO WHATSAPP
+</div>
+
 <div class="aviso">
-⚡ PEÇA PELO CELULAR<br>
-📍 RECEBA ONDE VOCÊ ESTIVER<br>
-🛵 CHAME SEU MOTOTÁXI
+🛵 CHAME SEU MOTOTÁXI<br>
+🛒 FAÇA SUAS COMPRAS<br>
+📍 RECEBA ONDE VOCÊ ESTIVER
 </div>
 
 </header>
 
 
-<!-- ESCOLHA DO SERVIÇO -->
+<!-- ESCOLHA INICIAL -->
 
 <section id="escolhaModo">
 
-<h2 class="secao-titulo" style="text-align:center">
-👋 COMO PODEMOS AJUDAR?
+<h2 class="secao-titulo">
+🔥 O QUE VOCÊ PRECISA HOJE?
 </h2>
 
 <div class="escolha-modo">
@@ -604,11 +687,16 @@ onclick="selecionarModo('viagem')">
 <strong>PRECISO APENAS DE UMA VIAGEM</strong>
 
 <small>
-Quero chamar um mototáxi para me levar
-ao meu destino.
+Quer ir a algum lugar?
+Solicite seu mototáxi em poucos segundos.
 </small>
 
+<span class="modo-seta">
+CHAMAR MOTOTÁXI →
+</span>
+
 </button>
+
 
 <button class="modo-card"
 onclick="selecionarModo('compras')">
@@ -618,9 +706,13 @@ onclick="selecionarModo('compras')">
 <strong>QUERO FAZER COMPRAS</strong>
 
 <small>
-Quero pedir produtos, montar minha lista
-e receber onde estiver.
+Escolha seus produtos, monte sua lista
+e receba onde estiver.
 </small>
+
+<span class="modo-seta">
+COMEÇAR COMPRAS →
+</span>
 
 </button>
 
@@ -629,21 +721,23 @@ e receber onde estiver.
 </section>
 
 
-<!-- ÁREA DE VIAGEM -->
+<!-- VIAGEM -->
 
 <section id="areaViagem" class="viagem-box oculto">
 
-<h2>🛵 CHAMAR MOTOTÁXI</h2>
+<div class="viagem-icone">🛵</div>
+
+<h2>CHAMAR MOTOTÁXI</h2>
 
 <p>
-Solicite uma viagem de maneira rápida.
-Informe seu destino e compartilhe sua localização.
+Só precisa de uma viagem? Sem complicação!
+Informe seu destino e envie sua localização.
 </p>
 
 <input
 class="campo"
 id="nomePassageiro"
-placeholder="Seu nome (opcional)"
+placeholder="👤 Seu nome (opcional)"
 maxlength="60"
 >
 
@@ -657,7 +751,7 @@ maxlength="200"
 <input
 class="campo"
 id="referenciaViagem"
-placeholder="Ponto de referência (opcional)"
+placeholder="🏠 Ponto de referência (opcional)"
 maxlength="150"
 >
 
@@ -673,60 +767,27 @@ onclick="finalizarViagem()">
 <div class="status" id="statusViagem"></div>
 
 <button class="botao-voltar" onclick="voltarEscolha()">
-↩ VOLTAR À TELA INICIAL
+↩ VOLTAR AO INÍCIO
 </button>
 
 </section>
 
 
-<!-- ASSISTENTE DE VOZ -->
+<!-- COMPRAS -->
 
-<section class="voz-box oculto" id="comprasVoz">
+<section id="areaCompras" class="oculto">
 
-<h2>🎤 FALE O QUE VOCÊ PRECISA!</h2>
-
-<p>
-Não quer digitar? Simplesmente aperte o microfone
-e fale sua lista de compras.
-</p>
-
-<button
-type="button"
-class="microfone"
-id="microfone"
-onclick="iniciarVoz()"
-aria-label="Falar lista de compras"
->
-🎤
-</button>
-
-<div class="voz-status" id="vozStatus">
-Toque no microfone para começar.
-</div>
-
-<p class="voz-ajuda">
-Exemplo: "Quero dois chocolates, uma Coca-Cola de dois litros e três águas."
-</p>
-
-<textarea
-class="transcricao"
-id="transcricao"
-rows="3"
-placeholder="O que você falou aparecerá aqui..."
-></textarea>
-
-<button class="botao-voltar" onclick="voltarEscolha()">
-↩ VOLTAR À TELA INICIAL
-</button>
-
-</section>
-
-
-<h2 class="secao-titulo oculto" id="tituloProdutos">
-🔥 O QUE VOCÊ PRECISA HOJE?
+<h2 class="secao-titulo">
+🛍️ ESCOLHA SEUS PRODUTOS
 </h2>
 
-<div class="grid oculto" id="gradeProdutos">
+<p style="text-align:center;color:#a9c8bf;font-size:12px;line-height:1.7;margin-bottom:18px">
+Toque em uma categoria para adicionar o que deseja.
+Detalhar os produtos é opcional!
+</p>
+
+
+<div class="grid">
 
 <button class="produto" onclick="abrirProduto('Água mineral','💧')">
 <span class="emoji">💧</span>
@@ -804,8 +865,10 @@ placeholder="O que você falou aparecerá aqui..."
 onclick="abrirProduto('Outro produto','📦')">
 
 <span class="emoji">➕</span>
+
 <strong>NÃO ENCONTREI O QUE QUERO</strong>
-<small>Peça qualquer produto</small>
+
+<small>Peça qualquer produto!</small>
 
 </button>
 
@@ -814,13 +877,15 @@ onclick="abrirProduto('Outro produto','📦')">
 
 <!-- CARRINHO -->
 
-<section class="carrinho oculto" id="areaCompras">
+<section class="carrinho">
 
 <div class="carrinho-topo">
 
-<h2>🛒 Seu carrinho</h2>
+<h2>🛒 MEU CARRINHO</h2>
 
-<span class="contador" id="contador">0 itens</span>
+<span class="contador" id="contador">
+0 itens
+</span>
 
 </div>
 
@@ -829,14 +894,14 @@ onclick="abrirProduto('Outro produto','📦')">
 <input
 class="campo"
 id="nomeCliente"
-placeholder="Seu nome (opcional)"
+placeholder="👤 Seu nome (opcional)"
 maxlength="60"
 >
 
 <input
 class="campo"
 id="endereco"
-placeholder="Complemento ou ponto de referência (opcional)"
+placeholder="🏠 Complemento ou ponto de referência"
 maxlength="150"
 >
 
@@ -851,31 +916,38 @@ onclick="finalizarPedido()">
 
 <div class="status" id="status"></div>
 
+</section>
+
 <button class="botao-voltar" onclick="voltarEscolha()">
-↩ VOLTAR À TELA INICIAL
+↩ VOLTAR AO INÍCIO
 </button>
 
 </section>
 
 
+<!-- RODAPÉ -->
+
 <div class="rodape">
-🛵 DAN EXPRESS 4.0<br>
-Seu pedido será enviado diretamente pelo WhatsApp.<br>
-Valores e disponibilidade serão confirmados no atendimento.
+🛵 DAN EXPRESS 5.0<br>
+Sua comodidade é nossa prioridade!<br>
+Pedidos enviados diretamente pelo WhatsApp.<br>
+Valores e disponibilidade sujeitos à confirmação.
 </div>
 
 </div>
 
 
-<!-- MODAL DE PRODUTO -->
+<!-- MODAL PRODUTO -->
 
 <div class="modal" id="modalProduto">
 
 <div class="modal-caixa">
 
-<h2 id="tituloModal">🛒 Personalizar produto</h2>
+<h2 id="tituloModal">
+🛒 PERSONALIZAR PRODUTO
+</h2>
 
-<p style="font-size:12px;color:#a9c8bf;margin-top:8px">
+<p style="font-size:12px;color:#a9c8bf;margin-top:8px;line-height:1.6">
 Quer detalhar? Ótimo! Mas não é obrigatório.
 Você pode adicionar rapidamente.
 </p>
@@ -900,7 +972,7 @@ placeholder="Ex.: Nestlé..."
 maxlength="80"
 >
 
-<label class="rotulo">TAMANHO OU PESO (OPCIONAL)</label>
+<label class="rotulo">TAMANHO OU PESO</label>
 
 <input
 class="campo"
@@ -920,12 +992,12 @@ max="999"
 value="1"
 >
 
-<label class="rotulo">OBSERVAÇÕES (OPCIONAL)</label>
+<label class="rotulo">OBSERVAÇÕES</label>
 
 <textarea
 class="campo"
 id="observacoes"
-placeholder="Alguma preferência?"
+placeholder="Alguma preferência? (opcional)"
 maxlength="300"
 ></textarea>
 
@@ -955,6 +1027,7 @@ VOLTAR
 </button>
 
 </div>
+
 </div>
 
 
@@ -978,10 +1051,6 @@ let proximoId = 1;
 
 let finalizando = false;
 
-let reconhecimento = null;
-
-let ouvindo = false;
-
 let solicitandoViagem = false;
 
 
@@ -989,21 +1058,21 @@ let solicitandoViagem = false;
 // ELEMENTOS
 // ======================================
 
-const modal = document.getElementById("modalProduto");
+const modal =
+document.getElementById("modalProduto");
 
-const lista = document.getElementById("lista");
+const lista =
+document.getElementById("lista");
 
-const statusEl = document.getElementById("status");
+const statusEl =
+document.getElementById("status");
 
-const botaoFinalizar = document.getElementById("finalizar");
-
-const vozStatus = document.getElementById("vozStatus");
-
-const microfone = document.getElementById("microfone");
+const botaoFinalizar =
+document.getElementById("finalizar");
 
 
 // ======================================
-// ESCOLHA DO SERVIÇO
+// ESCOLHER SERVIÇO
 // ======================================
 
 function selecionarModo(modo){
@@ -1012,15 +1081,6 @@ function selecionarModo(modo){
         .classList.add("oculto");
 
     document.getElementById("areaViagem")
-        .classList.add("oculto");
-
-    document.getElementById("comprasVoz")
-        .classList.add("oculto");
-
-    document.getElementById("tituloProdutos")
-        .classList.add("oculto");
-
-    document.getElementById("gradeProdutos")
         .classList.add("oculto");
 
     document.getElementById("areaCompras")
@@ -1034,15 +1094,6 @@ function selecionarModo(modo){
     }
 
     if(modo==="compras"){
-
-        document.getElementById("comprasVoz")
-            .classList.remove("oculto");
-
-        document.getElementById("tituloProdutos")
-            .classList.remove("oculto");
-
-        document.getElementById("gradeProdutos")
-            .classList.remove("oculto");
 
         document.getElementById("areaCompras")
             .classList.remove("oculto");
@@ -1058,27 +1109,12 @@ function selecionarModo(modo){
 
 
 // ======================================
-// VOLTAR À ESCOLHA
+// VOLTAR AO INÍCIO
 // ======================================
 
 function voltarEscolha(){
 
-    if(ouvindo && reconhecimento){
-
-        reconhecimento.stop();
-
-    }
-
     document.getElementById("areaViagem")
-        .classList.add("oculto");
-
-    document.getElementById("comprasVoz")
-        .classList.add("oculto");
-
-    document.getElementById("tituloProdutos")
-        .classList.add("oculto");
-
-    document.getElementById("gradeProdutos")
         .classList.add("oculto");
 
     document.getElementById("areaCompras")
@@ -1096,7 +1132,7 @@ function voltarEscolha(){
 
 
 // ======================================
-// SOLICITAR UMA VIAGEM
+// SOLICITAR VIAGEM
 // ======================================
 
 function finalizarViagem(){
@@ -1147,22 +1183,22 @@ function finalizarViagem(){
 
     }
 
-    solicitandoViagem = true;
+    solicitandoViagem=true;
 
-    botao.disabled = true;
+    botao.disabled=true;
 
-    botao.textContent = "📡 LOCALIZANDO VOCÊ...";
+    botao.textContent="📡 LOCALIZANDO VOCÊ...";
 
-    status.textContent =
+    status.textContent=
         "Aguarde! Estamos obtendo sua localização.";
 
     navigator.geolocation.getCurrentPosition(
 
         function(pos){
 
-            const lat = pos.coords.latitude;
+            const lat=pos.coords.latitude;
 
-            const lng = pos.coords.longitude;
+            const lng=pos.coords.longitude;
 
             if(!Number.isFinite(lat) ||
                !Number.isFinite(lng)){
@@ -1173,88 +1209,67 @@ function finalizarViagem(){
 
             }
 
-            const mapa =
+            const mapa=
                 "https://www.google.com/maps?q="+lat+","+lng;
 
-            let mensagem =
+            let mensagem=
                 "🛵 *SOLICITAÇÃO DE MOTOTÁXI — DAN EXPRESS*\n\n";
 
             if(nome){
 
-                mensagem +=
-                    "👤 *PASSAGEIRO:* "+nome+"\n\n";
+                mensagem+="👤 *PASSAGEIRO:* "+nome+"\n\n";
 
             }
 
-            mensagem +=
-                "📍 *DESTINO:* "+destino+"\n\n";
+            mensagem+="📍 *DESTINO:* "+destino+"\n\n";
 
-            mensagem +=
-                "🚩 *LOCAL DE EMBARQUE:*\n"+mapa+"\n\n";
+            mensagem+="🚩 *LOCAL DE EMBARQUE:*\n";
+            mensagem+=mapa+"\n\n";
 
             if(referencia){
 
-                mensagem +=
-                    "🏠 *REFERÊNCIA:* "+referencia+"\n\n";
+                mensagem+="🏠 *REFERÊNCIA:* "+referencia+"\n\n";
 
             }
 
-            mensagem +=
-                "🌎 *COORDENADAS DE EMBARQUE:*\n";
+            mensagem+="🌎 *COORDENADAS:*\n";
+            mensagem+="Latitude: "+lat+"\n";
+            mensagem+="Longitude: "+lng+"\n\n";
 
-            mensagem +=
-                "Latitude: "+lat+"\n";
-
-            mensagem +=
-                "Longitude: "+lng+"\n\n";
-
-            mensagem +=
+            mensagem+=
                 "Olá! Gostaria de solicitar apenas uma viagem de mototáxi. Aguardo confirmação de disponibilidade e valor.";
 
-            const url =
+            const url=
                 "https://wa.me/"+
                 WHATSAPP+
                 "?text="+encodeURIComponent(mensagem);
 
-            status.textContent =
-                "✅ Abrindo WhatsApp...";
+            status.textContent="✅ Abrindo WhatsApp...";
 
-            window.location.href = url;
+            window.location.href=url;
 
-            solicitandoViagem = false;
+            solicitandoViagem=false;
 
-            botao.disabled = false;
+            botao.disabled=false;
 
-            botao.textContent =
+            botao.textContent=
                 "📍 SOLICITAR MINHA VIAGEM";
 
         },
 
         function(erro){
 
-            let mensagem =
+            let mensagem=
                 "Não foi possível obter sua localização.";
 
-            if(erro.code===1){
+            if(erro.code===1)
+                mensagem="Permita o acesso à localização do celular.";
 
-                mensagem =
-                    "Permita o acesso à localização do celular.";
+            if(erro.code===2)
+                mensagem="GPS indisponível. Verifique sua localização.";
 
-            }
-
-            if(erro.code===2){
-
-                mensagem =
-                    "GPS indisponível. Verifique sua localização.";
-
-            }
-
-            if(erro.code===3){
-
-                mensagem =
-                    "Tempo esgotado. Tente novamente.";
-
-            }
+            if(erro.code===3)
+                mensagem="Tempo esgotado. Tente novamente.";
 
             erroViagem(mensagem);
 
@@ -1273,360 +1288,18 @@ function finalizarViagem(){
 
 function erroViagem(mensagem){
 
-    solicitandoViagem = false;
+    solicitandoViagem=false;
 
-    const botao =
+    const botao=
         document.getElementById("botaoViagem");
 
-    botao.disabled = false;
+    botao.disabled=false;
 
-    botao.textContent =
+    botao.textContent=
         "📍 SOLICITAR MINHA VIAGEM";
 
     document.getElementById("statusViagem")
-        .textContent = "⚠️ "+mensagem;
-
-}
-
-
-// ======================================
-// PEDIDO POR VOZ
-// ======================================
-
-function iniciarVoz(){
-
-    const SpeechRecognition =
-        window.SpeechRecognition ||
-        window.webkitSpeechRecognition;
-
-    if(!SpeechRecognition){
-
-        vozStatus.textContent =
-            "Seu navegador não suporta reconhecimento de voz. Você pode digitar normalmente.";
-
-        return;
-
-    }
-
-    if(ouvindo){
-
-        if(reconhecimento){
-
-            reconhecimento.stop();
-
-        }
-
-        return;
-
-    }
-
-    reconhecimento = new SpeechRecognition();
-
-    reconhecimento.lang = "pt-BR";
-
-    reconhecimento.continuous = false;
-
-    reconhecimento.interimResults = false;
-
-    reconhecimento.maxAlternatives = 1;
-
-    reconhecimento.onstart = function(){
-
-        ouvindo = true;
-
-        microfone.classList.add("ouvindo");
-
-        microfone.textContent = "🔴";
-
-        vozStatus.textContent =
-            "🎤 Estou ouvindo... Fale sua lista de compras.";
-
-        document.getElementById("transcricao").style.display =
-            "block";
-
-        document.getElementById("transcricao").value = "";
-
-    };
-
-    reconhecimento.onresult = function(event){
-
-        const fala =
-            event.results[0][0].transcript;
-
-        document.getElementById("transcricao").value =
-            fala;
-
-        vozStatus.textContent =
-            "🧠 Entendi sua solicitação! Organizando seu carrinho...";
-
-        processarVoz(fala);
-
-    };
-
-    reconhecimento.onerror = function(event){
-
-        const mensagens = {
-
-            "not-allowed":"Permita o acesso ao microfone.",
-
-            "no-speech":"Não consegui ouvir. Tente falar novamente.",
-
-            "network":"Falha de conexão no reconhecimento de voz.",
-
-            "audio-capture":"Microfone não encontrado."
-
-        };
-
-        vozStatus.textContent =
-            mensagens[event.error] ||
-            "Não foi possível reconhecer sua fala. Tente novamente.";
-
-    };
-
-    reconhecimento.onend = function(){
-
-        ouvindo = false;
-
-        microfone.classList.remove("ouvindo");
-
-        microfone.textContent = "🎤";
-
-    };
-
-    try{
-
-        reconhecimento.start();
-
-    }catch(erro){
-
-        ouvindo = false;
-
-        vozStatus.textContent =
-            "Não foi possível iniciar o microfone. Tente novamente.";
-
-    }
-
-}
-
-
-// ======================================
-// IDENTIFICAR CATEGORIA
-// ======================================
-
-function identificarCategoria(texto){
-
-    const t = texto.toLowerCase();
-
-    if(/cigarro|cigarros|tabaco/.test(t))
-        return ["Cigarro","🚬",true];
-
-    if(/cerveja|vinho|vodka|whisky|whiskey|cachaça|bebida alcoólica|bebidas alcoólicas/.test(t))
-        return ["Bebidas alcoólicas","🍺",true];
-
-    if(/água|mineral|galão/.test(t))
-        return ["Água mineral","💧",false];
-
-    if(/chocolate|bombom|doce|bala|kitkat|bis\b|trufa/.test(t))
-        return ["Doces e chocolates","🍫",false];
-
-    if(/refrigerante|coca|guaraná|fanta|pepsi|suco/.test(t))
-        return ["Refrigerantes e sucos","🥤",false];
-
-    if(/medicamento|remédio|farmácia|dipirona|paracetamol/.test(t))
-        return ["Medicamentos","💊",false];
-
-    if(/pão|pães|padaria/.test(t))
-        return ["Pães e padaria","🍞",false];
-
-    if(/carne|frango|bovina|linguiça|bisteca/.test(t))
-        return ["Carnes","🥩",false];
-
-    if(/gelo/.test(t))
-        return ["Gelo","🧊",false];
-
-    if(/sabonete|shampoo|creme dental|desodorante|higiene/.test(t))
-        return ["Higiene pessoal","🧴",false];
-
-    if(/detergente|sabão|limpeza|desinfetante|água sanitária/.test(t))
-        return ["Produtos de limpeza","🧹",false];
-
-    if(/mercado|supermercado|arroz|feijão|macarrão|açúcar|óleo/.test(t))
-        return ["Supermercado","🛒",false];
-
-    return ["Pedido por voz","📦",false];
-
-}
-
-
-// ======================================
-// EXTRAIR QUANTIDADE
-// ======================================
-
-function extrairQuantidade(texto){
-
-    const numeros = {
-
-        "um":1,
-        "uma":1,
-        "dois":2,
-        "duas":2,
-        "três":3,
-        "tres":3,
-        "quatro":4,
-        "cinco":5,
-        "seis":6,
-        "sete":7,
-        "oito":8,
-        "nove":9,
-        "dez":10
-
-    };
-
-    const regex =
-        /\b(um|uma|dois|duas|três|tres|quatro|cinco|seis|sete|oito|nove|dez|\d+)\b/i;
-
-    const resultado = texto.match(regex);
-
-    if(!resultado){
-
-        return {
-            quantidade:1,
-            texto:texto
-        };
-
-    }
-
-    const palavra = resultado[0].toLowerCase();
-
-    const quantidade =
-        numeros[palavra] || Number(palavra);
-
-    if(!Number.isInteger(quantidade) ||
-       quantidade < 1 ||
-       quantidade > 999){
-
-        return {
-            quantidade:1,
-            texto:texto
-        };
-
-    }
-
-    return {
-
-        quantidade,
-
-        texto:texto.replace(resultado[0],"").trim()
-
-    };
-
-}
-
-
-// ======================================
-// LIMPAR TEXTO FALADO
-// ======================================
-
-function limparFala(texto){
-
-    return texto
-
-        .replace(/^(por favor\s*)/i,"")
-
-        .replace(/^(eu quero|quero|preciso de|preciso|gostaria de|me vê|me veja|manda|traz|comprar|compra)\s+/i,"")
-
-        .replace(/^(um|uma|uns|umas)\s+/i,"")
-
-        .trim();
-
-}
-
-
-// ======================================
-// PROCESSAR PEDIDO POR VOZ
-// ======================================
-
-function processarVoz(fala){
-
-    let partes = fala
-
-        .replace(/[.!?]/g,",")
-        .split(/,|\s+e\s+/i)
-        .map(p=>p.trim())
-        .filter(p=>p.length>1);
-
-    let adicionados = 0;
-
-    partes.forEach(parte=>{
-
-        let texto = limparFala(parte);
-
-        if(!texto) return;
-
-        const resultado =
-            extrairQuantidade(texto);
-
-        const quantidade =
-            resultado.quantidade;
-
-        texto = limparFala(resultado.texto);
-
-        if(!texto) return;
-
-        const categoria =
-            identificarCategoria(texto);
-
-        if(categoria[2]){
-
-            vozStatus.textContent =
-                "⚠️ Produto restrito identificado. Adicione manualmente e confirme a idade.";
-
-            return;
-
-        }
-
-        const item = {
-
-            id:proximoId++,
-
-            categoria:categoria[0],
-
-            emoji:categoria[1],
-
-            descricao:texto,
-
-            marca:"",
-
-            tamanho:"",
-
-            quantidade:quantidade,
-
-            observacoes:"",
-
-            restrito:false
-
-        };
-
-        carrinho.push(item);
-
-        adicionados++;
-
-    });
-
-    atualizarCarrinho();
-
-    if(adicionados>0){
-
-        vozStatus.textContent =
-            "✅ "+adicionados+
-            " produto(s) identificado(s) e adicionado(s) ao carrinho! Confira sua lista abaixo.";
-
-    }else{
-
-        vozStatus.textContent =
-            "Não consegui identificar os produtos. Você pode corrigir a transcrição ou adicionar manualmente.";
-
-    }
+        .textContent="⚠️ "+mensagem;
 
 }
 
@@ -1637,27 +1310,32 @@ function processarVoz(fala){
 
 function abrirProduto(nome,emoji,restrito=false){
 
-    produtoAtual = {
+    produtoAtual={
         nome,
         emoji,
         restrito
     };
 
-    editandoId = null;
+    editandoId=null;
 
     limparFormulario();
 
-    document.getElementById("tituloModal").textContent =
+    document.getElementById("tituloModal").textContent=
         emoji+" "+nome;
 
-    document.getElementById("areaIdade").style.display =
-        restrito ? "block" : "none";
+    document.getElementById("areaIdade").style.display=
+        restrito?"block":"none";
 
-    document.getElementById("avisoLegal").textContent =
+    document.getElementById("avisoLegal").textContent=
+
         nome==="Medicamentos"
+
         ? "Medicamentos sujeitos a receita somente poderão ser fornecidos mediante apresentação e validação da prescrição, quando exigida. A venda depende de farmácia autorizada."
+
         : restrito
+
         ? "Produtos restritos exigem verificação documental de idade e cumprimento da legislação."
+
         : "Todos os campos de descrição são opcionais. Você pode adicionar rapidamente!";
 
     modal.classList.add("ativo");
@@ -1701,22 +1379,22 @@ function salvarProduto(){
 
     if(!produtoAtual) return;
 
-    const descricao =
+    const descricao=
         document.getElementById("descricao").value.trim();
 
-    const marca =
+    const marca=
         document.getElementById("marca").value.trim();
 
-    const tamanho =
+    const tamanho=
         document.getElementById("tamanho").value.trim();
 
-    const quantidade =
+    const quantidade=
         Number(document.getElementById("quantidade").value);
 
-    const observacoes =
+    const observacoes=
         document.getElementById("observacoes").value.trim();
 
-    const maioridade =
+    const maioridade=
         document.getElementById("maioridade").checked;
 
     if(!Number.isInteger(quantidade) ||
@@ -1737,7 +1415,7 @@ function salvarProduto(){
 
     }
 
-    const item = {
+    const item={
 
         id:editandoId || proximoId++,
 
@@ -1761,7 +1439,7 @@ function salvarProduto(){
 
     if(editandoId){
 
-        const indice = carrinho.findIndex(
+        const indice=carrinho.findIndex(
             p=>p.id===editandoId
         );
 
@@ -1785,18 +1463,18 @@ function salvarProduto(){
 
 
 // ======================================
-// EDITAR
+// EDITAR PRODUTO
 // ======================================
 
 function editarProduto(id){
 
-    const item = carrinho.find(
+    const item=carrinho.find(
         p=>p.id===id
     );
 
     if(!item) return;
 
-    produtoAtual = {
+    produtoAtual={
 
         nome:item.categoria,
 
@@ -1808,30 +1486,30 @@ function editarProduto(id){
 
     editandoId=id;
 
-    document.getElementById("tituloModal").textContent =
+    document.getElementById("tituloModal").textContent=
         "✏️ Editar produto";
 
-    document.getElementById("descricao").value =
+    document.getElementById("descricao").value=
         item.descricao;
 
-    document.getElementById("marca").value =
+    document.getElementById("marca").value=
         item.marca;
 
-    document.getElementById("tamanho").value =
+    document.getElementById("tamanho").value=
         item.tamanho;
 
-    document.getElementById("quantidade").value =
+    document.getElementById("quantidade").value=
         item.quantidade;
 
-    document.getElementById("observacoes").value =
+    document.getElementById("observacoes").value=
         item.observacoes;
 
-    document.getElementById("areaIdade").style.display =
-        item.restrito ? "block":"none";
+    document.getElementById("areaIdade").style.display=
+        item.restrito?"block":"none";
 
     document.getElementById("maioridade").checked=false;
 
-    document.getElementById("avisoLegal").textContent =
+    document.getElementById("avisoLegal").textContent=
         item.restrito
         ? "A venda depende de verificação documental."
         : "Todos os campos são opcionais.";
@@ -1842,7 +1520,7 @@ function editarProduto(id){
 
 
 // ======================================
-// EXCLUIR
+// EXCLUIR PRODUTO
 // ======================================
 
 function excluirProduto(id){
@@ -1940,7 +1618,7 @@ function atualizarCarrinho(){
         vazio.className="vazio";
 
         vazio.textContent=
-            "Seu carrinho está vazio. Escolha ou fale seus produtos!";
+            "🛒 Seu carrinho está vazio. Escolha seus produtos para começar!";
 
         lista.appendChild(vazio);
 
@@ -1950,7 +1628,7 @@ function atualizarCarrinho(){
 
 
 // ======================================
-// MENSAGEM WHATSAPP - COMPRAS
+// MENSAGEM WHATSAPP
 // ======================================
 
 function criarMensagem(lat,lng){
@@ -1965,7 +1643,7 @@ function criarMensagem(lat,lng){
         "https://www.google.com/maps?q="+lat+","+lng;
 
     let mensagem=
-        "🛵 *NOVO PEDIDO — DAN EXPRESS*\n\n";
+        "🛵 *NOVO PEDIDO — DAN EXPRESS 5.0*\n\n";
 
     if(nome){
 
@@ -2003,11 +1681,10 @@ function criarMensagem(lat,lng){
 
     }
 
-    mensagem+=
-        "📍 *LOCALIZAÇÃO DO CLIENTE*\n"+mapa+"\n\n";
+    mensagem+="📍 *LOCALIZAÇÃO DO CLIENTE*\n";
+    mensagem+=mapa+"\n\n";
 
     mensagem+="🌎 Latitude: "+lat+"\n";
-
     mensagem+="🌎 Longitude: "+lng+"\n\n";
 
     mensagem+=
@@ -2019,7 +1696,7 @@ function criarMensagem(lat,lng){
 
 
 // ======================================
-// FINALIZAR PEDIDO DE COMPRAS
+// FINALIZAR COMPRAS
 // ======================================
 
 function finalizarPedido(){
@@ -2071,9 +1748,7 @@ function finalizarPedido(){
             if(!Number.isFinite(lat) ||
                !Number.isFinite(lng)){
 
-                erroFinalizacao(
-                    "Localização inválida."
-                );
+                erroFinalizacao("Localização inválida.");
 
                 return;
 
