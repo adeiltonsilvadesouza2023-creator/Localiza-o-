@@ -1,883 +1,2159 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="theme-color" content="#061b17">
-
-    <meta name="description" content="Chame seu mototáxi rapidamente pelo WhatsApp, compartilhando sua localização.-----------------------Tenha 1000 Canais de TV em sua Smartv por Apenas R$100,00 Pagamento Único Parcele no Cartão em Até 3X">
-
-    <meta property="og:title" content="🛵 Chamar MotoUber Agora">
-    <meta property="og:description" content="Compartilhe sua localização com o MotoUber Dan e agilize sua corrida diretamente pelo WhatsApp!--------------------Tenha 1000 Canais de TV e Filmes em sua Smarttv ou TV Box por Apenas R$100,00 Pagamento Único Parcelamos em 3 vezes.">
-    <meta property="og:image" content="https://adeiltonsilvadesouza2023-creator.github.io/Localiza-o-/banner22.png">
-    <meta property="og:url" content="https://adeiltonsilvadesouza2023-creator.github.io/Localiza-o-/">
-    <meta property="og:type" content="website">
-
-    <title>🛵 Chamar MotoUber Dan Agora!</title>
-
-    <style>
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
-
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
-            min-height: 100vh;
-            min-height: 100dvh;
-            color: #ffffff;
-
-            background:
-                radial-gradient(circle at 20% 20%, rgba(37,211,102,0.20), transparent 30%),
-                radial-gradient(circle at 80% 80%, rgba(0,180,255,0.18), transparent 30%),
-                linear-gradient(135deg, #061b17, #071f2a, #03110e);
-
-            overflow-x: hidden;
-            padding: 25px 15px;
-
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        body::before,
-        body::after {
-            content: "";
-            position: fixed;
-            border-radius: 50%;
-            pointer-events: none;
-            z-index: 0;
-        }
-
-        body::before {
-            width: 350px;
-            height: 350px;
-            background: rgba(37,211,102,0.10);
-            filter: blur(60px);
-            top: -100px;
-            left: -100px;
-            animation: flutuar 8s ease-in-out infinite;
-        }
-
-        body::after {
-            width: 300px;
-            height: 300px;
-            background: rgba(0,200,255,0.10);
-            filter: blur(70px);
-            right: -100px;
-            bottom: -100px;
-            animation: flutuar2 10s ease-in-out infinite;
-        }
-
-        @keyframes flutuar {
-            0%, 100% {
-                transform: translate(0, 0);
-            }
-
-            50% {
-                transform: translate(80px, 50px);
-            }
-        }
-
-        @keyframes flutuar2 {
-            0%, 100% {
-                transform: translate(0, 0);
-            }
-
-            50% {
-                transform: translate(-60px, -50px);
-            }
-        }
-
-        .container {
-            position: relative;
-            z-index: 2;
-
-            width: 100%;
-            max-width: 420px;
-
-            padding: 32px 24px 28px;
-            border-radius: 28px;
-
-            background: rgba(255,255,255,0.075);
-            border: 1px solid rgba(255,255,255,0.15);
-
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-
-            box-shadow: 0 25px 70px rgba(0,0,0,0.45);
-
-            text-align: center;
-            animation: entrada 0.8s ease;
-        }
-
-        @keyframes entrada {
-            from {
-                opacity: 0;
-                transform: translateY(30px) scale(0.96);
-            }
-
-            to {
-                opacity: 1;
-                transform: translateY(0) scale(1);
-            }
-        }
-
-        .logo {
-            font-size: 64px;
-            display: inline-block;
-            animation: motoPulse 2.5s ease-in-out infinite;
-            margin-bottom: 8px;
-        }
-
-        @keyframes motoPulse {
-            0%, 100% {
-                transform: scale(1) rotate(0deg);
-            }
-
-            50% {
-                transform: scale(1.08) rotate(-3deg);
-            }
-        }
-
-        h1 {
-            font-size: 26px;
-            font-weight: 800;
-
-            background: linear-gradient(90deg, #ffffff, #25d366, #ffffff);
-            background-size: 200% auto;
-
-            -webkit-background-clip: text;
-            background-clip: text;
-            -webkit-text-fill-color: transparent;
-
-            animation: brilhoTexto 3s linear infinite;
-            margin-bottom: 8px;
-        }
-
-        @keyframes brilhoTexto {
-            to {
-                background-position: 200% center;
-            }
-        }
-
-        .subtitulo {
-            color: rgba(255,255,255,0.70);
-            font-size: 15px;
-            margin-bottom: 28px;
-            line-height: 1.5;
-        }
-
-        button {
-            position: relative;
-            overflow: hidden;
-
-            width: 100%;
-            padding: 20px 16px;
-
-            border: none;
-            border-radius: 18px;
-
-            cursor: pointer;
-            color: #ffffff;
-
-            font-size: 17px;
-            font-weight: 900;
-
-            background: linear-gradient(135deg, #25d366, #128c7e);
-
-            box-shadow: 0 10px 30px rgba(37,211,102,0.35);
-
-            animation: botaoPulse 2s ease-in-out infinite;
-            transition: box-shadow 0.2s, opacity 0.2s;
-        }
-
-        @keyframes botaoPulse {
-            0%, 100% {
-                transform: scale(1);
-            }
-
-            50% {
-                transform: scale(1.025);
-            }
-        }
-
-        button:hover {
-            box-shadow: 0 15px 40px rgba(37,211,102,0.55);
-        }
-
-        button:active {
-            transform: scale(0.97);
-        }
-
-        button:disabled {
-            opacity: 0.70;
-            cursor: wait;
-            animation: none;
-        }
-
-        button::after {
-            content: "";
-            position: absolute;
-            top: 0;
-            left: -120%;
-
-            width: 70px;
-            height: 100%;
-
-            background: rgba(255,255,255,0.30);
-            transform: skewX(-20deg);
-
-            animation: botaoBrilho 3s infinite;
-            pointer-events: none;
-        }
-
-        button:disabled::after {
-            animation: none;
-        }
-
-        @keyframes botaoBrilho {
-            0% {
-                left: -120%;
-            }
-
-            45%, 100% {
-                left: 140%;
-            }
-        }
-
-        #status {
-            min-height: 28px;
-            margin-top: 20px;
-
-            font-size: 14px;
-            line-height: 1.6;
-
-            color: rgba(255,255,255,0.85);
-            overflow-wrap: anywhere;
-        }
-
-        .rodape {
-            margin-top: 22px;
-            font-size: 12px;
-            line-height: 1.5;
-            color: rgba(255,255,255,0.50);
-        }
-
-        /* Banner de localização */
-
-        .banner-localizacao {
-            position: fixed;
-            inset: 0;
-            z-index: 99999;
-
-            display: none;
-            align-items: center;
-            justify-content: center;
-
-            padding: 18px;
-
-            background: rgba(0,0,0,0.88);
-
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-
-            overflow-y: auto;
-        }
-
-        .banner-localizacao.ativo {
-            display: flex;
-            animation: bannerEntrada 0.35s ease;
-        }
-
-        @keyframes bannerEntrada {
-            from {
-                opacity: 0;
-            }
-
-            to {
-                opacity: 1;
-            }
-        }
-
-        .banner-caixa {
-            width: 100%;
-            max-width: 400px;
-
-            padding: 30px 22px;
-            border-radius: 28px;
-
-            text-align: center;
-
-            background: linear-gradient(145deg, #071f18, #092b26, #06151c);
-
-            border: 2px solid rgba(37,211,102,0.65);
-
-            box-shadow:
-                0 0 35px rgba(37,211,102,0.30),
-                0 25px 80px rgba(0,0,0,0.80);
-
-            animation: caixaGPS 0.5s ease;
-
-            margin: auto;
-        }
-
-        @keyframes caixaGPS {
-            from {
-                transform: scale(0.85) translateY(30px);
-                opacity: 0;
-            }
-
-            to {
-                transform: scale(1) translateY(0);
-                opacity: 1;
-            }
-        }
-
-        .banner-icone {
-            font-size: 65px;
-            margin-bottom: 12px;
-            animation: gpsGigante 1.3s ease-in-out infinite;
-        }
-
-        @keyframes gpsGigante {
-            0%, 100% {
-                transform: scale(1) translateY(0);
-            }
-
-            50% {
-                transform: scale(1.10) translateY(-5px);
-            }
-        }
-
-        .banner-titulo {
-            font-size: 25px;
-            font-weight: 900;
-            color: #ffffff;
-            margin-bottom: 12px;
-            line-height: 1.2;
-        }
-
-        .banner-destaque {
-            display: inline-block;
-            padding: 9px 16px;
-
-            border-radius: 999px;
-
-            font-size: 13px;
-            font-weight: 900;
-            color: #ffffff;
-
-            background: linear-gradient(135deg, #d62828, #a4161a);
-
-            box-shadow: 0 8px 25px rgba(214,40,40,0.35);
-
-            animation: alertaGPS 1s ease-in-out infinite;
-            margin-bottom: 18px;
-        }
-
-        @keyframes alertaGPS {
-            0%, 100% {
-                transform: scale(1);
-            }
-
-            50% {
-                transform: scale(1.04);
-            }
-        }
-
-        .banner-texto {
-            font-size: 15px;
-            line-height: 1.6;
-
-            color: rgba(255,255,255,0.85);
-            margin-bottom: 20px;
-        }
-
-        .banner-texto strong {
-            color: #25d366;
-        }
-
-        .banner-passos {
-            padding: 16px;
-            border-radius: 16px;
-
-            text-align: left;
-
-            background: rgba(255,255,255,0.07);
-            border: 1px solid rgba(255,255,255,0.12);
-
-            font-size: 14px;
-            line-height: 1.9;
-
-            color: rgba(255,255,255,0.90);
-            margin-bottom: 22px;
-        }
-
-        .banner-botao {
-            width: 100%;
-            padding: 18px 12px;
-
-            font-size: 15px;
-            font-weight: 900;
-
-            color: #ffffff;
-
-            background: linear-gradient(135deg, #25d366, #128c7e);
-
-            border: none;
-            border-radius: 16px;
-
-            box-shadow: 0 10px 35px rgba(37,211,102,0.40);
-
-            cursor: pointer;
-            animation: none;
-        }
-
-        .banner-ajuda {
-            margin-top: 14px;
-
-            font-size: 12px;
-            line-height: 1.6;
-
-            color: rgba(255,255,255,0.60);
-        }
-
-        .banner-ajuda strong {
-            color: #ffffff;
-        }
-
-        button:focus-visible {
-            outline: 3px solid #ffffff;
-            outline-offset: 4px;
-        }
-
-        @media (max-width: 360px) {
-            .container {
-                padding: 26px 18px;
-            }
-
-            h1 {
-                font-size: 23px;
-            }
-
-            button {
-                font-size: 15px;
-            }
-
-            .banner-caixa {
-                padding: 24px 17px;
-            }
-        }
-
-        @media (prefers-reduced-motion: reduce) {
-            *,
-            *::before,
-            *::after {
-                animation-duration: 0.01ms !important;
-                animation-iteration-count: 1 !important;
-                scroll-behavior: auto !important;
-            }
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#061b17">
+
+<title>🛵 DAN EXPRESS 4.0</title>
+
+<style>
+
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+}
+
+body{
+    font-family:Arial,sans-serif;
+    background:
+    radial-gradient(circle at 20% 10%,#123e35,transparent 35%),
+    radial-gradient(circle at 90% 80%,#092d50,transparent 40%),
+    linear-gradient(135deg,#030b12,#071b20,#03110e);
+    color:white;
+    min-height:100vh;
+    padding:15px 12px 40px;
+}
+
+.container{
+    max-width:480px;
+    margin:auto;
+}
+
+.topo{
+    text-align:center;
+    padding:25px 15px;
+    border:1px solid #ffffff20;
+    border-radius:25px;
+    background:#ffffff0b;
+    backdrop-filter:blur(15px);
+    box-shadow:0 0 35px #00ff8830;
+}
+
+.logo{
+    font-size:58px;
+    animation:pulse 2s infinite;
+}
+
+@keyframes pulse{
+    50%{transform:scale(1.09)}
+}
+
+h1{
+    font-size:29px;
+    background:linear-gradient(90deg,#fff,#25ff9b,#00c8ff);
+    background-clip:text;
+    -webkit-background-clip:text;
+    color:transparent;
+    margin:10px 0;
+}
+
+.sub{
+    color:#b7d7d0;
+    font-size:13px;
+    line-height:1.6;
+}
+
+.aviso{
+    margin-top:16px;
+    background:#25d36618;
+    border:1px solid #25d36655;
+    padding:13px;
+    border-radius:13px;
+    font-size:12px;
+    line-height:1.7;
+}
+
+/* ESCOLHA INICIAL */
+
+.escolha-modo{
+    margin-top:22px;
+    display:grid;
+    grid-template-columns:1fr;
+    gap:15px;
+}
+
+.modo-card{
+    width:100%;
+    padding:23px 15px;
+    border-radius:22px;
+    border:1px solid #ffffff30;
+    color:white;
+    cursor:pointer;
+    text-align:center;
+    transition:.3s;
+    background:linear-gradient(145deg,#123d35,#09251f);
+    box-shadow:0 0 22px #25d36620;
+}
+
+.modo-card:active{
+    transform:scale(.96);
+}
+
+.modo-card.viagem{
+    background:linear-gradient(145deg,#123b58,#091b35);
+    border:1px solid #00c8ff80;
+    box-shadow:0 0 25px #00c8ff30;
+}
+
+.modo-emoji{
+    font-size:48px;
+    display:block;
+    margin-bottom:12px;
+}
+
+.modo-card strong{
+    display:block;
+    font-size:18px;
+    margin-bottom:8px;
+}
+
+.modo-card small{
+    color:#b9d8d3;
+    font-size:12px;
+    line-height:1.6;
+}
+
+/* VIAGEM */
+
+.viagem-box{
+    margin-top:22px;
+    padding:22px 17px;
+    border-radius:22px;
+    background:linear-gradient(145deg,#102d40,#101d35);
+    border:1px solid #00c8ff70;
+    box-shadow:0 0 25px #00c8ff20;
+}
+
+.viagem-box h2{
+    margin-bottom:10px;
+    font-size:21px;
+}
+
+.viagem-box p{
+    font-size:13px;
+    color:#a9c8d7;
+    line-height:1.6;
+}
+
+.botao-viagem{
+    width:100%;
+    padding:18px;
+    margin-top:18px;
+    border:0;
+    border-radius:15px;
+    background:linear-gradient(135deg,#00c8ff,#006eaa);
+    color:white;
+    font-size:16px;
+    font-weight:900;
+    cursor:pointer;
+    box-shadow:0 0 25px #00c8ff50;
+}
+
+.botao-viagem:disabled{
+    opacity:.6;
+}
+
+.botao-voltar{
+    width:100%;
+    padding:13px;
+    margin-top:15px;
+    border:1px solid #ffffff30;
+    border-radius:12px;
+    background:#ffffff12;
+    color:white;
+    font-weight:bold;
+    cursor:pointer;
+}
+
+.oculto{
+    display:none!important;
+}
+
+/* VOZ */
+
+.voz-box{
+    margin-top:22px;
+    padding:22px 16px;
+    border-radius:22px;
+    text-align:center;
+    background:linear-gradient(145deg,#102d40,#101d35);
+    border:1px solid #00c8ff70;
+    box-shadow:0 0 25px #00c8ff20;
+}
+
+.voz-box h2{
+    font-size:19px;
+    margin-bottom:8px;
+}
+
+.voz-box p{
+    font-size:12px;
+    color:#a9c8d7;
+    line-height:1.6;
+}
+
+.microfone{
+    width:85px;
+    height:85px;
+    border-radius:50%;
+    border:3px solid #00d9ff;
+    background:linear-gradient(145deg,#006e91,#00364f);
+    color:white;
+    font-size:36px;
+    margin:18px auto 12px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    cursor:pointer;
+    box-shadow:0 0 25px #00c8ff60;
+    transition:.3s;
+}
+
+.microfone:active{
+    transform:scale(.90);
+}
+
+.microfone.ouvindo{
+    background:linear-gradient(145deg,#ff3155,#a90032);
+    border-color:#ff8b9e;
+    animation:ouvindo 1s infinite;
+}
+
+@keyframes ouvindo{
+    50%{
+        box-shadow:0 0 45px #ff3155;
+        transform:scale(1.08);
+    }
+}
+
+.voz-status{
+    font-size:13px;
+    min-height:25px;
+    color:#00d9ff;
+    margin-top:8px;
+}
+
+.transcricao{
+    display:none;
+    width:100%;
+    margin-top:12px;
+    padding:13px;
+    border-radius:12px;
+    background:#ffffff10;
+    border:1px solid #ffffff25;
+    color:white;
+    font-size:13px;
+    line-height:1.5;
+}
+
+.voz-ajuda{
+    margin-top:12px;
+    font-size:11px!important;
+    color:#8daebd!important;
+}
+
+/* PRODUTOS */
+
+.secao-titulo{
+    margin:25px 0 13px;
+    font-size:18px;
+}
+
+.grid{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:12px;
+}
+
+.produto{
+    min-height:115px;
+    border:1px solid #ffffff20;
+    border-radius:20px;
+    background:linear-gradient(145deg,#ffffff12,#ffffff05);
+    color:white;
+    padding:13px 8px;
+    cursor:pointer;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    gap:8px;
+    transition:.25s;
+}
+
+.produto:active{
+    transform:scale(.93);
+}
+
+.produto:hover{
+    border-color:#25d366;
+    box-shadow:0 0 22px #25d36650;
+}
+
+.emoji{
+    font-size:35px;
+}
+
+.produto strong{
+    font-size:14px;
+}
+
+.produto small{
+    color:#9dbbb4;
+    font-size:11px;
+}
+
+.produto-especial{
+    grid-column:span 2;
+    background:linear-gradient(135deg,#173c56,#142b48);
+    border:1px solid #00c8ff80;
+}
+
+/* CARRINHO */
+
+.carrinho{
+    margin-top:25px;
+    padding:20px;
+    border-radius:22px;
+    background:linear-gradient(145deg,#102e2a,#071a25);
+    border:1px solid #25d36670;
+    box-shadow:0 0 25px #25d36620;
+}
+
+.carrinho-topo{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:15px;
+}
+
+.contador{
+    background:#25d366;
+    color:#03150c;
+    font-weight:bold;
+    padding:8px 13px;
+    border-radius:30px;
+}
+
+.item{
+    padding:14px 0;
+    border-bottom:1px solid #ffffff18;
+}
+
+.item-nome{
+    font-size:14px;
+    font-weight:bold;
+    margin-bottom:7px;
+}
+
+.item-descricao{
+    color:#a9c8bf;
+    font-size:12px;
+    line-height:1.7;
+    margin-bottom:10px;
+    overflow-wrap:anywhere;
+}
+
+.item-acoes{
+    display:flex;
+    gap:8px;
+}
+
+.item-acoes button{
+    border:0;
+    border-radius:9px;
+    padding:8px 12px;
+    font-weight:bold;
+    cursor:pointer;
+}
+
+.editar{
+    background:#00c8ff;
+    color:#00151d;
+}
+
+.excluir{
+    background:#ff4757;
+    color:white;
+}
+
+.vazio{
+    text-align:center;
+    color:#829e98;
+    padding:20px 0;
+    font-size:13px;
+    line-height:1.7;
+}
+
+.campo{
+    width:100%;
+    margin-top:13px;
+    padding:14px;
+    border-radius:12px;
+    border:1px solid #ffffff25;
+    background:#ffffff0b;
+    color:white;
+    outline:none;
+    font-size:14px;
+}
+
+.campo::placeholder{
+    color:#91aaa3;
+}
+
+.botao-finalizar{
+    margin-top:20px;
+    width:100%;
+    padding:19px;
+    border:0;
+    border-radius:16px;
+    color:white;
+    font-weight:900;
+    font-size:16px;
+    background:linear-gradient(135deg,#25d366,#008f68);
+    box-shadow:0 0 25px #25d36660;
+    cursor:pointer;
+    animation:pulse 2s infinite;
+}
+
+.botao-finalizar:disabled{
+    opacity:.6;
+    animation:none;
+}
+
+.status{
+    text-align:center;
+    font-size:13px;
+    margin-top:15px;
+    color:#b9e9d7;
+    line-height:1.6;
+}
+
+.rodape{
+    text-align:center;
+    font-size:11px;
+    color:#78948d;
+    margin-top:25px;
+    line-height:1.8;
+}
+
+/* MODAL */
+
+.modal{
+    position:fixed;
+    inset:0;
+    background:#000e;
+    display:none;
+    justify-content:center;
+    align-items:center;
+    z-index:100;
+    padding:15px;
+    overflow-y:auto;
+    backdrop-filter:blur(8px);
+}
+
+.modal.ativo{
+    display:flex;
+}
+
+.modal-caixa{
+    max-width:420px;
+    width:100%;
+    padding:23px;
+    background:linear-gradient(145deg,#102923,#071a25);
+    border:1px solid #25d366;
+    border-radius:22px;
+    margin:auto;
+}
+
+.modal-caixa h2{
+    font-size:21px;
+    margin-bottom:8px;
+}
+
+.rotulo{
+    display:block;
+    margin-top:14px;
+    margin-bottom:6px;
+    font-size:12px;
+    font-weight:bold;
+    color:#25d366;
+}
+
+.modal-caixa textarea{
+    resize:vertical;
+    min-height:75px;
+    font-family:Arial,sans-serif;
+}
+
+.botao-salvar{
+    width:100%;
+    padding:16px;
+    border:0;
+    border-radius:13px;
+    margin-top:20px;
+    background:linear-gradient(135deg,#25d366,#008f68);
+    color:white;
+    font-weight:900;
+    font-size:15px;
+    cursor:pointer;
+}
+
+.botao-cancelar{
+    width:100%;
+    padding:13px;
+    border:0;
+    border-radius:12px;
+    margin-top:9px;
+    background:#344b46;
+    color:white;
+    cursor:pointer;
+}
+
+.checkbox{
+    display:flex;
+    align-items:flex-start;
+    gap:10px;
+    margin-top:16px;
+    font-size:12px;
+    line-height:1.5;
+}
+
+.checkbox input{
+    width:19px;
+    height:19px;
+    accent-color:#25d366;
+}
+
+.legal{
+    font-size:11px;
+    color:#a9c8bf;
+    line-height:1.6;
+    margin-top:12px;
+}
+
+@media(max-width:350px){
+    .grid{gap:8px}
+    .produto{min-height:105px}
+    .modal-caixa{padding:17px}
+}
+
+@media(prefers-reduced-motion:reduce){
+    *,*::before,*::after{
+        animation:none!important;
+        transition:none!important;
+    }
+}
+
+</style>
 </head>
 
 <body>
 
-    <!-- Banner de localização -->
+<div class="container">
 
-    <div
-        id="bannerLocalizacao"
-        class="banner-localizacao"
-        role="dialog"
-        aria-modal="true"
-        aria-labelledby="bannerTitulo"
-        aria-describedby="bannerTexto"
-    >
-        <div class="banner-caixa">
+<header class="topo">
 
-            <div class="banner-icone" aria-hidden="true">📍</div>
+<div class="logo">🛵</div>
 
-            <div class="banner-titulo" id="bannerTitulo">
-                ATIVE SUA LOCALIZAÇÃO
-            </div>
+<h1>DAN EXPRESS</h1>
 
-            <div class="banner-destaque" id="bannerDestaque">
-                ⚠️ LOCALIZAÇÃO INDISPONÍVEL
-            </div>
+<p class="sub">
+Seu comércio de bairro na palma da mão!
+<br>
+Escolha o serviço e resolva tudo pelo celular.
+</p>
 
-            <div class="banner-texto" id="bannerTexto">
-                Para pedir o mototáxi, precisamos obter sua localização.
+<div class="aviso">
+⚡ PEÇA PELO CELULAR<br>
+📍 RECEBA ONDE VOCÊ ESTIVER<br>
+🛵 CHAME SEU MOTOTÁXI
+</div>
 
-                <br><br>
+</header>
 
-                <strong>
-                    Verifique se a localização do celular está ativada
-                    e se o navegador tem permissão para acessá-la.
-                </strong>
-            </div>
 
-            <div class="banner-passos">
-                1️⃣ Abra as configurações rápidas do celular.<br>
-                2️⃣ Ative <strong>Localização / GPS</strong>.<br>
-                3️⃣ Confira a permissão de localização do navegador.<br>
-                4️⃣ Volte para esta página e tente novamente.
-            </div>
+<!-- ESCOLHA DO SERVIÇO -->
 
-            <button
-                type="button"
-                class="banner-botao"
-                onclick="tentarNovamente()"
-            >
-                📍 JÁ VERIFIQUEI — TENTAR NOVAMENTE
-            </button>
+<section id="escolhaModo">
 
-            <div class="banner-ajuda">
-                Se o navegador perguntar se pode acessar sua localização,
-                toque em <strong>Permitir</strong>.
-            </div>
+<h2 class="secao-titulo" style="text-align:center">
+👋 COMO PODEMOS AJUDAR?
+</h2>
 
-        </div>
-    </div>
+<div class="escolha-modo">
 
-    <!-- Conteúdo principal -->
+<button class="modo-card viagem"
+onclick="selecionarModo('viagem')">
 
-    <main class="container">
+<span class="modo-emoji">🛵</span>
 
-        <div class="logo" aria-hidden="true">🏍️</div>
+<strong>PRECISO APENAS DE UMA VIAGEM</strong>
 
-        <h1>Chamar Mototáxi</h1>
+<small>
+Quero chamar um mototáxi para me levar
+ao meu destino.
+</small>
 
-        <p class="subtitulo">
-            Toque no botão e enviaremos sua localização diretamente
-            pelo WhatsApp ⚡
-        </p>
+</button>
 
-        <button
-            id="botao"
-            type="button"
-            onclick="pegarLocalizacao()"
-        >
-            📍 Pedir Mototáxi Dan agora com minha localização
-        </button>
+<button class="modo-card"
+onclick="selecionarModo('compras')">
 
-        <p
-            id="status"
-            role="status"
-            aria-live="polite"
-        ></p>
+<span class="modo-emoji">🛒</span>
 
-        <div class="rodape">
-            🔒 Sua localização é utilizada para agilizar sua corrida.
-        </div>
+<strong>QUERO FAZER COMPRAS</strong>
 
-    </main>
+<small>
+Quero pedir produtos, montar minha lista
+e receber onde estiver.
+</small>
 
-    <script>
-        "use strict";
+</button>
 
-        // ==========================================
-        // CONFIGURAÇÃO
-        // ==========================================
+</div>
 
-        const SEU_WHATSAPP = "5581985269588";
+</section>
 
-        const TEXTO_BOTAO =
-            "📍 Pedir Mototáxi agora com minha localização";
 
-        const botao = document.getElementById("botao");
-        const statusEl = document.getElementById("status");
-        const banner = document.getElementById("bannerLocalizacao");
-        const bannerDestaque = document.getElementById("bannerDestaque");
+<!-- ÁREA DE VIAGEM -->
 
-        let solicitacaoEmAndamento = false;
+<section id="areaViagem" class="viagem-box oculto">
 
-        // ==========================================
-        // INTERFACE
-        // ==========================================
+<h2>🛵 CHAMAR MOTOTÁXI</h2>
 
-        function mostrarStatus(msg) {
-            statusEl.innerHTML = msg;
-        }
+<p>
+Solicite uma viagem de maneira rápida.
+Informe seu destino e compartilhe sua localização.
+</p>
 
-        function esconderBanner() {
-            banner.classList.remove("ativo");
-        }
+<input
+class="campo"
+id="nomePassageiro"
+placeholder="Seu nome (opcional)"
+maxlength="60"
+>
 
-        function mostrarBanner(tipo) {
-            if (tipo === "permissao") {
-                bannerDestaque.textContent =
-                    "⚠️ PERMISSÃO DE LOCALIZAÇÃO NEGADA";
-            } else {
-                bannerDestaque.textContent =
-                    "⚠️ LOCALIZAÇÃO INDISPONÍVEL";
+<input
+class="campo"
+id="destinoPassageiro"
+placeholder="📍 Para onde deseja ir?"
+maxlength="200"
+>
+
+<input
+class="campo"
+id="referenciaViagem"
+placeholder="Ponto de referência (opcional)"
+maxlength="150"
+>
+
+<button
+class="botao-viagem"
+id="botaoViagem"
+onclick="finalizarViagem()">
+
+📍 SOLICITAR MINHA VIAGEM
+
+</button>
+
+<div class="status" id="statusViagem"></div>
+
+<button class="botao-voltar" onclick="voltarEscolha()">
+↩ VOLTAR À TELA INICIAL
+</button>
+
+</section>
+
+
+<!-- ASSISTENTE DE VOZ -->
+
+<section class="voz-box oculto" id="comprasVoz">
+
+<h2>🎤 FALE O QUE VOCÊ PRECISA!</h2>
+
+<p>
+Não quer digitar? Simplesmente aperte o microfone
+e fale sua lista de compras.
+</p>
+
+<button
+type="button"
+class="microfone"
+id="microfone"
+onclick="iniciarVoz()"
+aria-label="Falar lista de compras"
+>
+🎤
+</button>
+
+<div class="voz-status" id="vozStatus">
+Toque no microfone para começar.
+</div>
+
+<p class="voz-ajuda">
+Exemplo: "Quero dois chocolates, uma Coca-Cola de dois litros e três águas."
+</p>
+
+<textarea
+class="transcricao"
+id="transcricao"
+rows="3"
+placeholder="O que você falou aparecerá aqui..."
+></textarea>
+
+<button class="botao-voltar" onclick="voltarEscolha()">
+↩ VOLTAR À TELA INICIAL
+</button>
+
+</section>
+
+
+<h2 class="secao-titulo oculto" id="tituloProdutos">
+🔥 O QUE VOCÊ PRECISA HOJE?
+</h2>
+
+<div class="grid oculto" id="gradeProdutos">
+
+<button class="produto" onclick="abrirProduto('Água mineral','💧')">
+<span class="emoji">💧</span>
+<strong>Água mineral</strong>
+<small>Garrafas e galões</small>
+</button>
+
+<button class="produto" onclick="abrirProduto('Medicamentos','💊')">
+<span class="emoji">💊</span>
+<strong>Medicamentos</strong>
+<small>Consulte disponibilidade</small>
+</button>
+
+<button class="produto" onclick="abrirProduto('Cigarro','🚬',true)">
+<span class="emoji">🚬</span>
+<strong>Cigarro</strong>
+<small>Restrito a maiores de 18</small>
+</button>
+
+<button class="produto" onclick="abrirProduto('Refrigerantes e sucos','🥤')">
+<span class="emoji">🥤</span>
+<strong>Refrigerantes</strong>
+<small>Sucos e bebidas</small>
+</button>
+
+<button class="produto" onclick="abrirProduto('Bebidas alcoólicas','🍺',true)">
+<span class="emoji">🍺</span>
+<strong>Bebidas alcoólicas</strong>
+<small>Restrito a maiores de 18</small>
+</button>
+
+<button class="produto" onclick="abrirProduto('Pães e padaria','🍞')">
+<span class="emoji">🍞</span>
+<strong>Pães</strong>
+<small>Padaria</small>
+</button>
+
+<button class="produto" onclick="abrirProduto('Carnes','🥩')">
+<span class="emoji">🥩</span>
+<strong>Carnes</strong>
+<small>Açougue</small>
+</button>
+
+<button class="produto" onclick="abrirProduto('Gelo','🧊')">
+<span class="emoji">🧊</span>
+<strong>Gelo</strong>
+<small>Pacotes de gelo</small>
+</button>
+
+<button class="produto" onclick="abrirProduto('Doces e chocolates','🍫')">
+<span class="emoji">🍫</span>
+<strong>Doces e chocolates</strong>
+<small>Chocolates e guloseimas</small>
+</button>
+
+<button class="produto" onclick="abrirProduto('Higiene pessoal','🧴')">
+<span class="emoji">🧴</span>
+<strong>Higiene</strong>
+<small>Produtos pessoais</small>
+</button>
+
+<button class="produto" onclick="abrirProduto('Produtos de limpeza','🧹')">
+<span class="emoji">🧹</span>
+<strong>Limpeza</strong>
+<small>Produtos para casa</small>
+</button>
+
+<button class="produto" onclick="abrirProduto('Supermercado','🛒')">
+<span class="emoji">🛒</span>
+<strong>Supermercado</strong>
+<small>Compras variadas</small>
+</button>
+
+<button class="produto produto-especial"
+onclick="abrirProduto('Outro produto','📦')">
+
+<span class="emoji">➕</span>
+<strong>NÃO ENCONTREI O QUE QUERO</strong>
+<small>Peça qualquer produto</small>
+
+</button>
+
+</div>
+
+
+<!-- CARRINHO -->
+
+<section class="carrinho oculto" id="areaCompras">
+
+<div class="carrinho-topo">
+
+<h2>🛒 Seu carrinho</h2>
+
+<span class="contador" id="contador">0 itens</span>
+
+</div>
+
+<div id="lista"></div>
+
+<input
+class="campo"
+id="nomeCliente"
+placeholder="Seu nome (opcional)"
+maxlength="60"
+>
+
+<input
+class="campo"
+id="endereco"
+placeholder="Complemento ou ponto de referência (opcional)"
+maxlength="150"
+>
+
+<button
+class="botao-finalizar"
+id="finalizar"
+onclick="finalizarPedido()">
+
+📍 FINALIZAR E ENVIAR PEDIDO
+
+</button>
+
+<div class="status" id="status"></div>
+
+<button class="botao-voltar" onclick="voltarEscolha()">
+↩ VOLTAR À TELA INICIAL
+</button>
+
+</section>
+
+
+<div class="rodape">
+🛵 DAN EXPRESS 4.0<br>
+Seu pedido será enviado diretamente pelo WhatsApp.<br>
+Valores e disponibilidade serão confirmados no atendimento.
+</div>
+
+</div>
+
+
+<!-- MODAL DE PRODUTO -->
+
+<div class="modal" id="modalProduto">
+
+<div class="modal-caixa">
+
+<h2 id="tituloModal">🛒 Personalizar produto</h2>
+
+<p style="font-size:12px;color:#a9c8bf;margin-top:8px">
+Quer detalhar? Ótimo! Mas não é obrigatório.
+Você pode adicionar rapidamente.
+</p>
+
+<label class="rotulo">
+QUAL PRODUTO DESEJA?
+</label>
+
+<input
+class="campo"
+id="descricao"
+placeholder="Ex.: KitKat branco (opcional)"
+maxlength="150"
+>
+
+<label class="rotulo">MARCA (OPCIONAL)</label>
+
+<input
+class="campo"
+id="marca"
+placeholder="Ex.: Nestlé..."
+maxlength="80"
+>
+
+<label class="rotulo">TAMANHO OU PESO (OPCIONAL)</label>
+
+<input
+class="campo"
+id="tamanho"
+placeholder="Ex.: 100g, 2 litros..."
+maxlength="80"
+>
+
+<label class="rotulo">QUANTIDADE</label>
+
+<input
+class="campo"
+id="quantidade"
+type="number"
+min="1"
+max="999"
+value="1"
+>
+
+<label class="rotulo">OBSERVAÇÕES (OPCIONAL)</label>
+
+<textarea
+class="campo"
+id="observacoes"
+placeholder="Alguma preferência?"
+maxlength="300"
+></textarea>
+
+<div id="areaIdade" style="display:none">
+
+<label class="checkbox">
+
+<input type="checkbox" id="maioridade">
+
+<span>
+Confirmo que tenho 18 anos ou mais.
+A venda depende de verificação documental.
+</span>
+
+</label>
+
+</div>
+
+<p class="legal" id="avisoLegal"></p>
+
+<button class="botao-salvar" onclick="salvarProduto()">
+✅ ADICIONAR AO CARRINHO
+</button>
+
+<button class="botao-cancelar" onclick="fecharModal()">
+VOLTAR
+</button>
+
+</div>
+</div>
+
+
+<script>
+
+"use strict";
+
+// ======================================
+// CONFIGURAÇÕES
+// ======================================
+
+const WHATSAPP = "5581985269588";
+
+let carrinho = [];
+
+let produtoAtual = null;
+
+let editandoId = null;
+
+let proximoId = 1;
+
+let finalizando = false;
+
+let reconhecimento = null;
+
+let ouvindo = false;
+
+let solicitandoViagem = false;
+
+
+// ======================================
+// ELEMENTOS
+// ======================================
+
+const modal = document.getElementById("modalProduto");
+
+const lista = document.getElementById("lista");
+
+const statusEl = document.getElementById("status");
+
+const botaoFinalizar = document.getElementById("finalizar");
+
+const vozStatus = document.getElementById("vozStatus");
+
+const microfone = document.getElementById("microfone");
+
+
+// ======================================
+// ESCOLHA DO SERVIÇO
+// ======================================
+
+function selecionarModo(modo){
+
+    document.getElementById("escolhaModo")
+        .classList.add("oculto");
+
+    document.getElementById("areaViagem")
+        .classList.add("oculto");
+
+    document.getElementById("comprasVoz")
+        .classList.add("oculto");
+
+    document.getElementById("tituloProdutos")
+        .classList.add("oculto");
+
+    document.getElementById("gradeProdutos")
+        .classList.add("oculto");
+
+    document.getElementById("areaCompras")
+        .classList.add("oculto");
+
+    if(modo==="viagem"){
+
+        document.getElementById("areaViagem")
+            .classList.remove("oculto");
+
+    }
+
+    if(modo==="compras"){
+
+        document.getElementById("comprasVoz")
+            .classList.remove("oculto");
+
+        document.getElementById("tituloProdutos")
+            .classList.remove("oculto");
+
+        document.getElementById("gradeProdutos")
+            .classList.remove("oculto");
+
+        document.getElementById("areaCompras")
+            .classList.remove("oculto");
+
+    }
+
+    window.scrollTo({
+        top:0,
+        behavior:"smooth"
+    });
+
+}
+
+
+// ======================================
+// VOLTAR À ESCOLHA
+// ======================================
+
+function voltarEscolha(){
+
+    if(ouvindo && reconhecimento){
+
+        reconhecimento.stop();
+
+    }
+
+    document.getElementById("areaViagem")
+        .classList.add("oculto");
+
+    document.getElementById("comprasVoz")
+        .classList.add("oculto");
+
+    document.getElementById("tituloProdutos")
+        .classList.add("oculto");
+
+    document.getElementById("gradeProdutos")
+        .classList.add("oculto");
+
+    document.getElementById("areaCompras")
+        .classList.add("oculto");
+
+    document.getElementById("escolhaModo")
+        .classList.remove("oculto");
+
+    window.scrollTo({
+        top:0,
+        behavior:"smooth"
+    });
+
+}
+
+
+// ======================================
+// SOLICITAR UMA VIAGEM
+// ======================================
+
+function finalizarViagem(){
+
+    if(solicitandoViagem) return;
+
+    const destino =
+        document.getElementById("destinoPassageiro")
+        .value.trim();
+
+    const nome =
+        document.getElementById("nomePassageiro")
+        .value.trim();
+
+    const referencia =
+        document.getElementById("referenciaViagem")
+        .value.trim();
+
+    const status =
+        document.getElementById("statusViagem");
+
+    const botao =
+        document.getElementById("botaoViagem");
+
+    if(!destino){
+
+        alert("Informe para onde deseja ir.");
+
+        document.getElementById("destinoPassageiro").focus();
+
+        return;
+
+    }
+
+    if(!navigator.geolocation){
+
+        alert("Seu navegador não suporta GPS.");
+
+        return;
+
+    }
+
+    if(!window.isSecureContext){
+
+        alert("A localização exige uma conexão HTTPS.");
+
+        return;
+
+    }
+
+    solicitandoViagem = true;
+
+    botao.disabled = true;
+
+    botao.textContent = "📡 LOCALIZANDO VOCÊ...";
+
+    status.textContent =
+        "Aguarde! Estamos obtendo sua localização.";
+
+    navigator.geolocation.getCurrentPosition(
+
+        function(pos){
+
+            const lat = pos.coords.latitude;
+
+            const lng = pos.coords.longitude;
+
+            if(!Number.isFinite(lat) ||
+               !Number.isFinite(lng)){
+
+                erroViagem("Localização inválida.");
+
+                return;
+
             }
 
-            banner.classList.add("ativo");
-        }
-
-        function restaurarBotao() {
-            solicitacaoEmAndamento = false;
-            botao.disabled = false;
-            botao.textContent = TEXTO_BOTAO;
-        }
-
-        // ==========================================
-        // TENTAR NOVAMENTE
-        // ==========================================
-
-        function tentarNovamente() {
-            esconderBanner();
-
-            mostrarStatus(
-                "📡 Tentando obter sua localização novamente..."
-            );
-
-            setTimeout(function () {
-                pegarLocalizacao();
-            }, 300);
-        }
-
-        // ==========================================
-        // PREPARAR A MENSAGEM
-        // ==========================================
-
-        function criarMensagem(lat, lng, precisao) {
-            const coordenadas = lat + "," + lng;
-
-            const mapaURL =
-                "https://www.google.com/maps?q=" +
-                encodeURIComponent(coordenadas);
+            const mapa =
+                "https://www.google.com/maps?q="+lat+","+lng;
 
             let mensagem =
-                "🛵 NOVO PEDIDO DE MOTOTÁXI\n\n" +
-                "📍 LOCALIZAÇÃO:\n" +
-                mapaURL +
-                "\n\n" +
-                "🌎 Latitude: " + lat + "\n" +
-                "🌎 Longitude: " + lng;
+                "🛵 *SOLICITAÇÃO DE MOTOTÁXI — DAN EXPRESS*\n\n";
 
-            if (precisao > 0) {
+            if(nome){
+
                 mensagem +=
-                    "\n📡 Precisão aproximada: " +
-                    precisao +
-                    " metros";
+                    "👤 *PASSAGEIRO:* "+nome+"\n\n";
+
             }
 
-            return mensagem;
+            mensagem +=
+                "📍 *DESTINO:* "+destino+"\n\n";
+
+            mensagem +=
+                "🚩 *LOCAL DE EMBARQUE:*\n"+mapa+"\n\n";
+
+            if(referencia){
+
+                mensagem +=
+                    "🏠 *REFERÊNCIA:* "+referencia+"\n\n";
+
+            }
+
+            mensagem +=
+                "🌎 *COORDENADAS DE EMBARQUE:*\n";
+
+            mensagem +=
+                "Latitude: "+lat+"\n";
+
+            mensagem +=
+                "Longitude: "+lng+"\n\n";
+
+            mensagem +=
+                "Olá! Gostaria de solicitar apenas uma viagem de mototáxi. Aguardo confirmação de disponibilidade e valor.";
+
+            const url =
+                "https://wa.me/"+
+                WHATSAPP+
+                "?text="+encodeURIComponent(mensagem);
+
+            status.textContent =
+                "✅ Abrindo WhatsApp...";
+
+            window.location.href = url;
+
+            solicitandoViagem = false;
+
+            botao.disabled = false;
+
+            botao.textContent =
+                "📍 SOLICITAR MINHA VIAGEM";
+
+        },
+
+        function(erro){
+
+            let mensagem =
+                "Não foi possível obter sua localização.";
+
+            if(erro.code===1){
+
+                mensagem =
+                    "Permita o acesso à localização do celular.";
+
+            }
+
+            if(erro.code===2){
+
+                mensagem =
+                    "GPS indisponível. Verifique sua localização.";
+
+            }
+
+            if(erro.code===3){
+
+                mensagem =
+                    "Tempo esgotado. Tente novamente.";
+
+            }
+
+            erroViagem(mensagem);
+
+        },
+
+        {
+            enableHighAccuracy:true,
+            timeout:25000,
+            maximumAge:0
         }
 
-        // ==========================================
-        // ABRIR O WHATSAPP
-        // ==========================================
+    );
 
-        function abrirWhatsApp(lat, lng, precisao) {
-            const mensagem = criarMensagem(
-                lat,
-                lng,
-                precisao
-            );
+}
 
-            const parametros = new URLSearchParams();
 
-            parametros.set("text", mensagem);
+function erroViagem(mensagem){
 
-            const whatsappURL =
-                "https://wa.me/" +
-                SEU_WHATSAPP +
-                "?" +
-                parametros.toString();
+    solicitandoViagem = false;
 
-            mostrarStatus(
-                "✅ Localização encontrada!" +
-                "<br>📲 Abrindo o WhatsApp..."
-            );
+    const botao =
+        document.getElementById("botaoViagem");
 
-            /*
-             * A navegação é iniciada após a localização ser obtida.
-             * Dependendo do navegador, o usuário poderá precisar
-             * confirmar a abertura do WhatsApp.
-             */
+    botao.disabled = false;
 
-            window.location.href = whatsappURL;
+    botao.textContent =
+        "📍 SOLICITAR MINHA VIAGEM";
+
+    document.getElementById("statusViagem")
+        .textContent = "⚠️ "+mensagem;
+
+}
+
+
+// ======================================
+// PEDIDO POR VOZ
+// ======================================
+
+function iniciarVoz(){
+
+    const SpeechRecognition =
+        window.SpeechRecognition ||
+        window.webkitSpeechRecognition;
+
+    if(!SpeechRecognition){
+
+        vozStatus.textContent =
+            "Seu navegador não suporta reconhecimento de voz. Você pode digitar normalmente.";
+
+        return;
+
+    }
+
+    if(ouvindo){
+
+        if(reconhecimento){
+
+            reconhecimento.stop();
+
         }
 
-        // ==========================================
-        // TRATAR ERROS
-        // ==========================================
+        return;
 
-        function tratarErroLocalizacao(erro) {
-            restaurarBotao();
+    }
 
-            switch (erro.code) {
+    reconhecimento = new SpeechRecognition();
 
-                case 1:
-                    mostrarStatus(
-                        "📍 Permissão de localização negada." +
-                        "<br>Permita o acesso à localização nas " +
-                        "configurações do navegador."
-                    );
+    reconhecimento.lang = "pt-BR";
 
-                    mostrarBanner("permissao");
-                    break;
+    reconhecimento.continuous = false;
 
-                case 2:
-                    mostrarStatus(
-                        "📡 Não foi possível determinar sua localização." +
-                        "<br>Verifique se o GPS está ativado e tente novamente."
-                    );
+    reconhecimento.interimResults = false;
 
-                    mostrarBanner("indisponivel");
-                    break;
+    reconhecimento.maxAlternatives = 1;
 
-                case 3:
-                    mostrarStatus(
-                        "⏱️ O tempo para localizar você terminou." +
-                        "<br>Tente novamente em um local com melhor recepção."
-                    );
-                    break;
+    reconhecimento.onstart = function(){
 
-                default:
-                    mostrarStatus(
-                        "❌ Ocorreu um erro ao obter sua localização." +
-                        "<br>Tente novamente."
-                    );
-            }
+        ouvindo = true;
+
+        microfone.classList.add("ouvindo");
+
+        microfone.textContent = "🔴";
+
+        vozStatus.textContent =
+            "🎤 Estou ouvindo... Fale sua lista de compras.";
+
+        document.getElementById("transcricao").style.display =
+            "block";
+
+        document.getElementById("transcricao").value = "";
+
+    };
+
+    reconhecimento.onresult = function(event){
+
+        const fala =
+            event.results[0][0].transcript;
+
+        document.getElementById("transcricao").value =
+            fala;
+
+        vozStatus.textContent =
+            "🧠 Entendi sua solicitação! Organizando seu carrinho...";
+
+        processarVoz(fala);
+
+    };
+
+    reconhecimento.onerror = function(event){
+
+        const mensagens = {
+
+            "not-allowed":"Permita o acesso ao microfone.",
+
+            "no-speech":"Não consegui ouvir. Tente falar novamente.",
+
+            "network":"Falha de conexão no reconhecimento de voz.",
+
+            "audio-capture":"Microfone não encontrado."
+
+        };
+
+        vozStatus.textContent =
+            mensagens[event.error] ||
+            "Não foi possível reconhecer sua fala. Tente novamente.";
+
+    };
+
+    reconhecimento.onend = function(){
+
+        ouvindo = false;
+
+        microfone.classList.remove("ouvindo");
+
+        microfone.textContent = "🎤";
+
+    };
+
+    try{
+
+        reconhecimento.start();
+
+    }catch(erro){
+
+        ouvindo = false;
+
+        vozStatus.textContent =
+            "Não foi possível iniciar o microfone. Tente novamente.";
+
+    }
+
+}
+
+
+// ======================================
+// IDENTIFICAR CATEGORIA
+// ======================================
+
+function identificarCategoria(texto){
+
+    const t = texto.toLowerCase();
+
+    if(/cigarro|cigarros|tabaco/.test(t))
+        return ["Cigarro","🚬",true];
+
+    if(/cerveja|vinho|vodka|whisky|whiskey|cachaça|bebida alcoólica|bebidas alcoólicas/.test(t))
+        return ["Bebidas alcoólicas","🍺",true];
+
+    if(/água|mineral|galão/.test(t))
+        return ["Água mineral","💧",false];
+
+    if(/chocolate|bombom|doce|bala|kitkat|bis\b|trufa/.test(t))
+        return ["Doces e chocolates","🍫",false];
+
+    if(/refrigerante|coca|guaraná|fanta|pepsi|suco/.test(t))
+        return ["Refrigerantes e sucos","🥤",false];
+
+    if(/medicamento|remédio|farmácia|dipirona|paracetamol/.test(t))
+        return ["Medicamentos","💊",false];
+
+    if(/pão|pães|padaria/.test(t))
+        return ["Pães e padaria","🍞",false];
+
+    if(/carne|frango|bovina|linguiça|bisteca/.test(t))
+        return ["Carnes","🥩",false];
+
+    if(/gelo/.test(t))
+        return ["Gelo","🧊",false];
+
+    if(/sabonete|shampoo|creme dental|desodorante|higiene/.test(t))
+        return ["Higiene pessoal","🧴",false];
+
+    if(/detergente|sabão|limpeza|desinfetante|água sanitária/.test(t))
+        return ["Produtos de limpeza","🧹",false];
+
+    if(/mercado|supermercado|arroz|feijão|macarrão|açúcar|óleo/.test(t))
+        return ["Supermercado","🛒",false];
+
+    return ["Pedido por voz","📦",false];
+
+}
+
+
+// ======================================
+// EXTRAIR QUANTIDADE
+// ======================================
+
+function extrairQuantidade(texto){
+
+    const numeros = {
+
+        "um":1,
+        "uma":1,
+        "dois":2,
+        "duas":2,
+        "três":3,
+        "tres":3,
+        "quatro":4,
+        "cinco":5,
+        "seis":6,
+        "sete":7,
+        "oito":8,
+        "nove":9,
+        "dez":10
+
+    };
+
+    const regex =
+        /\b(um|uma|dois|duas|três|tres|quatro|cinco|seis|sete|oito|nove|dez|\d+)\b/i;
+
+    const resultado = texto.match(regex);
+
+    if(!resultado){
+
+        return {
+            quantidade:1,
+            texto:texto
+        };
+
+    }
+
+    const palavra = resultado[0].toLowerCase();
+
+    const quantidade =
+        numeros[palavra] || Number(palavra);
+
+    if(!Number.isInteger(quantidade) ||
+       quantidade < 1 ||
+       quantidade > 999){
+
+        return {
+            quantidade:1,
+            texto:texto
+        };
+
+    }
+
+    return {
+
+        quantidade,
+
+        texto:texto.replace(resultado[0],"").trim()
+
+    };
+
+}
+
+
+// ======================================
+// LIMPAR TEXTO FALADO
+// ======================================
+
+function limparFala(texto){
+
+    return texto
+
+        .replace(/^(por favor\s*)/i,"")
+
+        .replace(/^(eu quero|quero|preciso de|preciso|gostaria de|me vê|me veja|manda|traz|comprar|compra)\s+/i,"")
+
+        .replace(/^(um|uma|uns|umas)\s+/i,"")
+
+        .trim();
+
+}
+
+
+// ======================================
+// PROCESSAR PEDIDO POR VOZ
+// ======================================
+
+function processarVoz(fala){
+
+    let partes = fala
+
+        .replace(/[.!?]/g,",")
+        .split(/,|\s+e\s+/i)
+        .map(p=>p.trim())
+        .filter(p=>p.length>1);
+
+    let adicionados = 0;
+
+    partes.forEach(parte=>{
+
+        let texto = limparFala(parte);
+
+        if(!texto) return;
+
+        const resultado =
+            extrairQuantidade(texto);
+
+        const quantidade =
+            resultado.quantidade;
+
+        texto = limparFala(resultado.texto);
+
+        if(!texto) return;
+
+        const categoria =
+            identificarCategoria(texto);
+
+        if(categoria[2]){
+
+            vozStatus.textContent =
+                "⚠️ Produto restrito identificado. Adicione manualmente e confirme a idade.";
+
+            return;
+
         }
 
-        // ==========================================
-        // FUNÇÃO PRINCIPAL
-        // ==========================================
+        const item = {
 
-        function pegarLocalizacao() {
+            id:proximoId++,
 
-            // Impede chamadas simultâneas.
+            categoria:categoria[0],
 
-            if (solicitacaoEmAndamento) {
-                return;
-            }
+            emoji:categoria[1],
 
-            esconderBanner();
+            descricao:texto,
 
-            // Verifica suporte à geolocalização.
+            marca:"",
 
-            if (!navigator.geolocation) {
-                mostrarStatus(
-                    "❌ Seu navegador não oferece suporte à localização."
-                );
+            tamanho:"",
 
-                mostrarBanner("indisponivel");
-                return;
-            }
+            quantidade:quantidade,
 
-            // A geolocalização exige contexto seguro.
+            observacoes:"",
 
-            if (!window.isSecureContext) {
-                mostrarStatus(
-                    "🔒 A localização exige uma conexão HTTPS." +
-                    "<br>Abra a página pelo endereço seguro do site."
-                );
+            restrito:false
 
-                return;
-            }
+        };
 
-            // Verifica se o número foi configurado.
+        carrinho.push(item);
 
-            if (!/^\d{10,15}$/.test(SEU_WHATSAPP)) {
-                mostrarStatus(
-                    "❌ O número do WhatsApp está configurado incorretamente."
-                );
+        adicionados++;
 
-                return;
-            }
+    });
 
-            solicitacaoEmAndamento = true;
+    atualizarCarrinho();
 
-            botao.disabled = true;
-            botao.textContent = "📡 LOCALIZANDO VOCÊ...";
+    if(adicionados>0){
 
-            mostrarStatus(
-                "📡 Obtendo sua localização..." +
-                "<br>Aguarde alguns instantes."
-            );
+        vozStatus.textContent =
+            "✅ "+adicionados+
+            " produto(s) identificado(s) e adicionado(s) ao carrinho! Confira sua lista abaixo.";
 
-            try {
+    }else{
 
-                navigator.geolocation.getCurrentPosition(
+        vozStatus.textContent =
+            "Não consegui identificar os produtos. Você pode corrigir a transcrição ou adicionar manualmente.";
 
-                    function (pos) {
+    }
 
-                        try {
-                            const lat = pos.coords.latitude;
-                            const lng = pos.coords.longitude;
+}
 
-                            const precisao = Math.round(
-                                pos.coords.accuracy || 0
-                            );
 
-                            // Confirma que as coordenadas são válidas.
+// ======================================
+// ABRIR PRODUTO
+// ======================================
 
-                            if (
-                                !Number.isFinite(lat) ||
-                                !Number.isFinite(lng) ||
-                                lat < -90 ||
-                                lat > 90 ||
-                                lng < -180 ||
-                                lng > 180
-                            ) {
-                                throw new Error(
-                                    "Coordenadas inválidas."
-                                );
-                            }
+function abrirProduto(nome,emoji,restrito=false){
 
-                            abrirWhatsApp(
-                                lat,
-                                lng,
-                                precisao
-                            );
+    produtoAtual = {
+        nome,
+        emoji,
+        restrito
+    };
 
-                        } catch (erro) {
-                            console.error(
-                                "Erro ao preparar o pedido:",
-                                erro
-                            );
+    editandoId = null;
 
-                            restaurarBotao();
+    limparFormulario();
 
-                            mostrarStatus(
-                                "❌ Não foi possível preparar a mensagem." +
-                                "<br>Tente novamente."
-                            );
-                        }
-                    },
+    document.getElementById("tituloModal").textContent =
+        emoji+" "+nome;
 
-                    function (erro) {
-                        tratarErroLocalizacao(erro);
-                    },
+    document.getElementById("areaIdade").style.display =
+        restrito ? "block" : "none";
 
-                    {
-                        enableHighAccuracy: true,
-                        timeout: 25000,
-                        maximumAge: 0
-                    }
-                );
+    document.getElementById("avisoLegal").textContent =
+        nome==="Medicamentos"
+        ? "Medicamentos sujeitos a receita somente poderão ser fornecidos mediante apresentação e validação da prescrição, quando exigida. A venda depende de farmácia autorizada."
+        : restrito
+        ? "Produtos restritos exigem verificação documental de idade e cumprimento da legislação."
+        : "Todos os campos de descrição são opcionais. Você pode adicionar rapidamente!";
 
-            } catch (erro) {
-                console.error(
-                    "Erro ao solicitar localização:",
-                    erro
-                );
+    modal.classList.add("ativo");
 
-                restaurarBotao();
+}
 
-                mostrarStatus(
-                    "❌ Não foi possível iniciar a localização." +
-                    "<br>Verifique as permissões do navegador."
-                );
-            }
+
+function limparFormulario(){
+
+    document.getElementById("descricao").value="";
+
+    document.getElementById("marca").value="";
+
+    document.getElementById("tamanho").value="";
+
+    document.getElementById("quantidade").value=1;
+
+    document.getElementById("observacoes").value="";
+
+    document.getElementById("maioridade").checked=false;
+
+}
+
+
+function fecharModal(){
+
+    modal.classList.remove("ativo");
+
+    produtoAtual=null;
+
+    editandoId=null;
+
+}
+
+
+// ======================================
+// SALVAR PRODUTO
+// ======================================
+
+function salvarProduto(){
+
+    if(!produtoAtual) return;
+
+    const descricao =
+        document.getElementById("descricao").value.trim();
+
+    const marca =
+        document.getElementById("marca").value.trim();
+
+    const tamanho =
+        document.getElementById("tamanho").value.trim();
+
+    const quantidade =
+        Number(document.getElementById("quantidade").value);
+
+    const observacoes =
+        document.getElementById("observacoes").value.trim();
+
+    const maioridade =
+        document.getElementById("maioridade").checked;
+
+    if(!Number.isInteger(quantidade) ||
+       quantidade<1 ||
+       quantidade>999){
+
+        alert("Informe uma quantidade válida.");
+
+        return;
+
+    }
+
+    if(produtoAtual.restrito && !maioridade){
+
+        alert("Confirme sua maioridade para continuar.");
+
+        return;
+
+    }
+
+    const item = {
+
+        id:editandoId || proximoId++,
+
+        categoria:produtoAtual.nome,
+
+        emoji:produtoAtual.emoji,
+
+        descricao:descricao || produtoAtual.nome,
+
+        marca,
+
+        tamanho,
+
+        quantidade,
+
+        observacoes,
+
+        restrito:produtoAtual.restrito
+
+    };
+
+    if(editandoId){
+
+        const indice = carrinho.findIndex(
+            p=>p.id===editandoId
+        );
+
+        if(indice!==-1){
+
+            carrinho[indice]=item;
+
         }
-    </script>
+
+    }else{
+
+        carrinho.push(item);
+
+    }
+
+    atualizarCarrinho();
+
+    fecharModal();
+
+}
+
+
+// ======================================
+// EDITAR
+// ======================================
+
+function editarProduto(id){
+
+    const item = carrinho.find(
+        p=>p.id===id
+    );
+
+    if(!item) return;
+
+    produtoAtual = {
+
+        nome:item.categoria,
+
+        emoji:item.emoji,
+
+        restrito:item.restrito
+
+    };
+
+    editandoId=id;
+
+    document.getElementById("tituloModal").textContent =
+        "✏️ Editar produto";
+
+    document.getElementById("descricao").value =
+        item.descricao;
+
+    document.getElementById("marca").value =
+        item.marca;
+
+    document.getElementById("tamanho").value =
+        item.tamanho;
+
+    document.getElementById("quantidade").value =
+        item.quantidade;
+
+    document.getElementById("observacoes").value =
+        item.observacoes;
+
+    document.getElementById("areaIdade").style.display =
+        item.restrito ? "block":"none";
+
+    document.getElementById("maioridade").checked=false;
+
+    document.getElementById("avisoLegal").textContent =
+        item.restrito
+        ? "A venda depende de verificação documental."
+        : "Todos os campos são opcionais.";
+
+    modal.classList.add("ativo");
+
+}
+
+
+// ======================================
+// EXCLUIR
+// ======================================
+
+function excluirProduto(id){
+
+    carrinho=carrinho.filter(
+        p=>p.id!==id
+    );
+
+    atualizarCarrinho();
+
+}
+
+
+// ======================================
+// ATUALIZAR CARRINHO
+// ======================================
+
+function atualizarCarrinho(){
+
+    lista.replaceChildren();
+
+    let total=0;
+
+    carrinho.forEach(item=>{
+
+        total+=item.quantidade;
+
+        const div=document.createElement("div");
+
+        div.className="item";
+
+        const nome=document.createElement("div");
+
+        nome.className="item-nome";
+
+        nome.textContent=
+            item.emoji+" "+item.categoria;
+
+        const descricao=document.createElement("div");
+
+        descricao.className="item-descricao";
+
+        const detalhes=[];
+
+        detalhes.push("Produto: "+item.descricao);
+
+        detalhes.push("Quantidade: "+item.quantidade);
+
+        if(item.marca)
+            detalhes.push("Marca: "+item.marca);
+
+        if(item.tamanho)
+            detalhes.push("Tamanho: "+item.tamanho);
+
+        if(item.observacoes)
+            detalhes.push("Observações: "+item.observacoes);
+
+        descricao.textContent=detalhes.join(" | ");
+
+        const acoes=document.createElement("div");
+
+        acoes.className="item-acoes";
+
+        const editar=document.createElement("button");
+
+        editar.className="editar";
+
+        editar.textContent="✏️ Editar";
+
+        editar.onclick=()=>editarProduto(item.id);
+
+        const excluir=document.createElement("button");
+
+        excluir.className="excluir";
+
+        excluir.textContent="🗑 Excluir";
+
+        excluir.onclick=()=>excluirProduto(item.id);
+
+        acoes.append(editar,excluir);
+
+        div.append(nome,descricao,acoes);
+
+        lista.appendChild(div);
+
+    });
+
+    document.getElementById("contador").textContent=
+        total+(total===1?" item":" itens");
+
+    if(carrinho.length===0){
+
+        const vazio=document.createElement("p");
+
+        vazio.className="vazio";
+
+        vazio.textContent=
+            "Seu carrinho está vazio. Escolha ou fale seus produtos!";
+
+        lista.appendChild(vazio);
+
+    }
+
+}
+
+
+// ======================================
+// MENSAGEM WHATSAPP - COMPRAS
+// ======================================
+
+function criarMensagem(lat,lng){
+
+    const nome=
+        document.getElementById("nomeCliente").value.trim();
+
+    const endereco=
+        document.getElementById("endereco").value.trim();
+
+    const mapa=
+        "https://www.google.com/maps?q="+lat+","+lng;
+
+    let mensagem=
+        "🛵 *NOVO PEDIDO — DAN EXPRESS*\n\n";
+
+    if(nome){
+
+        mensagem+="👤 *CLIENTE:* "+nome+"\n\n";
+
+    }
+
+    mensagem+="🛒 *LISTA DE COMPRAS*\n\n";
+
+    carrinho.forEach((item,index)=>{
+
+        mensagem+=
+            "*"+(index+1)+". "+item.emoji+" "+item.categoria+"*\n";
+
+        mensagem+="Produto: "+item.descricao+"\n";
+
+        mensagem+="Quantidade: "+item.quantidade+"\n";
+
+        if(item.marca)
+            mensagem+="Marca: "+item.marca+"\n";
+
+        if(item.tamanho)
+            mensagem+="Tamanho: "+item.tamanho+"\n";
+
+        if(item.observacoes)
+            mensagem+="Observações: "+item.observacoes+"\n";
+
+        mensagem+="\n";
+
+    });
+
+    if(endereco){
+
+        mensagem+="🏠 *REFERÊNCIA:* "+endereco+"\n\n";
+
+    }
+
+    mensagem+=
+        "📍 *LOCALIZAÇÃO DO CLIENTE*\n"+mapa+"\n\n";
+
+    mensagem+="🌎 Latitude: "+lat+"\n";
+
+    mensagem+="🌎 Longitude: "+lng+"\n\n";
+
+    mensagem+=
+        "Aguardo confirmação de disponibilidade, valores e prazo de entrega.";
+
+    return mensagem;
+
+}
+
+
+// ======================================
+// FINALIZAR PEDIDO DE COMPRAS
+// ======================================
+
+function finalizarPedido(){
+
+    if(finalizando) return;
+
+    if(carrinho.length===0){
+
+        alert("Adicione pelo menos um produto!");
+
+        return;
+
+    }
+
+    if(!navigator.geolocation){
+
+        alert("Seu navegador não suporta GPS.");
+
+        return;
+
+    }
+
+    if(!window.isSecureContext){
+
+        alert("A localização exige HTTPS.");
+
+        return;
+
+    }
+
+    finalizando=true;
+
+    botaoFinalizar.disabled=true;
+
+    botaoFinalizar.textContent=
+        "📡 OBTENDO SUA LOCALIZAÇÃO...";
+
+    statusEl.textContent=
+        "Aguarde! Estamos preparando seu pedido...";
+
+    navigator.geolocation.getCurrentPosition(
+
+        function(pos){
+
+            const lat=pos.coords.latitude;
+
+            const lng=pos.coords.longitude;
+
+            if(!Number.isFinite(lat) ||
+               !Number.isFinite(lng)){
+
+                erroFinalizacao(
+                    "Localização inválida."
+                );
+
+                return;
+
+            }
+
+            const mensagem=
+                criarMensagem(lat,lng);
+
+            const url=
+                "https://wa.me/"+
+                WHATSAPP+
+                "?text="+encodeURIComponent(mensagem);
+
+            statusEl.textContent=
+                "✅ Abrindo WhatsApp...";
+
+            window.location.href=url;
+
+            finalizando=false;
+
+            botaoFinalizar.disabled=false;
+
+            botaoFinalizar.textContent=
+                "📍 FINALIZAR E ENVIAR PEDIDO";
+
+        },
+
+        function(erro){
+
+            let msg="Não foi possível obter sua localização.";
+
+            if(erro.code===1)
+                msg="Permissão de localização negada.";
+
+            if(erro.code===2)
+                msg="GPS indisponível.";
+
+            if(erro.code===3)
+                msg="Tempo esgotado. Tente novamente.";
+
+            erroFinalizacao(msg);
+
+        },
+
+        {
+
+            enableHighAccuracy:true,
+
+            timeout:25000,
+
+            maximumAge:0
+
+        }
+
+    );
+
+}
+
+
+function erroFinalizacao(msg){
+
+    finalizando=false;
+
+    botaoFinalizar.disabled=false;
+
+    botaoFinalizar.textContent=
+        "📍 FINALIZAR E ENVIAR PEDIDO";
+
+    statusEl.textContent="⚠️ "+msg;
+
+}
+
+
+// ======================================
+// INICIALIZAÇÃO
+// ======================================
+
+atualizarCarrinho();
+
+</script>
 
 </body>
 </html>
